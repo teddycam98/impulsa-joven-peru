@@ -80,25 +80,60 @@
     <!-- Virtual Assistant -->
     <div id="virtualAssistant"></div>
 
-    <!-- Register Modal -->
+    <!-- Register / Login / Reset Modal -->
     <div id="registerModal" class="modal hidden">
-      <div class="modal-content text-center">
-        <div class="close-modal"><i class="ph ph-x"></i></div>
-        <div class="p-2">
-          <i class="ph-fill ph-rocket" style="font-size: 3rem; color: var(--secondary-yellow); margin-bottom: 20px;"></i>
-          <h2 style="margin-bottom: 10px; color: white;">Únete a Impulsa Joven</h2>
-          <p>Guarda tus oportunidades y despega.</p>
-          <form id="registerForm">
-            <div class="form-group">
-              <label for="regName" class="hidden">Tu Nombre</label>
-              <input type="text" id="regName" name="name" required placeholder="Tu Nombre" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" aria-label="Tu Nombre" title="Solo se permiten letras" />
+      <div class="modal-content text-center" style="max-width: 450px; padding: 40px 30px; border-radius: 20px; background: rgba(10, 25, 60, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
+        <div class="close-modal" style="top: 15px; right: 15px; background: rgba(255,255,255,0.1);"><i class="ph ph-x"></i></div>
+        <div>
+          <img src="/logo.svg" alt="Impulsa Joven" style="height: 50px; margin-bottom: 20px; display: inline-block;">
+          <h2 id="modalTitle" style="margin-bottom: 10px; color: white; font-weight: 800; font-size: 1.8rem;">Bienvenido de vuelta</h2>
+          <p id="modalDesc" class="muted" style="margin-bottom: 25px;">Ingresa para seguir impulsando tu futuro.</p>
+          
+          <div id="socialLoginGroup">
+            <button id="btnGoogleLogin" class="btn w-100" style="margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #333; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
+              <svg width="20" height="20" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M17.64 9.20455C17.64 8.56636 17.5827 7.95273 17.4764 7.36364H9V10.845H13.8436C13.635 11.97 13.0009 12.9232 12.0477 13.5614V15.8195H14.9564C16.6582 14.2527 17.64 11.9455 17.64 9.20455Z" fill="#4285F4"/><path d="M9 18C11.43 18 13.4673 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4205 9 14.4205C6.65591 14.4205 4.67182 12.8373 3.96409 10.71H0.957275V13.0418C2.43818 15.9832 5.48182 18 9 18Z" fill="#34A853"/><path d="M3.96409 10.71C3.78409 10.17 3.68182 9.59318 3.68182 9C3.68182 8.40682 3.78409 7.83 3.96409 7.29V4.95818H0.957275C0.347727 6.17318 0 7.54773 0 9C0 10.4523 0.347727 11.8268 0.957275 13.0418L3.96409 10.71Z" fill="#FBBC05"/><path d="M9 3.57955C10.3214 3.57955 11.5077 4.03364 12.4405 4.92545L15.0218 2.34409C13.4632 0.891818 11.4259 0 9 0C5.48182 0 2.43818 2.01682 0.957275 4.95818L3.96409 7.29C4.67182 5.16273 6.65591 3.57955 9 3.57955Z" fill="#EA4335"/></svg>
+              Continuar con Google
+            </button>
+
+            <button id="btnFacebookLogin" class="btn w-100" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; background: #1877F2; color: white; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.461 18.627 0 12 0C5.373 0 0 5.461 0 12.073C0 18.053 4.388 23.003 10.125 23.948V15.549H7.078V12.073H10.125V9.431C10.125 6.425 11.916 4.771 14.619 4.771C15.932 4.771 17.307 5.006 17.307 5.006V7.955H15.792C14.302 7.955 13.84 8.878 13.84 9.825V12.073H17.162L16.63 15.549H13.84V23.948C19.612 23.003 24 18.053 24 12.073Z"/></svg>
+              Continuar con Facebook
+            </button>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <hr style="flex: 1; border-color: rgba(255,255,255,0.1);">
+              <span style="padding: 0 10px; color: var(--muted-color); font-size: 0.9rem;">O usa tu correo</span>
+              <hr style="flex: 1; border-color: rgba(255,255,255,0.1);">
+            </div>
+          </div>
+
+          <form id="authForm">
+            <div id="authMessageContainer" style="display:none; margin-bottom: 15px; padding: 10px; border-radius: 8px; font-size: 0.9rem;"></div>
+            
+            <div class="form-group" id="nameGroup" style="display: none;">
+              <input type="text" id="regName" name="name" placeholder="Tu Nombre Completo" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+" title="Solo letras" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" />
             </div>
             <div class="form-group">
-              <label for="regEmail" class="hidden">Correo electrónico</label>
-              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" maxlength="100" aria-label="Correo electrónico" />
+              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" />
             </div>
-            <button type="submit" class="btn btn-yellow w-100">Crear cuenta</button>
+            <div class="form-group" id="passwordGroup">
+              <input type="password" id="regPassword" name="password" required placeholder="Contraseña (mínimo 6 caracteres)" minlength="6" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" />
+            </div>
+            
+            <div id="forgotPasswordLink" style="text-align: right; margin-bottom: 20px; font-size: 0.85rem;">
+              <a href="#" id="btnShowReset" style="color: var(--muted-color); text-decoration: none; transition: color 0.3s;">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" id="btnAuthSubmit" class="btn btn-yellow w-100" style="margin-bottom: 15px; border-radius: 12px; padding: 15px; font-weight: bold; position: relative;">
+              <span id="btnAuthText">Entrar</span>
+              <div id="authSpinner" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; position: absolute; right: 20px; top: 50%; transform: translateY(-50%);"></div>
+            </button>
           </form>
+          
+          <p id="authToggleContainer" style="font-size: 0.9rem; margin-top: 15px;">
+            <span id="authToggleText" class="muted">¿No tienes cuenta?</span> 
+            <a href="#" id="authToggleBtn" style="color: var(--secondary-yellow); text-decoration: none; font-weight: bold;">Regístrate aquí</a>
+          </p>
         </div>
       </div>
     </div>

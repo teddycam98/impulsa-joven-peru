@@ -1,11 +1,7 @@
-import { storage } from '../services/storage.js';
+import { dbService } from '../services/supabase.js';
 
-export function renderHome() {
-  const impact = storage.getImpact();
-  const scholarshipsCount = storage.getScholarships().length;
-  const coursesCount = storage.getCourses().length;
-  const jobsCount = storage.getJobs().length;
-  const usersCount = impact.users_registered;
+export async function renderHome() {
+  const stats = await dbService.getStats();
 
   return `
     <!-- Background overlay (Plaza de Ayacucho) spans entire screen -->
@@ -47,7 +43,7 @@ export function renderHome() {
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-graduation-cap"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${scholarshipsCount}">0</div>
+            <div class="stat-number" data-target="${stats.scholarshipsCount}">0</div>
             <div class="stat-label">Becas disponibles</div>
           </div>
         </div>
@@ -55,7 +51,7 @@ export function renderHome() {
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-book-open"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${coursesCount}">0</div>
+            <div class="stat-number" data-target="${stats.coursesCount}">0</div>
             <div class="stat-label">Cursos gratuitos</div>
           </div>
         </div>
@@ -63,7 +59,7 @@ export function renderHome() {
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-briefcase"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${jobsCount}">0</div>
+            <div class="stat-number" data-target="${stats.jobsCount}">0</div>
             <div class="stat-label">Empleos y prácticas</div>
           </div>
         </div>
@@ -71,7 +67,7 @@ export function renderHome() {
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-purple-icon"><i class="ph-fill ph-users"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${usersCount}">0</div>
+            <div class="stat-number" data-target="${stats.usersCount}">0</div>
             <div class="stat-label">Jóvenes registrados</div>
           </div>
         </div>
@@ -135,6 +131,4 @@ export function renderHome() {
       </div>
     </section>
   `;
-
-  return html;
 }

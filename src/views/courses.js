@@ -1,15 +1,13 @@
-import { storage } from '../services/storage.js';
+import { dbService } from '../services/supabase.js';
 
-export function renderCourses() {
-  storage.logImpact('courses_viewed');
-  const courses = storage.getCourses();
+export async function renderCourses() {
+  const courses = await dbService.getCourses();
 
   const emptyState = `
     <div class="flex-center animate-on-scroll" style="flex-direction: column; text-align: center; margin: 50px auto; padding: 60px 40px; background: rgba(255,255,255,0.03); border-radius: 30px; border: 2px dashed rgba(255,255,255,0.1); max-width: 600px;">
       <i class="ph-fill ph-folder-open" style="font-size: 5rem; color: var(--secondary-yellow); margin-bottom: 20px; filter: drop-shadow(0 10px 20px rgba(255,213,0,0.3));"></i>
       <h3 style="font-size: 2rem; margin-bottom: 10px; color: white;">Aún no hay cursos disponibles</h3>
       <p class="muted" style="margin-bottom: 25px;">Estamos actualizando nuestra base de datos. Vuelve pronto para descubrir nuevas oportunidades de aprendizaje.</p>
-      <button class="btn btn-outline" onclick="alert('¡Te notificaremos cuando haya cursos!')">Notificarme</button>
     </div>
   `;
 
@@ -21,14 +19,14 @@ export function renderCourses() {
       ${courses.length === 0 ? emptyState : `
       <div class="grid-cards">
         ${courses.map((c, index) => `
-          <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
-            <img src="${c.imageUrl}" class="scroll-card-img" alt="${c.title}" loading="lazy" />
+          <a href="${c.course_url}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
+            <img src="${c.image_url || '/images/aprender.jpg'}" class="scroll-card-img" alt="${c.title}" loading="lazy" />
             <div class="scroll-card-content">
               <div class="card-icon-header" style="margin-bottom: 10px;">
                 <span class="card-badge"><i class="ph-fill ph-book-open"></i> ${c.provider}</span>
               </div>
               <h3>${c.title}</h3>
-              <p>${c.desc}</p>
+              <p>${c.description}</p>
               <div class="card-footer">
                 <span class="muted"><i class="ph-fill ph-timer"></i> ${c.duration}</span>
                 <span class="text-yellow" style="font-weight:bold;">Aprender <i class="ph ph-arrow-right"></i></span>
