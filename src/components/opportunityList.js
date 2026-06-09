@@ -64,7 +64,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
     const badges = getBadges(opp);
     let imgUrl = opp.image_url;
     if (!imgUrl || imgUrl.startsWith('/images/')) {
-      imgUrl = getUniqueImage(opp.category || category, opp.id, opp.title || opp.organization);
+      imgUrl = getUniqueImage(opp);
     }
     const safeLink = opp.external_link || '#';
     const catLabel = categoryLabels[opp.category] || 'Oportunidad';
