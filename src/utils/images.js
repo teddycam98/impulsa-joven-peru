@@ -5,7 +5,7 @@ const exactMatches = {
   // BECAS
   "beca excelencia académica bcp": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=350&fit=crop", // estudiante destacado
   "beca presidente de la república": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=350&fit=crop", // universidad prestigiosa
-  "beca generación del bicentenario": "https://images.unsplash.com/photo-1525926477800-7a3b10316ac6?w=500&h=350&fit=crop", // estudiantes internacionales
+  "beca generación del bicentenario": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=350&fit=crop", // estudiantes internacionales
   "beca continuidad de estudios": "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=500&h=350&fit=crop", // estudiante biblioteca
   "programa reto excelencia": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&h=350&fit=crop", // profesional estudios
   "beca alianza del pacífico": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&h=350&fit=crop", // intercambio estudiantil
