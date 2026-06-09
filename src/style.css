@@ -49,9 +49,8 @@ body {
   background-image: url('/machu_picchu.png'); /* Machu Picchu background */
   background-size: cover;
   background-position: center;
-  opacity: 0.35; /* Increased opacity to blend better with gradient */
+  opacity: 0.6; /* Significantly increased opacity to make it very noticeable */
   z-index: -3;
-  mix-blend-mode: overlay;
 }
 
 /* Gradient Overlay to blend Ayacucho into the blue */
