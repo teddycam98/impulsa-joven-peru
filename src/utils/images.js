@@ -28,7 +28,7 @@ const exactMatches = {
   "especialista en ciberseguridad": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&h=350&fit=crop", // hacking ético
 
   // VOLUNTARIADO
-  "voluntariado bicentenario": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=500&h=350&fit=crop", // jóvenes actividad cívica
+  "voluntariado bicentenario": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=350&fit=crop", // jóvenes actividad cívica / manos juntas
   "enseñanza de matemáticas": "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&h=350&fit=crop", // enseñando a niños
   "reforestación en la amazonía": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&h=350&fit=crop", // plantación árboles
   "rescate de animales": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500&h=350&fit=crop", // cuidando animales
