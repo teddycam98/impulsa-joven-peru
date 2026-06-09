@@ -49,7 +49,7 @@ body {
   background-image: url('/machu_picchu.png'); /* Machu Picchu background */
   background-size: cover;
   background-position: center;
-  opacity: 0.15; /* Slightly increased opacity for better visibility */
+  opacity: 0.35; /* Increased opacity to blend better with gradient */
   z-index: -3;
   mix-blend-mode: overlay;
 }
@@ -246,7 +246,10 @@ input:focus { border-color: var(--primary-blue); background: white; box-shadow: 
 .user-greeting { color: white; font-weight: 700; font-size: 1.1rem; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 50px; backdrop-filter: blur(5px); }
 
 /* Inner Pages (Becas, Cursos, Empleos) */
-.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; margin-top: 40px; padding-bottom: 80px; }
+.grid-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; padding-bottom: 80px; }
+@media (max-width: 1200px) { .grid-cards { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) { .grid-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .grid-cards { grid-template-columns: 1fr; } }
 .scroll-card { 
   background: rgba(255, 255, 255, 0.03); 
   backdrop-filter: blur(20px); 

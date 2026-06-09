@@ -32,9 +32,10 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
     const isFav = favIds.includes(opp.id);
     const badges = getBadges(opp);
     const imgUrl = opp.image_url || getUniqueImage(category, startIndex + index);
+    const safeLink = opp.external_link || '#';
     
     return `
-      <a href="${opp.external_link}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${(index % 12) * 0.05}s; opacity: 1; transform: none;">
+      <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${(index % 12) * 0.05}s; opacity: 1; transform: none;">
         <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); window.toggleFav(this, '${opp.id}', '${opp.category}')">
           <i class="ph-fill ph-heart"></i>
         </button>
