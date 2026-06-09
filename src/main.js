@@ -62,7 +62,7 @@ async function router() {
   
   // Show global loading state
   app.innerHTML = `
-    <div style="display: flex; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; flex-direction: column; background: #041B4D;">
+    <div style="position: fixed; inset: 0; display: flex; justify-content: center; align-items: center; z-index: 9999; flex-direction: column; background: #041B4D;">
       <div class="spinner" style="border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--secondary-yellow); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
       <p style="margin-top: 15px; color: var(--secondary-yellow); font-weight: bold;">Cargando...</p>
     </div>
@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const msgContainer = document.getElementById('authMessageContainer');
   
   const btnGoogleLogin = document.getElementById('btnGoogleLogin');
-  const btnFacebookLogin = document.getElementById('btnFacebookLogin');
   
   const authToggleBtn = document.getElementById('authToggleBtn');
   const authToggleText = document.getElementById('authToggleText');
@@ -264,12 +263,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
   
-  if (btnFacebookLogin) {
-    btnFacebookLogin.addEventListener('click', async (e) => {
-      e.preventDefault();
-      try { await dbService.signInWithFacebook(); } catch (err) { showMessage(err.message); }
-    });
-  }
   
   // Submit Form
   authForm.addEventListener('submit', async (e) => {

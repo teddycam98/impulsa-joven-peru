@@ -125,7 +125,8 @@ export const dbService = {
       id: session.user.id,
       email: session.user.email,
       name: userRecord?.full_name || session.user.user_metadata?.full_name || session.user.email.split('@')[0],
-      avatar_url: userRecord?.avatar_url || session.user.user_metadata?.avatar_url
+      avatar_url: userRecord?.avatar_url || session.user.user_metadata?.avatar_url,
+      created_at: userRecord?.created_at || session.user.created_at
     };
   },
 

@@ -90,14 +90,9 @@
           <p id="modalDesc" class="muted" style="margin-bottom: 25px;">Ingresa para seguir impulsando tu futuro.</p>
           
           <div id="socialLoginGroup">
-            <button id="btnGoogleLogin" class="btn w-100" style="margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #333; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
+            <button id="btnGoogleLogin" class="btn w-100" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #333; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
               <svg width="20" height="20" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M17.64 9.20455C17.64 8.56636 17.5827 7.95273 17.4764 7.36364H9V10.845H13.8436C13.635 11.97 13.0009 12.9232 12.0477 13.5614V15.8195H14.9564C16.6582 14.2527 17.64 11.9455 17.64 9.20455Z" fill="#4285F4"/><path d="M9 18C11.43 18 13.4673 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4205 9 14.4205C6.65591 14.4205 4.67182 12.8373 3.96409 10.71H0.957275V13.0418C2.43818 15.9832 5.48182 18 9 18Z" fill="#34A853"/><path d="M3.96409 10.71C3.78409 10.17 3.68182 9.59318 3.68182 9C3.68182 8.40682 3.78409 7.83 3.96409 7.29V4.95818H0.957275C0.347727 6.17318 0 7.54773 0 9C0 10.4523 0.347727 11.8268 0.957275 13.0418L3.96409 10.71Z" fill="#FBBC05"/><path d="M9 3.57955C10.3214 3.57955 11.5077 4.03364 12.4405 4.92545L15.0218 2.34409C13.4632 0.891818 11.4259 0 9 0C5.48182 0 2.43818 2.01682 0.957275 4.95818L3.96409 7.29C4.67182 5.16273 6.65591 3.57955 9 3.57955Z" fill="#EA4335"/></svg>
               Continuar con Google
-            </button>
-
-            <button id="btnFacebookLogin" class="btn w-100" style="display: none !important; margin-bottom: 20px; align-items: center; justify-content: center; gap: 10px; background: #1877F2; color: white; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.461 18.627 0 12 0C5.373 0 0 5.461 0 12.073C0 18.053 4.388 23.003 10.125 23.948V15.549H7.078V12.073H10.125V9.431C10.125 6.425 11.916 4.771 14.619 4.771C15.932 4.771 17.307 5.006 17.307 5.006V7.955H15.792C14.302 7.955 13.84 8.878 13.84 9.825V12.073H17.162L16.63 15.549H13.84V23.948C19.612 23.003 24 18.053 24 12.073Z"/></svg>
-              Continuar con Facebook
             </button>
             
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
@@ -138,39 +133,51 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer" style="padding: 10px 0 60px 0;">
-      <div class="container text-center" style="display: flex; flex-direction: column; align-items: center;">
-        <img src="/logo.svg" alt="Logo" class="footer-logo" style="height: 350px; margin-bottom: 10px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));" />
-        <p class="muted" style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 25px;">Reduciendo la brecha de oportunidades para los jóvenes del Perú.</p>
+    <!-- Professional Footer -->
+    <footer class="footer" style="padding: 60px 0 30px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; background: rgba(0,0,0,0.2);">
+      <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
         
-        <!-- Functional Support Zone -->
-        <div class="support-glass-bar" style="margin-top: 10px;">
-          <a href="mailto:hola@impulsajoven.pe" class="support-item" style="color:white;text-decoration:none;">
-            <i class="ph-fill ph-envelope-simple"></i>
-            <div>
-              <div style="font-weight:700">Correo</div>
-              <div class="muted">hola@impulsajoven.pe</div>
-            </div>
-          </a>
-          <div class="support-divider"></div>
-          <a href="https://wa.me/51922698107" target="_blank" class="support-item" style="color:white;text-decoration:none;">
-            <i class="ph-fill ph-whatsapp-logo"></i>
-            <div>
-              <div style="font-weight:700">WhatsApp</div>
-              <div class="muted">+51 922 698 107</div>
-            </div>
-          </a>
-          <div class="support-divider"></div>
-          <a href="/help" data-link class="support-item" style="color:white;text-decoration:none;">
-            <i class="ph-fill ph-headset"></i>
-            <div>
-              <div style="font-weight:700">Centro de Ayuda</div>
-              <div class="muted">Preguntas Frecuentes</div>
-            </div>
-          </a>
+        <!-- Column 1: Brand -->
+        <div style="display: flex; flex-direction: column;">
+          <img src="/logo.svg" alt="Logo Impulsa Joven" style="height: 120px; margin-bottom: 20px; align-self: flex-start; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));" />
+          <p class="muted" style="font-size: 1rem; line-height: 1.6; max-width: 300px;">Reduciendo la brecha de oportunidades para los jóvenes del Perú. Conectamos talento con educación, empleo y desarrollo social.</p>
+        </div>
+
+        <!-- Column 2: Oportunidades -->
+        <div style="display: flex; flex-direction: column;">
+          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Explorar</h4>
+          <a href="/becas" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Becas Nacionales</a>
+          <a href="/cursos" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Cursos Gratuitos</a>
+          <a href="/empleos" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Bolsa de Empleo</a>
+          <a href="/voluntariado" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Voluntariados</a>
+        </div>
+
+        <!-- Column 3: Soporte y Contacto -->
+        <div style="display: flex; flex-direction: column;">
+          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Soporte y Contacto</h4>
+          <a href="/help" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'"><i class="ph-fill ph-headset"></i> Centro de Ayuda</a>
+          <a href="mailto:hola@impulsajoven.pe" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'"><i class="ph-fill ph-envelope-simple"></i> hola@impulsajoven.pe</a>
+          <a href="https://wa.me/51922698107" target="_blank" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'"><i class="ph-fill ph-whatsapp-logo"></i> +51 922 698 107</a>
+        </div>
+
+        <!-- Column 4: Legal -->
+        <div style="display: flex; flex-direction: column;">
+          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Legal</h4>
+          <a href="#" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Términos y Condiciones</a>
+          <a href="#" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Privacidad</a>
+          <a href="#" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Cookies</a>
         </div>
       </div>
+
+      <div class="container" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <p class="muted" style="margin: 0; font-size: 0.95rem;">&copy; <span id="currentYear">2024</span> Impulsa Joven Perú. Todos los derechos reservados.</p>
+        <div style="display: flex; gap: 15px;">
+          <a href="#" style="color: white; font-size: 1.5rem; transition: transform 0.3s, color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.color='white'; this.style.transform='none'"><i class="ph-fill ph-facebook-logo"></i></a>
+          <a href="#" style="color: white; font-size: 1.5rem; transition: transform 0.3s, color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.color='white'; this.style.transform='none'"><i class="ph-fill ph-instagram-logo"></i></a>
+          <a href="#" style="color: white; font-size: 1.5rem; transition: transform 0.3s, color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.color='white'; this.style.transform='none'"><i class="ph-fill ph-linkedin-logo"></i></a>
+        </div>
+      </div>
+      <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
     </footer>
 
     <script type="module" src="/src/main.js"></script>

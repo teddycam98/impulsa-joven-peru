@@ -1,4 +1,5 @@
 import { dbService } from '../services/supabase.js';
+import { getUniqueImage } from '../utils/images.js';
 
 export async function renderScholarships() {
   const scholarships = await dbService.getScholarships();
@@ -20,7 +21,7 @@ export async function renderScholarships() {
       <div class="grid-cards">
         ${scholarships.map((b, index) => `
           <a href="${b.application_url}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
-            <img src="${b.image_url || '/images/estudiar.jpg'}" class="scroll-card-img" alt="${b.title}" loading="lazy" />
+            <img src="${getUniqueImage('scholarships', index)}" class="scroll-card-img" alt="${b.title}" loading="lazy" style="object-fit: cover;" />
             <div class="scroll-card-content">
               <div class="card-icon-header" style="margin-bottom: 10px;">
                 <span class="card-badge"><i class="ph-fill ph-globe"></i> ${b.institution}</span>

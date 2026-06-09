@@ -1,4 +1,5 @@
 import { dbService } from '../services/supabase.js';
+import { getUniqueImage } from '../utils/images.js';
 
 export async function renderJobs() {
   const jobs = await dbService.getJobs();
@@ -14,13 +15,13 @@ export async function renderJobs() {
   return `
     <div class="container mb-2 animate-on-scroll">
       <div class="flex-center" style="flex-direction: column; text-align: center; margin-bottom: 20px;">
-        <h1 class="text-dark" style="font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;">Bolsa de Empleo y Prácticas</h1>
+        <h1 class="text-dark" style="font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;">Bolsa de Empleo Joven</h1>
       </div>
       ${jobs.length === 0 ? emptyState : `
       <div class="grid-cards">
         ${jobs.map((j, index) => `
           <a href="${j.application_url}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
-            <img src="${j.image_url || '/images/trabajar.jpg'}" class="scroll-card-img" alt="${j.title || j.position}" loading="lazy" />
+            <img src="${getUniqueImage('jobs', index)}" class="scroll-card-img" alt="${j.title}" loading="lazy" style="object-fit: cover;" />
             <div class="scroll-card-content">
               <div class="card-icon-header" style="margin-bottom: 10px;">
                 <span class="card-badge"><i class="ph-fill ph-briefcase"></i> ${j.location}</span>

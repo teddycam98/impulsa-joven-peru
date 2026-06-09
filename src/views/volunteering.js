@@ -1,4 +1,5 @@
 import { dbService } from '../services/supabase.js';
+import { getUniqueImage } from '../utils/images.js';
 
 export async function renderVolunteering() {
   const volunteering = await dbService.getVolunteering();
@@ -14,13 +15,13 @@ export async function renderVolunteering() {
   return `
     <div class="container mb-2 animate-on-scroll">
       <div class="flex-center" style="flex-direction: column; text-align: center; margin-bottom: 20px;">
-        <h1 class="text-dark" style="font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;">Programas de Voluntariado</h1>
+        <h1 class="text-dark" style="font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;">Oportunidades de Voluntariado</h1>
       </div>
       ${volunteering.length === 0 ? emptyState : `
       <div class="grid-cards">
         ${volunteering.map((v, index) => `
           <a href="${v.application_url}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
-            <img src="${v.image_url || '/images/voluntariado.jpg'}" class="scroll-card-img" alt="${v.title}" loading="lazy" />
+            <img src="${getUniqueImage('volunteering', index)}" class="scroll-card-img" alt="${v.title}" loading="lazy" style="object-fit: cover;" />
             <div class="scroll-card-content">
               <div class="card-icon-header" style="margin-bottom: 10px;">
                 <span class="card-badge"><i class="ph-fill ph-heart"></i> Impacto Social</span>
