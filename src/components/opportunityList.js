@@ -75,7 +75,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
       imgUrl = getUniqueImage(opp);
     }
 
-    const safeLink = categoryLinks[opp.category] || '#';
+    const safeLink = opp.external_link || '#';
     const catLabel = categoryLabels[opp.category] || 'Oportunidad';
     const catIcon = categoryIcons[opp.category] || 'ph-globe';
     
