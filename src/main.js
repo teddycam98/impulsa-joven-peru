@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     msgContainer.textContent = msg;
     msgContainer.style.backgroundColor = type === 'error' ? 'rgba(255, 0, 0, 0.1)' : 'rgba(0, 255, 0, 0.1)';
     msgContainer.style.color = type === 'error' ? '#ff6b6b' : '#51cf66';
-    msgContainer.style.border = \`1px solid \${type === 'error' ? '#ff6b6b' : '#51cf66'}\`;
+    msgContainer.style.border = `1px solid ${type === 'error' ? '#ff6b6b' : '#51cf66'}`;
   }
 
   function hideMessage() {
@@ -153,17 +153,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   function updateUserUI(user) {
     if (user) {
       greeting.classList.remove('hidden');
-      const avatar = user.avatar_url || \`https://ui-avatars.com/api/?name=\${encodeURIComponent(user.name)}&background=ffcc00&color=041b4d&bold=true\`;
+      const avatar = user.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=ffcc00&color=041b4d&bold=true`;
       
-      greeting.innerHTML = \`
+      greeting.innerHTML = `
         <a href="/perfil" data-link style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: white;">
-          <img src="\${avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
-          <span>\${user.name.split(' ')[0]}</span>
+          <img src="${avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
+          <span>${user.name.split(' ')[0]}</span>
         </a>
         <button id="btnLogout" class="icon-btn-circle" style="width: 32px; height: 32px; font-size: 1.2rem; background: rgba(255,255,255,0.1); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%;" title="Cerrar sesión">
           <i class="ph ph-sign-out"></i>
         </button>
-      \`;
+      `;
       
       document.getElementById('btnLogout').addEventListener('click', async () => {
         await dbService.logout();
