@@ -59,9 +59,21 @@ let globalIndex = 0;
 
 export function getUniqueImage(category, seedString, title = '') {
   const t = title.toLowerCase();
+  
+  // Strict Exact Title Matches for 100% relevance (The user's exact courses)
+  if (t.includes('react') || t.includes('frontend')) return 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=350&fit=crop'; // React logo / Code
+  if (t.includes('python') || t.includes('datos') || t.includes('data')) return 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&h=350&fit=crop'; // Matrix code / Python
+  if (t.includes('marketing')) return 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&h=350&fit=crop'; // Marketing layout
+  if (t.includes('diseño') || t.includes('ux') || t.includes('ui')) return 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=350&fit=crop'; // Design wireframes
+  if (t.includes('psicología')) return 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&h=350&fit=crop'; // Counseling
+  if (t.includes('construcción')) return 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=500&h=350&fit=crop'; // Construction
+  if (t.includes('emergencia') || t.includes('rescate') || t.includes('cruz roja')) return 'https://images.unsplash.com/photo-1588661136423-f32a74c4314e?w=500&h=350&fit=crop'; // Emergency / Medical
+  if (t.includes('banco') || t.includes('bcp') || t.includes('finanzas')) return 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500&h=350&fit=crop'; // Finance
+  if (t.includes('google')) return 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=500&h=350&fit=crop'; // Google office
+
   let keyword = category;
   
-  if (t.includes('tecno') || t.includes('software') || t.includes('datos') || t.includes('digital') || t.includes('ti') || t.includes('sistemas') || t.includes('programación') || t.includes('python') || t.includes('react') || t.includes('frontend')) keyword = 'technology';
+  if (t.includes('tecno') || t.includes('software') || t.includes('digital') || t.includes('ti') || t.includes('sistemas') || t.includes('programación')) keyword = 'technology';
   else if (t.includes('matemática') || t.includes('ingeniería') || t.includes('ciencia')) keyword = 'engineering';
   else if (t.includes('salud') || t.includes('psicología') || t.includes('médico')) keyword = 'health';
   else if (t.includes('ambiente') || t.includes('reforestación') || t.includes('animales') || t.includes('naturaleza') || t.includes('rescate')) keyword = 'nature';
