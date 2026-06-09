@@ -4,10 +4,6 @@ export async function renderHome() {
   const stats = await dbService.getStats();
 
   return `
-    <!-- Background overlay (Plaza de Ayacucho) spans entire screen -->
-    <div class="global-bg"></div>
-    <div class="global-bg-gradient"></div>
-    
     <!-- Decorative Shapes -->
     <div class="dec-circle-solid-blue"></div>
     <div class="dec-circle-solid-yellow"></div>
