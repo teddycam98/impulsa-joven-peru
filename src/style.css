@@ -424,6 +424,36 @@ input:focus { border-color: var(--primary-blue); background: white; box-shadow: 
 .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: auto; }
 .muted { color: rgba(255,255,255,0.5); font-size: 0.95rem; font-weight: 500; }
 
+/* Premium Badges Overlay */
+.opp-badges-row {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.opp-badge {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.opp-badge-featured { background: rgba(255, 170, 0, 0.9); border-color: rgba(255, 255, 255, 0.4); }
+.opp-badge-new { background: rgba(10, 77, 163, 0.9); }
+.opp-badge-urgent { background: rgba(220, 38, 38, 0.9); }
+
 /* Push inner pages down because of the huge logo */
 #app > .container.mb-2 { padding-top: 260px; }
 .text-dark { color: white !important; }
