@@ -299,6 +299,51 @@ input:focus { border-color: var(--primary-blue); background: white; box-shadow: 
 .policy-block h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; color: var(--secondary-yellow); }
 .policy-text { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
+/* Dropdown Menu */
+.dropdown-menu.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+}
+.dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.dropdown-item:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--secondary-yellow) !important;
+}
+
+/* Favorites Button */
+.btn-favorite {
+  position: absolute; 
+  top: 15px; 
+  right: 15px; 
+  z-index: 10; 
+  background: rgba(0,0,0,0.5); 
+  border: none; 
+  border-radius: 50%; 
+  width: 40px; 
+  height: 40px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  cursor: pointer; 
+  backdrop-filter: blur(5px); 
+  color: white; 
+  transition: all 0.3s ease;
+}
+.btn-favorite:hover {
+  transform: scale(1.1);
+  background: rgba(0,0,0,0.7);
+}
+.btn-favorite.active {
+  color: #ff6b6b;
+}
+
+
 /* Responsive Adjustments */
 @media (max-width: 1400px) {
   .cards-row { grid-template-columns: repeat(2, 1fr); }

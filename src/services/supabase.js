@@ -139,12 +139,79 @@ export const dbService = {
           await supabase.from('users').insert([{
             id: session.user.id,
             full_name: session.user.user_metadata?.full_name || session.user.email.split('@')[0],
-            email: session.user.email,
-            avatar_url: session.user.user_metadata?.avatar_url
+            avatar_url: session.user.user_metadata?.avatar_url,
+            email: session.user.email
           }]);
         }
       }
       callback(event, session);
     });
+  },
+  
+  // Favorites
+  async toggleFavorite(opportunityId, category) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) throw new Error('Debes iniciar sesión para guardar favoritos');
+    
+    // Check if exists
+    const { data: existing } = await supabase
+      .from('favorites')
+      .select('id')
+      .eq('user_id', session.user.id)
+      .eq('opportunity_id', opportunityId)
+      .eq('category', category)
+      .single();
+      
+    if (existing) {
+      // Remove
+      await supabase.from('favorites').delete().eq('id', existing.id);
+      return false; // Not favorited anymore
+    } else {
+      // Add
+      await supabase.from('favorites').insert([{
+        user_id: session.user.id,
+        opportunity_id: opportunityId,
+        category: category
+      }]);
+      return true; // Favorited
+    }
+  },
+  
+  async getFavoriteIds() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return [];
+    
+    const { data } = await supabase.from('favorites').select('opportunity_id').eq('user_id', session.user.id);
+    return data ? data.map(d => d.opportunity_id) : [];
+  },
+  
+  async getFavoritesCount() {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return 0;
+    
+    const { count } = await supabase.from('favorites').select('id', { count: 'exact', head: true }).eq('user_id', session.user.id);
+    return count || 0;
+  },
+  
+  async getFavorites(userId) {
+    // Note: Since Supabase doesn't easily support polymorphic relationships natively in simple queries,
+    // we fetch the favorites and manually attach the data by querying each category table, 
+    // or by doing a massive query. The simplest is to fetch all favs, then map.
+    const { data: favs } = await supabase.from('favorites').select('*').eq('user_id', userId).order('created_at', { ascending: false });
+    if (!favs || favs.length === 0) return [];
+    
+    // Enrich the data
+    const enriched = await Promise.all(favs.map(async (fav) => {
+      let table = '';
+      if (fav.category === 'scholarship') table = 'scholarships';
+      if (fav.category === 'course') table = 'courses';
+      if (fav.category === 'job') table = 'jobs';
+      if (fav.category === 'volunteering') table = 'volunteer_opportunities';
+      
+      const { data: item } = await supabase.from(table).select('*').eq('id', fav.opportunity_id).single();
+      return { ...fav, opportunity_data: item };
+    }));
+    
+    return enriched.filter(f => f.opportunity_data);
   }
 };

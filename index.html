@@ -55,12 +55,22 @@
           <a href="/voluntariado" data-link><i class="ph ph-magic-wand"></i> Voluntariado</a>
         </div>
         <div class="nav-actions">
-          <span id="userGreeting" class="user-greeting hidden" style="display: inline-flex; align-items: center; gap: 8px;">
-            Hola, <span id="userNameDisplay"></span>
-            <button id="btnLogout" class="icon-btn-circle" style="width: 32px; height: 32px; font-size: 1.2rem; background: rgba(255,255,255,0.1); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%;" title="Cerrar sesión">
-              <i class="ph ph-sign-out"></i>
-            </button>
-          </span>
+          <div id="userGreeting" class="user-greeting hidden" style="position: relative;">
+            <div id="userDropdownTrigger" style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); transition: background 0.3s;">
+              <span id="userNameDisplay"></span>
+              <i class="ph ph-caret-down" style="font-size: 0.8rem;"></i>
+            </div>
+            
+            <div id="userDropdownMenu" class="dropdown-menu hidden" style="position: absolute; top: 110%; right: 0; background: rgba(10, 25, 60, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; width: 220px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); z-index: 100; overflow: hidden; display: flex; flex-direction: column;">
+              <div id="dropdownHeader" style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px;">
+                <!-- Avatar and info injected via JS -->
+              </div>
+              <a href="/perfil" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-user"></i> Mi Perfil</a>
+              <a href="/favoritos" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-heart"></i> Mis Favoritos</a>
+              <div style="border-top: 1px solid rgba(255,255,255,0.1);"></div>
+              <button id="btnLogout" class="dropdown-item" style="padding: 12px 15px; background: transparent; border: none; color: #ff6b6b; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 1rem; width: 100%; transition: background 0.2s;"><i class="ph ph-sign-out"></i> Cerrar sesión</button>
+            </div>
+          </div>
           <button id="btnRegister" class="btn btn-yellow btn-nav">Iniciar sesión</button>
           <button class="icon-btn-circle" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
         </div>
@@ -163,9 +173,9 @@
         <!-- Column 4: Legal -->
         <div style="display: flex; flex-direction: column;">
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Legal</h4>
-          <a href="#" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Términos y Condiciones</a>
-          <a href="#" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Privacidad</a>
-          <a href="#" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Cookies</a>
+          <a href="/terminos" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Términos y Condiciones</a>
+          <a href="/privacidad" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Privacidad</a>
+          <a href="/cookies" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Cookies</a>
         </div>
       </div>
 

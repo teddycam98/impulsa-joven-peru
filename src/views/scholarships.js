@@ -3,6 +3,7 @@ import { getUniqueImage } from '../utils/images.js';
 
 export async function renderScholarships() {
   const scholarships = await dbService.getScholarships();
+  const favIds = await dbService.getFavoriteIds();
 
   const emptyState = `
     <div class="flex-center animate-on-scroll" style="flex-direction: column; text-align: center; margin: 50px auto; padding: 60px 40px; background: rgba(255,255,255,0.03); border-radius: 30px; border: 2px dashed rgba(255,255,255,0.1); max-width: 600px;">
@@ -19,8 +20,13 @@ export async function renderScholarships() {
       </div>
       ${scholarships.length === 0 ? emptyState : `
       <div class="grid-cards">
-        ${scholarships.map((b, index) => `
+        ${scholarships.map((b, index) => {
+          const isFav = favIds.includes(b.id);
+          return `
           <a href="${b.application_url}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
+            <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${b.id}" data-category="scholarship" onclick="event.preventDefault(); window.toggleFav(this, '${b.id}', 'scholarship')">
+              <i class="ph-fill ph-heart"></i>
+            </button>
             <img src="${getUniqueImage('scholarships', index)}" class="scroll-card-img" alt="${b.title}" loading="lazy" style="object-fit: cover;" />
             <div class="scroll-card-content">
               <div class="card-icon-header" style="margin-bottom: 10px;">
@@ -34,7 +40,8 @@ export async function renderScholarships() {
               </div>
             </div>
           </a>
-        `).join('')}
+        `;
+        }).join('')}
       </div>`}
     </div>
   `;

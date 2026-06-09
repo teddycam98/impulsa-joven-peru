@@ -25,6 +25,8 @@ export async function renderProfile() {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = rawDate.toLocaleDateString('es-PE', options);
 
+  const favCount = await dbService.getFavoritesCount();
+
   return `
     <div class="container mb-2 animate-on-scroll" style="margin-top: 40px; min-height: 60vh;">
       
@@ -45,11 +47,11 @@ export async function renderProfile() {
         </div>
 
         <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 35px;">
-          <div style="background: rgba(255,255,255,0.05); padding: 25px 20px; border-radius: 20px; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <a href="/favoritos" data-link style="text-decoration: none; background: rgba(255,255,255,0.05); padding: 25px 20px; border-radius: 20px; transition: transform 0.3s ease; cursor: pointer; display: block;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
             <i class="ph-fill ph-bookmark-simple" style="font-size: 2.5rem; color: var(--secondary-yellow); margin-bottom: 15px;"></i>
-            <h3 style="color: white; font-size: 1.8rem; margin-bottom: 5px;">0</h3>
+            <h3 style="color: white; font-size: 1.8rem; margin-bottom: 5px;">${favCount}</h3>
             <p class="muted" style="font-size: 1rem;">Guardados</p>
-          </div>
+          </a>
           <div style="background: rgba(255,255,255,0.05); padding: 25px 20px; border-radius: 20px; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
             <i class="ph-fill ph-paper-plane-tilt" style="font-size: 2.5rem; color: var(--secondary-yellow); margin-bottom: 15px;"></i>
             <h3 style="color: white; font-size: 1.8rem; margin-bottom: 5px;">0</h3>

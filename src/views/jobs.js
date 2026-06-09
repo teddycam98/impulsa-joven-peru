@@ -3,6 +3,7 @@ import { getUniqueImage } from '../utils/images.js';
 
 export async function renderJobs() {
   const jobs = await dbService.getJobs();
+  const favIds = await dbService.getFavoriteIds();
 
   const emptyState = `
     <div class="flex-center animate-on-scroll" style="flex-direction: column; text-align: center; margin: 50px auto; padding: 60px 40px; background: rgba(255,255,255,0.03); border-radius: 30px; border: 2px dashed rgba(255,255,255,0.1); max-width: 600px;">
@@ -19,8 +20,13 @@ export async function renderJobs() {
       </div>
       ${jobs.length === 0 ? emptyState : `
       <div class="grid-cards">
-        ${jobs.map((j, index) => `
+        ${jobs.map((j, index) => {
+          const isFav = favIds.includes(j.id);
+          return `
           <a href="${j.application_url}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${index * 0.1}s">
+            <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${j.id}" data-category="job" onclick="event.preventDefault(); window.toggleFav(this, '${j.id}', 'job')">
+              <i class="ph-fill ph-heart"></i>
+            </button>
             <img src="${getUniqueImage('jobs', index)}" class="scroll-card-img" alt="${j.title}" loading="lazy" style="object-fit: cover;" />
             <div class="scroll-card-content">
               <div class="card-icon-header" style="margin-bottom: 10px;">
@@ -34,7 +40,8 @@ export async function renderJobs() {
               </div>
             </div>
           </a>
-        `).join('')}
+        `;
+        }).join('')}
       </div>`}
     </div>
   `;

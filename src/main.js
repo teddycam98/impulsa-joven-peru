@@ -8,6 +8,10 @@ import { renderVocationalTest, initVocationalTest } from './views/vocationalTest
 import { renderAbout } from './views/about.js';
 import { renderHelp, initHelpCenterLogic } from './views/help.js';
 import { renderProfile } from './views/profile.js';
+import { renderFavorites } from './views/favorites.js';
+import { renderPrivacy } from './views/privacy.js';
+import { renderTerms } from './views/terms.js';
+import { renderCookies } from './views/cookies.js';
 import { initVirtualAssistant } from './components/virtualAssistant.js';
 
 const app = document.getElementById('app');
@@ -21,7 +25,11 @@ const routes = {
   '/vocacional': renderVocationalTest,
   '/sobre-proyecto': renderAbout,
   '/help': renderHelp,
-  '/perfil': renderProfile
+  '/perfil': renderProfile,
+  '/favoritos': renderFavorites,
+  '/privacidad': renderPrivacy,
+  '/terminos': renderTerms,
+  '/cookies': renderCookies
 };
 
 function initAnimations() {
@@ -148,33 +156,84 @@ document.addEventListener('DOMContentLoaded', async () => {
     msgContainer.style.display = 'none';
   }
 
+  // Setup Dropdown Toggle
+  const dropdownTrigger = document.getElementById('userDropdownTrigger');
+  const dropdownMenu = document.getElementById('userDropdownMenu');
+  
+  if (dropdownTrigger) {
+    dropdownTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('hidden');
+    });
+  }
+  
+  document.addEventListener('click', (e) => {
+    if (dropdownMenu && !dropdownMenu.classList.contains('hidden') && !e.target.closest('#userGreeting')) {
+      dropdownMenu.classList.add('hidden');
+    }
+  });
+
+  // Global Favorite Toggle
+  window.toggleFav = async (btn, id, category) => {
+    try {
+      const isFav = await dbService.toggleFavorite(id, category);
+      if (isFav) {
+        btn.classList.add('active');
+        btn.style.color = '#ff6b6b';
+      } else {
+        btn.classList.remove('active');
+        btn.style.color = 'var(--secondary-yellow)';
+      }
+    } catch (err) {
+      if (err.message === 'Debes iniciar sesión para guardar favoritos') {
+        document.getElementById('btnRegister').click();
+      } else {
+        console.error(err);
+      }
+    }
+  };
+
   // Set user UI in Navbar
   function updateUserUI(user) {
     if (user) {
       greeting.classList.remove('hidden');
       const avatar = user.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=ffcc00&color=041b4d&bold=true`;
       
-      greeting.innerHTML = `
-        <a href="/perfil" data-link style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: white;">
-          <img src="${avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
-          <span>${user.name.split(' ')[0]}</span>
-        </a>
-        <button id="btnLogout" class="icon-btn-circle" style="width: 32px; height: 32px; font-size: 1.2rem; background: rgba(255,255,255,0.1); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%;" title="Cerrar sesión">
-          <i class="ph ph-sign-out"></i>
-        </button>
+      document.getElementById('userNameDisplay').innerHTML = `
+        <img src="${avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
+        <span>${user.name.split(' ')[0]}</span>
       `;
       
-      document.getElementById('btnLogout').addEventListener('click', async () => {
-        await dbService.logout();
-        window.history.pushState(null, null, '/');
-        router();
-      });
+      const dropdownHeader = document.getElementById('dropdownHeader');
+      if (dropdownHeader) {
+        dropdownHeader.innerHTML = `
+          <img src="${avatar}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
+          <div style="display: flex; flex-direction: column;">
+            <span style="color: white; font-weight: bold; font-size: 0.95rem;">${user.name}</span>
+            <span class="muted" style="font-size: 0.8rem;">${user.email}</span>
+          </div>
+        `;
+      }
+      
+      const btnLogout = document.getElementById('btnLogout');
+      if (btnLogout) {
+        // Remove existing listeners to avoid duplicates
+        const newBtnLogout = btnLogout.cloneNode(true);
+        btnLogout.parentNode.replaceChild(newBtnLogout, btnLogout);
+        
+        newBtnLogout.addEventListener('click', async () => {
+          dropdownMenu.classList.add('hidden');
+          await dbService.logout();
+          window.history.pushState(null, null, '/');
+          router();
+        });
+      }
 
       btnReg.classList.add('hidden');
       modal.classList.add('hidden');
     } else {
       greeting.classList.add('hidden');
-      greeting.innerHTML = '';
+      document.getElementById('userNameDisplay').innerHTML = '';
       btnReg.classList.remove('hidden');
     }
   }
