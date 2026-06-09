@@ -62,7 +62,7 @@ async function router() {
   
   // Show global loading state
   app.innerHTML = `
-    <div class="flex-center" style="min-height: 60vh; flex-direction: column;">
+    <div style="display: flex; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 9999; flex-direction: column; background: #041B4D;">
       <div class="spinner" style="border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--secondary-yellow); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
       <p style="margin-top: 15px; color: var(--secondary-yellow); font-weight: bold;">Cargando...</p>
     </div>
