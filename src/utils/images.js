@@ -109,8 +109,9 @@ export function getUniqueImage(opp) {
   
   // 1. EXACT DETERMINISTIC MATCHING
   // This guarantees that the user's specific items ALWAYS get the EXACT designated image permanently.
-  if (exactMatches[normalizedTitle]) {
-    return exactMatches[normalizedTitle];
+  const matchedKey = Object.keys(exactMatches).find(key => normalizedTitle.includes(key));
+  if (matchedKey) {
+    return exactMatches[matchedKey];
   }
 
   // 2. FALLBACK DETERMINISTIC HASHING
