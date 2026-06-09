@@ -6,35 +6,32 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_YN
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const dbService = {
-  async getScholarships() {
-    const { data, error } = await supabase.from('scholarships').select('*').eq('active', true).order('created_at', { ascending: false });
-    if (error) { console.error(error); return []; }
-    return data;
-  },
-
-  async getCourses() {
-    const { data, error } = await supabase.from('courses').select('*').eq('active', true).order('created_at', { ascending: false });
-    if (error) { console.error(error); return []; }
-    return data;
-  },
-
-  async getJobs() {
-    const { data, error } = await supabase.from('jobs').select('*').eq('active', true).order('created_at', { ascending: false });
-    if (error) { console.error(error); return []; }
-    return data;
-  },
-
-  async getVolunteering() {
-    const { data, error } = await supabase.from('volunteer_opportunities').select('*').eq('active', true).order('created_at', { ascending: false });
+  async getOpportunities(params = {}) {
+    let { category, limit = 12, page = 0, search = '', featured, active = true } = params;
+    let query = supabase.from('opportunities').select('*');
+    
+    if (category) query = query.eq('category', category);
+    if (active !== undefined) query = query.eq('status', active ? 'active' : 'expired');
+    if (featured !== undefined) query = query.eq('featured', featured);
+    if (search) {
+      query = query.or(`title.ilike.%${search}%,organization.ilike.%${search}%`);
+    }
+    
+    // Pagination
+    const from = page * limit;
+    const to = from + limit - 1;
+    query = query.range(from, to).order('created_at', { ascending: false });
+    
+    const { data, error } = await query;
     if (error) { console.error(error); return []; }
     return data;
   },
 
   async getStats() {
     const [scholarships, courses, jobs, users] = await Promise.all([
-      supabase.from('scholarships').select('*', { count: 'exact', head: true }).eq('active', true),
-      supabase.from('courses').select('*', { count: 'exact', head: true }).eq('active', true),
-      supabase.from('jobs').select('*', { count: 'exact', head: true }).eq('active', true),
+      supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'scholarship').eq('status', 'active'),
+      supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'course').eq('status', 'active'),
+      supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'job').eq('status', 'active'),
       supabase.from('users').select('*', { count: 'exact', head: true })
     ]);
     return {
@@ -194,24 +191,33 @@ export const dbService = {
   },
   
   async getFavorites(userId) {
-    // Note: Since Supabase doesn't easily support polymorphic relationships natively in simple queries,
-    // we fetch the favorites and manually attach the data by querying each category table, 
-    // or by doing a massive query. The simplest is to fetch all favs, then map.
     const { data: favs } = await supabase.from('favorites').select('*').eq('user_id', userId).order('created_at', { ascending: false });
     if (!favs || favs.length === 0) return [];
     
-    // Enrich the data
     const enriched = await Promise.all(favs.map(async (fav) => {
-      let table = '';
-      if (fav.category === 'scholarship') table = 'scholarships';
-      if (fav.category === 'course') table = 'courses';
-      if (fav.category === 'job') table = 'jobs';
-      if (fav.category === 'volunteering') table = 'volunteer_opportunities';
-      
-      const { data: item } = await supabase.from(table).select('*').eq('id', fav.opportunity_id).single();
+      // Unified opportunities table makes this query O(1) in complexity over a single table
+      // It assumes old items were migrated.
+      const { data: item } = await supabase.from('opportunities').select('*').eq('id', fav.opportunity_id).single();
       return { ...fav, opportunity_data: item };
     }));
     
     return enriched.filter(f => f.opportunity_data);
+  },
+  
+  // Admin Methods
+  async createOpportunity(data) {
+    const { data: res, error } = await supabase.from('opportunities').insert([data]);
+    if (error) throw error;
+    return res;
+  },
+  async updateOpportunity(id, data) {
+    const { data: res, error } = await supabase.from('opportunities').update(data).eq('id', id);
+    if (error) throw error;
+    return res;
+  },
+  async deleteOpportunity(id) {
+    const { data: res, error } = await supabase.from('opportunities').delete().eq('id', id);
+    if (error) throw error;
+    return res;
   }
 };

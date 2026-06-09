@@ -12,6 +12,7 @@ import { renderFavorites } from './views/favorites.js';
 import { renderPrivacy } from './views/privacy.js';
 import { renderTerms } from './views/terms.js';
 import { renderCookies } from './views/cookies.js';
+import { renderAdmin } from './views/admin.js';
 import { initVirtualAssistant } from './components/virtualAssistant.js';
 
 const app = document.getElementById('app');
@@ -29,7 +30,8 @@ const routes = {
   '/favoritos': renderFavorites,
   '/privacidad': renderPrivacy,
   '/terminos': renderTerms,
-  '/cookies': renderCookies
+  '/cookies': renderCookies,
+  '/admin': renderAdmin
 };
 
 function initAnimations() {
