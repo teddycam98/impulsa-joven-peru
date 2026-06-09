@@ -58,15 +58,52 @@ const escapeHTML = (str) => {
   }[tag] || tag));
 };
 
+const categoryImages = {
+  scholarship: [
+    'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1525926477800-7a3b10316ac6?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1513258496099-48168024aec0?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&h=350&fit=crop'
+  ],
+  course: [
+    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1546422904-90eab23c3d7e?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=350&fit=crop'
+  ],
+  job: [
+    'https://images.unsplash.com/photo-1605379399642-870262d3d051?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=500&h=350&fit=crop'
+  ],
+  volunteer: [
+    'https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=500&h=350&fit=crop'
+  ]
+};
+
+const categoryLinks = {
+  scholarship: '/becas',
+  course: '/cursos',
+  job: '/empleos',
+  volunteer: '/voluntariado'
+};
+
 export function generateOpportunityCards(opportunities, category, favIds, startIndex = 0) {
   return opportunities.map((opp, index) => {
     const isFav = favIds.includes(opp.id);
     const badges = getBadges(opp);
-    let imgUrl = opp.image_url;
-    if (!imgUrl || imgUrl.startsWith('/images/')) {
-      imgUrl = getUniqueImage(opp);
-    }
-    const safeLink = opp.external_link || '#';
+    const imageArray = categoryImages[opp.category] || categoryImages.scholarship;
+    const imgUrl = imageArray[index % imageArray.length];
+
+    const safeLink = categoryLinks[opp.category] || '#';
     const catLabel = categoryLabels[opp.category] || 'Oportunidad';
     const catIcon = categoryIcons[opp.category] || 'ph-globe';
     
