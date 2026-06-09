@@ -71,7 +71,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
     const badges = getBadges(opp);
     
     let imgUrl = opp.image_url;
-    if (!imgUrl || imgUrl.startsWith('/images/')) {
+    if (!imgUrl || imgUrl.startsWith('/images/') || imgUrl.includes('unsplash.com')) {
       imgUrl = getUniqueImage(opp);
     }
 
