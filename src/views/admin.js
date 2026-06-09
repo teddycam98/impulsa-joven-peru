@@ -1,5 +1,43 @@
 import { dbService } from '../services/supabase.js';
 
+/* ── Toast notification helper ─────────────────────────────────── */
+function showToast(message, type = 'success') {
+  const existing = document.querySelectorAll('.admin-toast');
+  existing.forEach(t => t.remove());
+
+  const toast = document.createElement('div');
+  toast.className = `admin-toast toast-${type}`;
+  toast.innerHTML = `
+    <i class="ph ${type === 'success' ? 'ph-check-circle' : 'ph-warning-circle'}"></i>
+    <span>${message}</span>
+  `;
+  document.body.appendChild(toast);
+
+  // Trigger entrance animation
+  requestAnimationFrame(() => toast.classList.add('toast-visible'));
+
+  setTimeout(() => {
+    toast.classList.remove('toast-visible');
+    setTimeout(() => toast.remove(), 350);
+  }, 3500);
+}
+
+/* ── Category display helpers ──────────────────────────────────── */
+const categoryLabels = {
+  scholarship: 'Beca',
+  course: 'Curso',
+  job: 'Empleo',
+  volunteer: 'Voluntariado'
+};
+
+const categoryIcons = {
+  scholarship: 'ph-graduation-cap',
+  course: 'ph-book-open-text',
+  job: 'ph-briefcase',
+  volunteer: 'ph-hands-clapping'
+};
+
+/* ── Main render ───────────────────────────────────────────────── */
 export async function renderAdmin() {
   const user = await dbService.getCurrentUser();
   if (!user) {
@@ -7,36 +45,32 @@ export async function renderAdmin() {
       window.history.pushState(null, null, '/');
       window.dispatchEvent(new Event('popstate'));
       const btnReg = document.getElementById('btnRegister');
-      if(btnReg) btnReg.click();
+      if (btnReg) btnReg.click();
     }, 100);
     return `<div class="flex-center" style="min-height: 60vh;"><p class="muted">Redirigiendo...</p></div>`;
   }
 
-  // Bind global functions for admin logic so they can be called from inline handlers
+  /* ── Bind global handlers ──────────────────────────────────── */
   window.adminDelete = async (id) => {
     if (confirm('¿Estás seguro de eliminar esta oportunidad?')) {
       try {
         await dbService.deleteOpportunity(id);
-        alert('Eliminada correctamente.');
-        window.dispatchEvent(new Event('popstate')); // Refresh
+        showToast('Oportunidad eliminada correctamente.', 'success');
+        window.dispatchEvent(new Event('popstate'));
       } catch (err) {
-        alert(err.message);
+        showToast(err.message, 'error');
       }
     }
   };
 
-  window.adminEdit = (id) => {
-    // A more advanced version would populate the form. For the demo, we alert.
-    alert('Función de edición en construcción. Puedes eliminar y crear una nueva por ahora.');
-  };
-
   window.adminCreate = async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
-    btn.innerText = 'Guardando...';
+    btn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Guardando...';
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(form);
     const data = {
       title: formData.get('title'),
       description: formData.get('description'),
@@ -51,79 +85,217 @@ export async function renderAdmin() {
 
     try {
       await dbService.createOpportunity(data);
-      alert('Oportunidad creada exitosamente.');
-      window.dispatchEvent(new Event('popstate')); // Refresh
+      showToast('¡Oportunidad creada exitosamente!', 'success');
+      form.reset();
+      window.dispatchEvent(new Event('popstate'));
     } catch (err) {
-      alert(err.message);
+      showToast(err.message, 'error');
       btn.disabled = false;
-      btn.innerText = 'Guardar';
+      btn.innerHTML = '<i class="ph ph-plus-circle"></i> Crear Oportunidad';
     }
   };
 
-  const opportunities = await dbService.getOpportunities({ limit: 100 });
+  /* ── Fetch data & compute stats ────────────────────────────── */
+  const opportunities = await dbService.getOpportunities({ limit: 200 });
+  const totalCount = opportunities.length;
+  const activeCount = opportunities.filter(o => o.status === 'active').length;
+  const featuredCount = opportunities.filter(o => o.featured).length;
+  const categoryCount = 4;
 
+  const escapeHTML = (str) => {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[tag] || tag));
+  };
+
+  /* ── Build table rows ──────────────────────────────────────── */
+  const tableRows = opportunities.map(opp => {
+    const cat = opp.category || 'scholarship';
+    const catLabel = categoryLabels[cat] || cat;
+    const catIcon = categoryIcons[cat] || 'ph-circle';
+    const org = opp.organization || '—';
+    const isActive = opp.status === 'active';
+
+    return `
+      <tr>
+        <td class="admin-cell-title">
+          <span class="admin-title-text">${escapeHTML(opp.title)}</span>
+          ${opp.featured ? '<span class="admin-featured-badge"><i class="ph ph-star-fill"></i></span>' : ''}
+        </td>
+        <td>
+          <span class="admin-badge admin-badge-${cat}">
+            <i class="ph ${catIcon}"></i> ${catLabel}
+          </span>
+        </td>
+        <td class="admin-cell-org">${escapeHTML(org)}</td>
+        <td>
+          <span class="admin-badge ${isActive ? 'admin-badge-active' : 'admin-badge-expired'}">
+            ${isActive ? 'Activo' : 'Expirado'}
+          </span>
+        </td>
+        <td>
+          <button onclick="window.adminDelete('${opp.id}')" class="admin-action-btn danger" title="Eliminar">
+            <i class="ph ph-trash"></i>
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  /* ── Empty state for table ─────────────────────────────────── */
+  const emptyState = `
+    <tr>
+      <td colspan="5">
+        <div class="admin-empty">
+          <i class="ph ph-clipboard-text"></i>
+          <p>No hay oportunidades registradas</p>
+          <span>Crea la primera usando el formulario de la izquierda</span>
+        </div>
+      </td>
+    </tr>
+  `;
+
+  /* ── Full layout ───────────────────────────────────────────── */
   return `
     <div class="container mb-2" style="margin-top: 40px; min-height: 60vh;">
-      <h1 class="text-dark" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 30px;">Panel de Administración</h1>
-      
-      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px;">
-        
-        <!-- Formulario -->
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 25px;">
-          <h3 style="color: white; margin-bottom: 20px;">Crear Oportunidad</h3>
-          <form onsubmit="window.adminCreate(event)" style="display: flex; flex-direction: column; gap: 15px;">
-            <input type="text" name="title" placeholder="Título" required style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px;">
-            <textarea name="description" placeholder="Descripción" rows="3" required style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px; font-family: inherit; resize: none;"></textarea>
-            
-            <select name="category" required style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px;">
-              <option value="" disabled selected>Categoría...</option>
-              <option value="scholarship">Beca</option>
-              <option value="course">Curso</option>
-              <option value="job">Empleo</option>
-              <option value="volunteer">Voluntariado</option>
-            </select>
-            
-            <input type="text" name="organization" placeholder="Organización / Empresa" required style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px;">
-            <input type="url" name="external_link" placeholder="Enlace externo (https://...)" required style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px;">
-            <input type="text" name="location" placeholder="Ubicación (Opcional)" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px;">
-            
-            <div style="display: flex; flex-direction: column; gap: 5px; color: white;">
-              <label style="font-size: 0.9rem;">Fecha de cierre (Opcional)</label>
-              <input type="date" name="deadline" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px;">
+
+      <!-- Header -->
+      <div class="admin-header">
+        <div>
+          <h1 class="admin-page-title">Panel de Administración</h1>
+          <p class="admin-page-subtitle">Gestiona todas las oportunidades de la plataforma</p>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="admin-stats-row">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="--stat-color: var(--primary);">
+            <i class="ph ph-database"></i>
+          </div>
+          <div class="admin-stat-value">${totalCount}</div>
+          <div class="admin-stat-label">Total Oportunidades</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="--stat-color: #10b981;">
+            <i class="ph ph-check-circle"></i>
+          </div>
+          <div class="admin-stat-value">${activeCount}</div>
+          <div class="admin-stat-label">Activas</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="--stat-color: #f59e0b;">
+            <i class="ph ph-star"></i>
+          </div>
+          <div class="admin-stat-value">${featuredCount}</div>
+          <div class="admin-stat-label">Destacadas</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="--stat-color: #8b5cf6;">
+            <i class="ph ph-squares-four"></i>
+          </div>
+          <div class="admin-stat-value">${categoryCount}</div>
+          <div class="admin-stat-label">Categorías</div>
+        </div>
+      </div>
+
+      <!-- Two-Column Grid -->
+      <div class="admin-grid">
+
+        <!-- Left: Form Panel -->
+        <div class="admin-form-panel">
+          <h3 class="admin-form-title">
+            <i class="ph ph-plus-circle"></i> Nueva Oportunidad
+          </h3>
+          <form onsubmit="window.adminCreate(event)" class="admin-form">
+
+            <div class="admin-field">
+              <label class="form-label">Título *</label>
+              <input type="text" name="title" class="admin-input" placeholder="Ej: Beca de excelencia académica" required>
             </div>
-            
-            <div style="display: flex; gap: 20px; color: white; align-items: center;">
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                <input type="checkbox" name="featured"> Destacado
-              </label>
-              <select name="status" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 5px; border-radius: 5px;">
-                <option value="active">Activo</option>
-                <option value="expired">Expirado</option>
+
+            <div class="admin-field">
+              <label class="form-label">Descripción *</label>
+              <textarea name="description" class="admin-input" placeholder="Descripción detallada de la oportunidad..." rows="3" required></textarea>
+            </div>
+
+            <div class="admin-field">
+              <label class="form-label">Categoría *</label>
+              <select name="category" class="admin-input" required>
+                <option value="" disabled selected>Seleccionar categoría...</option>
+                <option value="scholarship">🎓 Beca</option>
+                <option value="course">📚 Curso</option>
+                <option value="job">💼 Empleo</option>
+                <option value="volunteer">🤝 Voluntariado</option>
               </select>
             </div>
-            
-            <button type="submit" class="btn mt-2" style="padding: 12px; font-size: 1rem;">Guardar Oportunidad</button>
+
+            <div class="admin-field">
+              <label class="form-label">Organización *</label>
+              <input type="text" name="organization" class="admin-input" placeholder="Ej: Fundación Impulsa" required>
+            </div>
+
+            <div class="admin-field">
+              <label class="form-label">Enlace externo *</label>
+              <input type="url" name="external_link" class="admin-input" placeholder="https://ejemplo.com/convocatoria" required>
+            </div>
+
+            <div class="admin-field">
+              <label class="form-label">Ubicación</label>
+              <input type="text" name="location" class="admin-input" placeholder="Ej: Ciudad de México (Opcional)">
+            </div>
+
+            <div class="admin-field">
+              <label class="form-label">Fecha de cierre</label>
+              <input type="date" name="deadline" class="admin-input">
+            </div>
+
+            <div class="admin-row">
+              <label class="admin-checkbox">
+                <input type="checkbox" name="featured">
+                <span><i class="ph ph-star"></i> Destacado</span>
+              </label>
+              <div class="admin-field" style="flex: 1;">
+                <select name="status" class="admin-input">
+                  <option value="active">🟢 Activo</option>
+                  <option value="expired">🔴 Expirado</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn admin-submit-btn">
+              <i class="ph ph-plus-circle"></i> Crear Oportunidad
+            </button>
           </form>
         </div>
 
-        <!-- Lista -->
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 25px; overflow-y: auto; max-height: 800px;">
-          <h3 style="color: white; margin-bottom: 20px;">Últimas Oportunidades</h3>
-          <div style="display: flex; flex-direction: column; gap: 15px;">
-            ${opportunities.map(opp => `
-              <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <h4 style="color: white; margin-bottom: 5px;">${opp.title}</h4>
-                  <span class="muted" style="font-size: 0.85rem;">${opp.category.toUpperCase()} | ${opp.organization} | ${opp.status === 'active' ? '🟢 Activo' : '🔴 Expirado'}</span>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                  <button onclick="window.adminDelete('${opp.id}')" style="background: #ff6b6b; color: white; border: none; border-radius: 5px; padding: 8px; cursor: pointer;" title="Eliminar"><i class="ph ph-trash"></i></button>
-                </div>
-              </div>
-            `).join('')}
+        <!-- Right: Table Panel -->
+        <div class="admin-table-panel">
+          <div class="admin-table-header">
+            <h3 class="admin-form-title">
+              <i class="ph ph-list-dashes"></i> Oportunidades
+            </h3>
+            <span class="admin-count-badge">${totalCount} registros</span>
+          </div>
+          <div class="admin-table-scroll">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Categoría</th>
+                  <th>Organización</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${totalCount > 0 ? tableRows : emptyState}
+              </tbody>
+            </table>
           </div>
         </div>
-        
+
       </div>
     </div>
   `;

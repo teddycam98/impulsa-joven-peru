@@ -1,19 +1,33 @@
 import { dbService } from '../services/supabase.js';
 import { getUniqueImage } from '../utils/images.js';
 
+const categoryLabels = {
+  scholarship: 'Beca',
+  course: 'Curso',
+  job: 'Empleo',
+  volunteer: 'Voluntariado'
+};
+
+const categoryIcons = {
+  scholarship: 'ph-graduation-cap',
+  course: 'ph-book-open',
+  job: 'ph-briefcase',
+  volunteer: 'ph-hands-clapping'
+};
+
 function getBadges(opp) {
   let badges = '';
   const now = new Date();
   
   if (opp.featured) {
-    badges += `<span style="background: var(--secondary-yellow); color: var(--primary-blue); font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; margin-right: 5px;">DESTACADO</span>`;
+    badges += `<span class="opp-badge opp-badge-featured"><i class="ph-fill ph-star"></i> DESTACADO</span>`;
   }
   
   if (opp.created_at) {
     const createdDate = new Date(opp.created_at);
     const diffDays = Math.ceil((now - createdDate) / (1000 * 60 * 60 * 24));
     if (diffDays <= 7) {
-      badges += `<span style="background: #51cf66; color: white; font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; margin-right: 5px;">NUEVO</span>`;
+      badges += `<span class="opp-badge opp-badge-new"><i class="ph-fill ph-sparkle"></i> NUEVO</span>`;
     }
   }
   
@@ -21,40 +35,77 @@ function getBadges(opp) {
     const deadlineDate = new Date(opp.deadline);
     const diffDays = Math.ceil((deadlineDate - now) / (1000 * 60 * 60 * 24));
     if (diffDays >= 0 && diffDays <= 7) {
-      badges += `<span style="background: #ff6b6b; color: white; font-size: 0.75rem; font-weight: bold; padding: 3px 8px; border-radius: 10px; margin-right: 5px;"><i class="ph ph-clock"></i> CIERRA PRONTO</span>`;
+      badges += `<span class="opp-badge opp-badge-urgent"><i class="ph ph-clock"></i> CIERRA PRONTO</span>`;
     }
   }
   return badges;
 }
 
+function formatDeadline(deadline) {
+  if (!deadline) return 'Abierto';
+  try {
+    const d = new Date(deadline);
+    return d.toLocaleDateString('es-PE', { day: 'numeric', month: 'short', year: 'numeric' });
+  } catch {
+    return deadline;
+  }
+}
+
+const escapeHTML = (str) => {
+  if (!str) return '';
+  return str.replace(/[&<>'"]/g, tag => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[tag] || tag));
+};
+
 export function generateOpportunityCards(opportunities, category, favIds, startIndex = 0) {
   return opportunities.map((opp, index) => {
     const isFav = favIds.includes(opp.id);
     const badges = getBadges(opp);
-    const imgUrl = opp.image_url || getUniqueImage(category, startIndex + index);
+    let imgUrl = opp.image_url;
+    if (!imgUrl || imgUrl.startsWith('/images/')) {
+      imgUrl = getUniqueImage(opp.category || category, opp.id, opp.title || opp.organization);
+    }
     const safeLink = opp.external_link || '#';
+    const catLabel = categoryLabels[opp.category] || 'Oportunidad';
+    const catIcon = categoryIcons[opp.category] || 'ph-globe';
     
     return `
-      <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card animate-on-scroll" style="animation-delay: ${(index % 12) * 0.05}s; opacity: 1; transform: none;">
-        <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); window.toggleFav(this, '${opp.id}', '${opp.category}')">
+      <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card" style="animation-delay: ${(index % 12) * 0.06}s;">
+        <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${opp.id}', '${opp.category}')">
           <i class="ph-fill ph-heart"></i>
         </button>
-        <img src="${imgUrl}" class="scroll-card-img" alt="${opp.title}" loading="lazy" style="object-fit: cover;" />
+        ${badges ? `<div class="opp-badges-row">${badges}</div>` : ''}
+        <div class="scroll-card-img-wrapper">
+          <img src="${imgUrl}" class="scroll-card-img" alt="${opp.title || ''}" loading="lazy" onerror="this.src='/images/estudiar.jpg'" />
+        </div>
         <div class="scroll-card-content">
-          <div class="card-icon-header" style="margin-bottom: 10px;">
-            <span class="card-badge"><i class="ph-fill ph-globe"></i> ${opp.organization || 'Organización'}</span>
+          <div class="card-icon-header">
+            <span class="card-badge"><i class="ph-fill ${catIcon}"></i> ${escapeHTML(opp.organization || catLabel)}</span>
           </div>
-          ${badges ? `<div style="margin-bottom: 8px;">${badges}</div>` : ''}
-          <h3 style="font-size: 1.3rem; margin-bottom: 5px;">${opp.title}</h3>
-          <p style="font-size: 0.95rem;">${opp.description || ''}</p>
-          <div class="card-footer" style="margin-top: 15px;">
-            <span class="muted"><i class="ph-fill ph-clock"></i> Cierra: ${opp.deadline || 'No especificado'}</span>
-            <span class="text-yellow" style="font-weight:bold;">Aplicar <i class="ph ph-arrow-right"></i></span>
+          <h3>${escapeHTML(opp.title || 'Sin título')}</h3>
+          <p>${escapeHTML(opp.description || 'Descubre esta oportunidad y postula ahora.')}</p>
+          <div class="card-footer">
+            <span class="muted"><i class="ph-fill ph-calendar"></i> ${formatDeadline(opp.deadline)}</span>
+            <span class="card-apply-link">Ver más <i class="ph ph-arrow-right"></i></span>
           </div>
         </div>
       </a>
     `;
   }).join('');
+}
+
+function generateSkeletonCards(count = 8) {
+  return Array(count).fill('').map(() => `
+    <div class="scroll-card skeleton-card-wrapper">
+      <div class="skeleton" style="height: 200px; border-radius: var(--radius-lg) var(--radius-lg) 0 0;"></div>
+      <div style="padding: 24px;">
+        <div class="skeleton skeleton-text" style="width: 60%;"></div>
+        <div class="skeleton skeleton-text" style="width: 90%; margin-top: 12px;"></div>
+        <div class="skeleton skeleton-text" style="width: 40%; margin-top: 12px;"></div>
+      </div>
+    </div>
+  `).join('');
 }
 
 export async function initDynamicList(containerId, category) {
@@ -83,10 +134,9 @@ export async function initDynamicList(containerId, category) {
     if (reset) {
       page = 0;
       hasMore = true;
-      cardsContainer.innerHTML = '';
+      cardsContainer.innerHTML = generateSkeletonCards(8);
     }
     
-    if (spinner) spinner.style.display = 'block';
     if (loadMoreBtn) loadMoreBtn.style.display = 'none';
     
     const data = await dbService.getOpportunities({
@@ -104,15 +154,20 @@ export async function initDynamicList(containerId, category) {
       hasMore = false;
     }
     
+    if (reset) {
+      cardsContainer.innerHTML = '';
+    }
+    
     if (data.length > 0) {
       const html = generateOpportunityCards(data, category, favIds, page * limit);
       cardsContainer.insertAdjacentHTML('beforeend', html);
       if (hasMore && loadMoreBtn) loadMoreBtn.style.display = 'inline-flex';
     } else if (reset) {
       cardsContainer.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
-          <i class="ph ph-folder-open" style="font-size: 4rem; color: rgba(255,255,255,0.2);"></i>
-          <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">No se encontraron resultados.</p>
+        <div class="empty-state">
+          <i class="ph ph-magnifying-glass"></i>
+          <h3>No se encontraron resultados</h3>
+          <p>Intenta con otros términos de búsqueda o quita los filtros.</p>
         </div>
       `;
     }
@@ -129,7 +184,7 @@ export async function initDynamicList(containerId, category) {
       timeout = setTimeout(() => {
         currentSearch = e.target.value.trim();
         loadData(true);
-      }, 500);
+      }, 400);
     });
   }
   

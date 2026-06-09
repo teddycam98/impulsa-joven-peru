@@ -153,13 +153,35 @@ export function initHelpCenterLogic() {
     });
   });
 
+  function showFeedback(btn, message) {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Enviando...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      btn.innerHTML = '<i class="ph-fill ph-check-circle"></i> ' + message;
+      btn.style.background = 'var(--success)';
+      btn.style.color = 'white';
+      btn.style.borderColor = 'var(--success)';
+      btn.style.opacity = '1';
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style = '';
+        btn.disabled = false;
+      }, 3000);
+    }, 1200);
+  }
+
   // Forms logic
   const reportForm = document.getElementById('formReportProblem');
   if (reportForm) {
     reportForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('¡Gracias por reportar el problema! Nuestro equipo lo revisará a la brevedad.');
-      reportForm.reset();
+      const btn = reportForm.querySelector('button[type="submit"]');
+      showFeedback(btn, 'Reporte Enviado');
+      setTimeout(() => reportForm.reset(), 1200);
     });
   }
 
@@ -167,8 +189,9 @@ export function initHelpCenterLogic() {
   if (suggestForm) {
     suggestForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('¡Gracias por tu sugerencia! Evaluaremos la oportunidad para agregarla a la plataforma.');
-      suggestForm.reset();
+      const btn = suggestForm.querySelector('button[type="submit"]');
+      showFeedback(btn, 'Sugerencia Enviada');
+      setTimeout(() => suggestForm.reset(), 1200);
     });
   }
 }

@@ -194,12 +194,15 @@ export const dbService = {
     const { data: favs } = await supabase.from('favorites').select('*').eq('user_id', userId).order('created_at', { ascending: false });
     if (!favs || favs.length === 0) return [];
     
-    const enriched = await Promise.all(favs.map(async (fav) => {
-      // Unified opportunities table makes this query O(1) in complexity over a single table
-      // It assumes old items were migrated.
-      const { data: item } = await supabase.from('opportunities').select('*').eq('id', fav.opportunity_id).single();
-      return { ...fav, opportunity_data: item };
-    }));
+    const oppIds = favs.map(f => f.opportunity_id);
+    const { data: items } = await supabase.from('opportunities').select('*').in('id', oppIds);
+    
+    if (!items) return [];
+    
+    // Map items back to favorites for consistent ordering
+    const enriched = favs.map(fav => {
+      return { ...fav, opportunity_data: items.find(i => i.id === fav.opportunity_id) };
+    });
     
     return enriched.filter(f => f.opportunity_data);
   },

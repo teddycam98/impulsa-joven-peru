@@ -6,31 +6,36 @@ export function renderCourses() {
   }, 50);
 
   return `
-    <div id="coursesView" class="container mb-2 animate-on-scroll">
-      <div class="flex-center" style="flex-direction: column; text-align: center; margin-bottom: 30px;">
-        <h1 class="text-dark" style="font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;">Cursos Gratuitos</h1>
+    <div id="coursesView" class="container" style="margin-bottom: 2rem; padding-top: 260px;">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 40px;">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(98,47,163,0.3); border-radius: 16px; margin-bottom: 16px;">
+          <i class="ph-fill ph-book-open" style="font-size: 2rem; color: #b07aff;"></i>
+        </div>
+        <h1 style="color: white; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">Cursos Gratuitos</h1>
         <p class="muted" style="font-size: 1.1rem; max-width: 600px;">Mejora tus habilidades con cursos en línea de las mejores plataformas tecnológicas y educativas del mundo.</p>
       </div>
       
-      <!-- Filters -->
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 20px; margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;">
-        <div style="flex: 1; min-width: 250px;">
-          <input type="text" id="searchInput" placeholder="Buscar por título o plataforma..." style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 10px; padding: 12px 15px;">
+      <div style="background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px 20px; margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
+        <div style="flex: 1; min-width: 250px; position: relative;">
+          <i class="ph ph-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 1.1rem;"></i>
+          <input type="text" id="searchInput" placeholder="Buscar curso por título o plataforma..." aria-label="Buscar cursos" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 10px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem; transition: all 0.3s ease;">
         </div>
-        <div style="display: flex; align-items: center; gap: 10px; color: white;">
-          <input type="checkbox" id="featuredFilter" style="width: 18px; height: 18px; cursor: pointer;">
-          <label for="featuredFilter" style="cursor: pointer;">Solo Destacados</label>
-        </div>
+        <label style="display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 0.95rem; font-weight: 500; white-space: nowrap;">
+          <input type="checkbox" id="featuredFilter" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--secondary-yellow);">
+          Solo Destacados
+        </label>
       </div>
 
       <div id="cardsContainer" class="grid-cards" style="margin-top: 0;"></div>
       
-      <div id="listSpinner" class="flex-center" style="margin: 40px 0; display: none;">
-        <i class="ph ph-spinner ph-spin" style="font-size: 3rem; color: var(--secondary-yellow);"></i>
+      <div id="listSpinner" style="display: none; justify-content: center; align-items: center; margin: 40px 0;">
+        <i class="ph ph-spinner ph-spin" style="font-size: 2.5rem; color: var(--secondary-yellow);"></i>
       </div>
       
-      <div class="flex-center" style="margin-top: 40px;">
-        <button id="loadMoreBtn" class="btn btn-outline" style="display: none; padding: 10px 30px;">Cargar más</button>
+      <div style="display: flex; justify-content: center; margin-top: 30px;">
+        <button id="loadMoreBtn" class="btn btn-outline" style="display: none; padding: 12px 32px;">
+          <i class="ph ph-arrow-down"></i> Cargar más
+        </button>
       </div>
     </div>
   `;

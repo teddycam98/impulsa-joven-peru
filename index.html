@@ -61,7 +61,7 @@
         <div class="nav-actions">
           <div id="userGreeting" class="user-greeting hidden" style="position: relative;">
             <div id="userDropdownTrigger" style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); transition: background 0.3s;">
-              <span id="userNameDisplay"></span>
+              <div id="userNameDisplay" style="display: flex; align-items: center; gap: 8px;"></div>
               <i class="ph ph-caret-down" style="font-size: 0.8rem;"></i>
             </div>
             
@@ -76,7 +76,7 @@
             </div>
           </div>
           <button id="btnRegister" class="btn btn-yellow btn-nav">Iniciar sesión</button>
-          <button class="icon-btn-circle" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
+          <button class="icon-btn-circle" id="mobileMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileLinks"><i class="ph ph-list"></i></button>
         </div>
       </div>
       <!-- Mobile links -->
@@ -111,7 +111,7 @@
             
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
               <hr style="flex: 1; border-color: rgba(255,255,255,0.1);">
-              <span style="padding: 0 10px; color: var(--muted-color); font-size: 0.9rem;">O usa tu correo</span>
+              <span style="padding: 0 10px; color: var(--text-muted); font-size: 0.9rem;">O usa tu correo</span>
               <hr style="flex: 1; border-color: rgba(255,255,255,0.1);">
             </div>
           </div>
@@ -120,17 +120,17 @@
             <div id="authMessageContainer" style="display:none; margin-bottom: 15px; padding: 10px; border-radius: 8px; font-size: 0.9rem;"></div>
             
             <div class="form-group" id="nameGroup" style="display: none;">
-              <input type="text" id="regName" name="name" placeholder="Tu Nombre Completo" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+" title="Solo letras" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" />
+              <input type="text" id="regName" name="name" placeholder="Tu Nombre Completo" aria-label="Tu Nombre Completo" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" title="Solo letras" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
             </div>
             <div class="form-group">
-              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" />
+              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" aria-label="Correo Electrónico" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
             </div>
             <div class="form-group" id="passwordGroup">
-              <input type="password" id="regPassword" name="password" required placeholder="Contraseña (mínimo 6 caracteres)" minlength="6" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);" />
+              <input type="password" id="regPassword" name="password" required placeholder="Contraseña (mínimo 6 caracteres)" aria-label="Contraseña" minlength="6" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
             </div>
             
             <div id="forgotPasswordLink" style="text-align: right; margin-bottom: 20px; font-size: 0.85rem;">
-              <a href="#" id="btnShowReset" style="color: var(--muted-color); text-decoration: none; transition: color 0.3s;">¿Olvidaste tu contraseña?</a>
+              <a href="#" id="btnShowReset" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">¿Olvidaste tu contraseña?</a>
             </div>
 
             <button type="submit" id="btnAuthSubmit" class="btn btn-yellow w-100" style="margin-bottom: 15px; border-radius: 12px; padding: 15px; font-weight: bold; position: relative;">
@@ -160,26 +160,26 @@
         <!-- Column 2: Oportunidades -->
         <div style="display: flex; flex-direction: column;">
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Explorar</h4>
-          <a href="/becas" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Becas Nacionales</a>
-          <a href="/cursos" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Cursos Gratuitos</a>
-          <a href="/empleos" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Bolsa de Empleo</a>
-          <a href="/voluntariado" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'">Voluntariados</a>
+          <a href="/becas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Becas Nacionales</a>
+          <a href="/cursos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Cursos Gratuitos</a>
+          <a href="/empleos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Bolsa de Empleo</a>
+          <a href="/voluntariado" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Voluntariados</a>
         </div>
 
         <!-- Column 3: Soporte y Contacto -->
         <div style="display: flex; flex-direction: column;">
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Soporte y Contacto</h4>
-          <a href="/help" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'"><i class="ph-fill ph-headset"></i> Centro de Ayuda</a>
-          <a href="mailto:hola@impulsajoven.pe" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'"><i class="ph-fill ph-envelope-simple"></i> hola@impulsajoven.pe</a>
-          <a href="https://wa.me/51922698107" target="_blank" style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--muted-color)'"><i class="ph-fill ph-whatsapp-logo"></i> +51 922 698 107</a>
+          <a href="/help" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-headset"></i> Centro de Ayuda</a>
+          <a href="mailto:hola@impulsajoven.pe" style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-envelope-simple"></i> hola@impulsajoven.pe</a>
+          <a href="https://wa.me/51922698107" target="_blank" style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-whatsapp-logo"></i> +51 922 698 107</a>
         </div>
 
         <!-- Column 4: Legal -->
         <div style="display: flex; flex-direction: column;">
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Legal</h4>
-          <a href="/terminos" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Términos y Condiciones</a>
-          <a href="/privacidad" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Privacidad</a>
-          <a href="/cookies" data-link style="color: var(--muted-color); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted-color)'">Política de Cookies</a>
+          <a href="/terminos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Términos y Condiciones</a>
+          <a href="/privacidad" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Política de Privacidad</a>
+          <a href="/cookies" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Política de Cookies</a>
         </div>
       </div>
 

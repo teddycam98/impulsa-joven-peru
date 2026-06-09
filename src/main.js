@@ -181,10 +181,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       const isFav = await dbService.toggleFavorite(id, category);
       if (isFav) {
         btn.classList.add('active');
-        btn.style.color = '#ff6b6b';
       } else {
         btn.classList.remove('active');
-        btn.style.color = 'var(--secondary-yellow)';
       }
     } catch (err) {
       if (err.message === 'Debes iniciar sesión para guardar favoritos') {
@@ -202,7 +200,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const avatar = user.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=ffcc00&color=041b4d&bold=true`;
       
       document.getElementById('userNameDisplay').innerHTML = `
-        <img src="${avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
+        <img src="${avatar}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow); display: block;">
         <span>${user.name.split(' ')[0]}</span>
       `;
       
