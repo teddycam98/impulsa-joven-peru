@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#041B4D" />
+    <meta name="description" content="Impulsa Joven Perú - Plataforma de oportunidades, becas, cursos y empleos para jóvenes peruanos." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://impulsajoven.pe/" />
+    <meta property="og:title" content="Impulsa Joven Perú - Oportunidades para tu futuro" />
+    <meta property="og:description" content="Encuentra becas, cursos gratuitos, empleos y voluntariados en un solo lugar. Conecta con tu futuro." />
+    <meta property="og:image" content="https://impulsajoven.pe/logo.svg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://impulsajoven.pe/" />
+    <meta property="twitter:title" content="Impulsa Joven Perú - Oportunidades para tu futuro" />
+    <meta property="twitter:description" content="Encuentra becas, cursos gratuitos, empleos y voluntariados en un solo lugar. Conecta con tu futuro." />
+    <meta property="twitter:image" content="https://impulsajoven.pe/logo.svg" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://impulsajoven.pe/" />
+
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <title>Impulsa Joven Perú - Oportunidades para tu futuro</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container nav-container">
+        <a href="/" class="brand" data-link>
+          <img src="/logo.svg" alt="Impulsa Joven Perú" class="brand-logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/becas" data-link><i class="ph ph-graduation-cap"></i> Estudiar</a>
+          <a href="/cursos" data-link><i class="ph ph-book-open"></i> Aprender</a>
+          <a href="/empleos" data-link><i class="ph ph-briefcase"></i> Trabajar</a>
+          <a href="/voluntariado" data-link><i class="ph ph-magic-wand"></i> Voluntariado</a>
+        </div>
+        <div class="nav-actions">
+          <span id="userGreeting" class="user-greeting hidden" style="display: inline-flex; align-items: center; gap: 8px;">
+            Hola, <span id="userNameDisplay"></span>
+            <button id="btnLogout" class="icon-btn-circle" style="width: 32px; height: 32px; font-size: 1.2rem; background: rgba(255,255,255,0.1); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 50%;" title="Cerrar sesión">
+              <i class="ph ph-sign-out"></i>
+            </button>
+          </span>
+          <button id="btnRegister" class="btn btn-yellow btn-nav">Iniciar sesión</button>
+          <button class="icon-btn-circle" id="mobileMenuBtn"><i class="ph ph-list"></i></button>
+        </div>
+      </div>
+      <!-- Mobile links -->
+      <div class="mobile-links hidden" id="mobileLinks">
+        <a href="/becas" data-link>Estudiar</a>
+        <a href="/cursos" data-link>Aprender</a>
+        <a href="/empleos" data-link>Trabajar</a>
+        <a href="/voluntariado" data-link>Voluntariado</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="app"></main>
+
+    <!-- Virtual Assistant -->
+    <div id="virtualAssistant"></div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal hidden">
+      <div class="modal-content text-center">
+        <div class="close-modal"><i class="ph ph-x"></i></div>
+        <div class="p-2">
+          <i class="ph-fill ph-rocket" style="font-size: 3rem; color: var(--secondary-yellow); margin-bottom: 20px;"></i>
+          <h2 style="margin-bottom: 10px; color: white;">Únete a Impulsa Joven</h2>
+          <p>Guarda tus oportunidades y despega.</p>
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="regName" class="hidden">Tu Nombre</label>
+              <input type="text" id="regName" name="name" required placeholder="Tu Nombre" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" aria-label="Tu Nombre" title="Solo se permiten letras" />
+            </div>
+            <div class="form-group">
+              <label for="regEmail" class="hidden">Correo electrónico</label>
+              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" maxlength="100" aria-label="Correo electrónico" />
+            </div>
+            <button type="submit" class="btn btn-yellow w-100">Crear cuenta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding: 10px 0 60px 0;">
+      <div class="container text-center" style="display: flex; flex-direction: column; align-items: center;">
+        <img src="/logo.svg" alt="Logo" class="footer-logo" style="height: 350px; margin-bottom: 10px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));" />
+        <p class="muted" style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 25px;">Reduciendo la brecha de oportunidades para los jóvenes del Perú.</p>
+        
+        <!-- Functional Support Zone -->
+        <div class="support-glass-bar" style="margin-top: 10px;">
+          <a href="mailto:hola@impulsajoven.pe" class="support-item" style="color:white;text-decoration:none;">
+            <i class="ph-fill ph-envelope-simple"></i>
+            <div>
+              <div style="font-weight:700">Correo</div>
+              <div class="muted">hola@impulsajoven.pe</div>
+            </div>
+          </a>
+          <div class="support-divider"></div>
+          <a href="https://wa.me/51922698107" target="_blank" class="support-item" style="color:white;text-decoration:none;">
+            <i class="ph-fill ph-whatsapp-logo"></i>
+            <div>
+              <div style="font-weight:700">WhatsApp</div>
+              <div class="muted">+51 922 698 107</div>
+            </div>
+          </a>
+          <div class="support-divider"></div>
+          <a href="/help" data-link class="support-item" style="color:white;text-decoration:none;">
+            <i class="ph-fill ph-headset"></i>
+            <div>
+              <div style="font-weight:700">Centro de Ayuda</div>
+              <div class="muted">Preguntas Frecuentes</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
