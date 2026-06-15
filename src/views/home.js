@@ -19,7 +19,7 @@ export async function renderHome() {
             <i class="ph-fill ph-star" style="color:var(--secondary-yellow)"></i> Oportunidades reales para jóvenes reales
           </div>
           <h1>Impulsa<br><span class="text-yellow">tu futuro</span></h1>
-          <p class="hero-subtitle">Encuentra becas, cursos, empleos y voluntariados<br>para crecer sin límites.</p>
+          <p class="hero-subtitle">Encuentra becas, cursos, empleos, concursos y voluntariados<br>para crecer sin límites.</p>
           <div class="hero-actions">
             <a href="/becas" class="btn btn-yellow" data-link>Explorar oportunidades <i class="ph ph-arrow-right"></i></a>
             <button class="btn btn-outline" onclick="document.getElementById('registerModal').classList.remove('hidden')">Soy nuevo aquí <i class="ph ph-user-plus"></i></button>
@@ -57,6 +57,14 @@ export async function renderHome() {
           <div class="stat-text">
             <div class="stat-number" data-target="${stats.jobsCount}">0</div>
             <div class="stat-label">Empleos y prácticas</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-trophy"></i></div>
+          <div class="stat-text">
+            <div class="stat-number" data-target="${stats.competitionsCount}">0</div>
+            <div class="stat-label">Concursos disponibles</div>
           </div>
         </div>
         
@@ -113,7 +121,19 @@ export async function renderHome() {
           <div class="card-gradient"></div>
         </a>
 
-        <!-- Card 4: Voluntariado -->
+        <!-- Card 4: Concursos -->
+        <a href="/concursos" class="action-card card-yellow" data-link>
+          <div class="card-content">
+            <div class="card-icon"><i class="ph ph-trophy"></i></div>
+            <h3>Concursos</h3>
+            <p>Hackathons, premios<br>e innovación juvenil</p>
+            <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=350&fit=crop" alt="Concursos" class="card-bg-img">
+          <div class="card-gradient"></div>
+        </a>
+
+        <!-- Card 5: Voluntariado -->
         <a href="/voluntariado" class="action-card card-orange" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-heart"></i></div>

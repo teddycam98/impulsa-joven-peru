@@ -27,14 +27,16 @@ const categoryLabels = {
   scholarship: 'Beca',
   course: 'Curso',
   job: 'Empleo',
-  volunteer: 'Voluntariado'
+  volunteer: 'Voluntariado',
+  competition: 'Concurso'
 };
 
 const categoryIcons = {
   scholarship: 'ph-graduation-cap',
   course: 'ph-book-open-text',
   job: 'ph-briefcase',
-  volunteer: 'ph-hands-clapping'
+  volunteer: 'ph-hands-clapping',
+  competition: 'ph-trophy'
 };
 
 /* ── Main render ───────────────────────────────────────────────── */
@@ -100,7 +102,7 @@ export async function renderAdmin() {
   const totalCount = opportunities.length;
   const activeCount = opportunities.filter(o => o.status === 'active').length;
   const featuredCount = opportunities.filter(o => o.featured).length;
-  const categoryCount = 4;
+  const categoryCount = 5;
 
   const escapeHTML = (str) => {
     if (!str) return '';
@@ -228,6 +230,7 @@ export async function renderAdmin() {
                 <option value="course">📚 Curso</option>
                 <option value="job">💼 Empleo</option>
                 <option value="volunteer">🤝 Voluntariado</option>
+                <option value="competition">🏆 Concurso</option>
               </select>
             </div>
 

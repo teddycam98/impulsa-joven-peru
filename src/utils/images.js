@@ -149,6 +149,16 @@ const fallbackByCategory = {
     'https://images.unsplash.com/photo-1503676382389-4809596d5290?w=500&h=350&fit=crop',
     'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=500&h=350&fit=crop'
   ],
+  competition: [
+    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1519750783826-e2420f4d687f?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1559223607-a43c990c692c?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1591115765373-5f9b24f0b3d4?w=500&h=350&fit=crop',
+    'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=350&fit=crop'
+  ],
   default: [
     'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=350&fit=crop',
     'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=350&fit=crop'

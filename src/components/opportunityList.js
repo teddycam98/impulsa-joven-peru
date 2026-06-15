@@ -5,14 +5,16 @@ const categoryLabels = {
   scholarship: 'Beca',
   course: 'Curso',
   job: 'Empleo',
-  volunteer: 'Voluntariado'
+  volunteer: 'Voluntariado',
+  competition: 'Concurso'
 };
 
 const categoryIcons = {
   scholarship: 'ph-graduation-cap',
   course: 'ph-book-open',
   job: 'ph-briefcase',
-  volunteer: 'ph-hands-clapping'
+  volunteer: 'ph-hands-clapping',
+  competition: 'ph-trophy'
 };
 
 function getBadges(opp) {

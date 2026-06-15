@@ -28,16 +28,18 @@ export const dbService = {
   },
 
   async getStats() {
-    const [scholarships, courses, jobs, users] = await Promise.all([
+    const [scholarships, courses, jobs, competitions, users] = await Promise.all([
       supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'scholarship').eq('status', 'active'),
       supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'course').eq('status', 'active'),
       supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'job').eq('status', 'active'),
+      supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'competition').eq('status', 'active'),
       supabase.from('users').select('*', { count: 'exact', head: true })
     ]);
     return {
       scholarshipsCount: scholarships.count || 0,
       coursesCount: courses.count || 0,
       jobsCount: jobs.count || 0,
+      competitionsCount: competitions.count || 0,
       usersCount: users.count || 0
     };
   },

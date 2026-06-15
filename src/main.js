@@ -4,6 +4,7 @@ import { renderScholarships } from './views/scholarships.js';
 import { renderCourses } from './views/courses.js';
 import { renderJobs } from './views/jobs.js';
 import { renderVolunteering } from './views/volunteering.js';
+import { renderCompetitions } from './views/competitions.js';
 import { renderVocationalTest, initVocationalTest } from './views/vocationalTest.js';
 import { renderAbout } from './views/about.js';
 import { renderHelp, initHelpCenterLogic } from './views/help.js';
@@ -23,6 +24,7 @@ const routes = {
   '/cursos': renderCourses,
   '/empleos': renderJobs,
   '/voluntariado': renderVolunteering,
+  '/concursos': renderCompetitions,
   '/vocacional': renderVocationalTest,
   '/sobre-proyecto': renderAbout,
   '/help': renderHelp,
