@@ -130,7 +130,7 @@ export async function renderHome() {
             <p data-i18n="home.card.competitions.desc">${i18n.t('home.card.competitions.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/concursos.jpg" alt="Concursos" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=350&fit=crop" alt="Concursos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 

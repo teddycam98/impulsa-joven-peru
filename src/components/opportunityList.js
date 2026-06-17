@@ -85,9 +85,6 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
     
     return `
       <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card" style="animation-delay: ${(index % 12) * 0.06}s;">
-        <div class="opp-category opp-category-${opp.category}">
-          <i class="ph ${categoryIcons[opp.category] || 'ph-star'}"></i> ${i18n.t('cat.label.' + opp.category)}
-        </div>
         <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${opp.id}', '${opp.category}')" title="${isFav ? i18n.t('ui.remove_favorite') : i18n.t('ui.save')}">
           <i class="ph-fill ph-heart"></i>
         </button>
