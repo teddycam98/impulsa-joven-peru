@@ -1,3 +1,4 @@
+import { i18n } from './utils/i18n.js';
 import { dbService } from './services/supabase.js';
 import { renderHome } from './views/home.js';
 import { renderScholarships } from './views/scholarships.js';
@@ -84,6 +85,7 @@ async function router() {
   try {
     const html = await routes[path]();
     app.innerHTML = html;
+    i18n.translateDOM();
   } catch (error) {
     console.error('Routing error:', error);
     app.innerHTML = `
@@ -118,6 +120,44 @@ document.body.addEventListener('click', e => {
 window.addEventListener('popstate', router);
 
 document.addEventListener('DOMContentLoaded', async () => {
+  i18n.init();
+  
+  // Language Selector Logic
+  const langToggleBtn = document.getElementById('langToggleBtn');
+  const langDropdown = document.getElementById('langDropdown');
+  
+  if (langToggleBtn && langDropdown) {
+    langToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle('hidden');
+    });
+    
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = e.target.getAttribute('data-lang');
+        i18n.setLanguage(lang);
+        langDropdown.classList.add('hidden');
+        
+        // Ensure dynamic content like current route is re-rendered to apply i18n
+        // Only if it doesn't break things. Given we use data-i18n, we might not need to re-render everything,
+        // but re-rendering the router ensures dynamically generated strings are translated.
+        router();
+      });
+    });
+    
+    document.addEventListener('click', () => {
+      if (!langDropdown.classList.contains('hidden')) {
+        langDropdown.classList.add('hidden');
+      }
+    });
+    
+    // Set initial text
+    const currentLangText = document.getElementById('currentLangText');
+    if (currentLangText) {
+      currentLangText.textContent = i18n.t(`nav.lang.${i18n.currentLang}`);
+    }
+  }
+
   initVirtualAssistant();
   
   const greeting = document.getElementById('userGreeting');

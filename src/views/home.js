@@ -1,4 +1,5 @@
 import { dbService } from '../services/supabase.js';
+import { i18n } from '../utils/i18n.js';
 
 export async function renderHome() {
   const stats = await dbService.getStats();
@@ -16,13 +17,13 @@ export async function renderHome() {
         <!-- Text Left -->
         <div class="hero-content animate-on-scroll">
           <div class="hero-badge">
-            <i class="ph-fill ph-star" style="color:var(--secondary-yellow)"></i> Oportunidades reales para jóvenes reales
+            <i class="ph-fill ph-star" style="color:var(--secondary-yellow)"></i> <span data-i18n="home.hero.badge">${i18n.t('home.hero.badge')}</span>
           </div>
-          <h1>Impulsa<br><span class="text-yellow">tu futuro</span></h1>
-          <p class="hero-subtitle">Encuentra becas, cursos, empleos, concursos y voluntariados<br>para crecer sin límites.</p>
+          <h1><span data-i18n="home.hero.title_1">${i18n.t('home.hero.title_1')}</span><br><span class="text-yellow" data-i18n="home.hero.title_2">${i18n.t('home.hero.title_2')}</span></h1>
+          <p class="hero-subtitle" data-i18n="home.hero.subtitle">${i18n.t('home.hero.subtitle')}</p>
           <div class="hero-actions">
-            <a href="/becas" class="btn btn-yellow" data-link>Explorar oportunidades <i class="ph ph-arrow-right"></i></a>
-            <button class="btn btn-outline" onclick="document.getElementById('registerModal').classList.remove('hidden')">Soy nuevo aquí <i class="ph ph-user-plus"></i></button>
+            <a href="/becas" class="btn btn-yellow" data-link><span data-i18n="home.hero.btn_explore">${i18n.t('home.hero.btn_explore')}</span> <i class="ph ph-arrow-right"></i></a>
+            <button class="btn btn-outline" onclick="document.getElementById('registerModal').classList.remove('hidden')"><span data-i18n="home.hero.btn_new">${i18n.t('home.hero.btn_new')}</span> <i class="ph ph-user-plus"></i></button>
           </div>
         </div>
         
@@ -40,7 +41,7 @@ export async function renderHome() {
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-graduation-cap"></i></div>
           <div class="stat-text">
             <div class="stat-number" data-target="${stats.scholarshipsCount}">0</div>
-            <div class="stat-label">Becas disponibles</div>
+            <div class="stat-label" data-i18n="home.stats.scholarships">${i18n.t('home.stats.scholarships')}</div>
           </div>
         </div>
         
@@ -48,7 +49,7 @@ export async function renderHome() {
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-book-open"></i></div>
           <div class="stat-text">
             <div class="stat-number" data-target="${stats.coursesCount}">0</div>
-            <div class="stat-label">Cursos gratuitos</div>
+            <div class="stat-label" data-i18n="home.stats.courses">${i18n.t('home.stats.courses')}</div>
           </div>
         </div>
         
@@ -56,7 +57,7 @@ export async function renderHome() {
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-briefcase"></i></div>
           <div class="stat-text">
             <div class="stat-number" data-target="${stats.jobsCount}">0</div>
-            <div class="stat-label">Empleos y prácticas</div>
+            <div class="stat-label" data-i18n="home.stats.jobs">${i18n.t('home.stats.jobs')}</div>
           </div>
         </div>
         
@@ -64,7 +65,7 @@ export async function renderHome() {
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-trophy"></i></div>
           <div class="stat-text">
             <div class="stat-number" data-target="${stats.competitionsCount}">0</div>
-            <div class="stat-label">Concursos disponibles</div>
+            <div class="stat-label" data-i18n="home.stats.competitions">${i18n.t('home.stats.competitions')}</div>
           </div>
         </div>
         
@@ -72,7 +73,7 @@ export async function renderHome() {
           <div class="stat-icon-wrapper bg-purple-icon"><i class="ph-fill ph-users"></i></div>
           <div class="stat-text">
             <div class="stat-number" data-target="${stats.usersCount}">0</div>
-            <div class="stat-label">Jóvenes registrados</div>
+            <div class="stat-label" data-i18n="home.stats.users">${i18n.t('home.stats.users')}</div>
           </div>
         </div>
       </div>
@@ -81,7 +82,7 @@ export async function renderHome() {
     <!-- Section ¿Qué quieres lograr hoy? -->
     <section class="container bento-section animate-on-scroll">
       <div class="bento-title-wrapper">
-        <h2 class="text-center section-title">¿Qué quieres lograr <span class="text-yellow">hoy?</span></h2>
+        <h2 class="text-center section-title"><span data-i18n="home.bento.title_1">${i18n.t('home.bento.title_1')}</span> <span class="text-yellow" data-i18n="home.bento.title_2">${i18n.t('home.bento.title_2')}</span></h2>
       </div>
       
       <div class="cards-row">
@@ -89,8 +90,8 @@ export async function renderHome() {
         <a href="/becas" class="action-card card-blue" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-graduation-cap"></i></div>
-            <h3>Estudiar</h3>
-            <p>Encuentra becas<br>y universidades</p>
+            <h3 data-i18n="home.card.study.title">${i18n.t('home.card.study.title')}</h3>
+            <p data-i18n="home.card.study.desc">${i18n.t('home.card.study.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
           <img src="/images/estudiar.jpg" alt="Estudiante" class="card-bg-img">
@@ -100,12 +101,12 @@ export async function renderHome() {
         <!-- Card 2: Aprender -->
         <a href="/cursos" class="action-card card-purple" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-lightbulb"></i></div>
-            <h3>Aprender</h3>
-            <p>Cursos gratuitos para<br>desarrollar habilidades</p>
+            <div class="card-icon"><i class="ph ph-book-open"></i></div>
+            <h3 data-i18n="home.card.learn.title">${i18n.t('home.card.learn.title')}</h3>
+            <p data-i18n="home.card.learn.desc">${i18n.t('home.card.learn.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/aprender.jpg" alt="Aprender online" class="card-bg-img">
+          <img src="/images/aprender.jpg" alt="Aprender" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
@@ -113,32 +114,32 @@ export async function renderHome() {
         <a href="/empleos" class="action-card card-green" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-briefcase"></i></div>
-            <h3>Trabajar</h3>
-            <p>Empleos, prácticas y<br>oportunidades</p>
+            <h3 data-i18n="home.card.work.title">${i18n.t('home.card.work.title')}</h3>
+            <p data-i18n="home.card.work.desc">${i18n.t('home.card.work.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/trabajar.jpg" alt="Trabajo" class="card-bg-img">
+          <img src="/images/trabajar.jpg" alt="Trabajar" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 4: Concursos -->
-        <a href="/concursos" class="action-card card-yellow" data-link>
+        <a href="/concursos" class="action-card card-orange" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-trophy"></i></div>
-            <h3>Concursos</h3>
-            <p>Hackathons, premios<br>e innovación juvenil</p>
+            <h3 data-i18n="home.card.competitions.title">${i18n.t('home.card.competitions.title')}</h3>
+            <p data-i18n="home.card.competitions.desc">${i18n.t('home.card.competitions.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=350&fit=crop" alt="Concursos" class="card-bg-img">
+          <img src="/images/concursos.jpg" alt="Concursos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 5: Voluntariado -->
-        <a href="/voluntariado" class="action-card card-orange" data-link>
+        <a href="/voluntariado" class="action-card card-yellow" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-heart"></i></div>
-            <h3>Voluntariado</h3>
-            <p>Contribuye y genera<br>impacto social</p>
+            <div class="card-icon"><i class="ph ph-magic-wand"></i></div>
+            <h3 data-i18n="home.card.volunteer.title">${i18n.t('home.card.volunteer.title')}</h3>
+            <p data-i18n="home.card.volunteer.desc">${i18n.t('home.card.volunteer.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
           <img src="/images/voluntariado.jpg" alt="Voluntariado" class="card-bg-img">

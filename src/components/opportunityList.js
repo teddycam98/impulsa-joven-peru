@@ -1,5 +1,6 @@
 import { dbService } from '../services/supabase.js';
 import { getUniqueImage } from '../utils/images.js';
+import { i18n } from '../utils/i18n.js';
 
 const categoryLabels = {
   scholarship: 'Beca',
@@ -22,14 +23,14 @@ function getBadges(opp) {
   const now = new Date();
   
   if (opp.featured) {
-    badges += `<span class="opp-badge opp-badge-featured"><i class="ph-fill ph-star"></i> DESTACADO</span>`;
+    badges += `<span class="opp-badge opp-badge-featured"><i class="ph-fill ph-star"></i> ${i18n.t('ui.badge_featured')}</span>`;
   }
   
   if (opp.created_at) {
     const createdDate = new Date(opp.created_at);
     const diffDays = Math.ceil((now - createdDate) / (1000 * 60 * 60 * 24));
     if (diffDays <= 7) {
-      badges += `<span class="opp-badge opp-badge-new"><i class="ph-fill ph-sparkle"></i> NUEVO</span>`;
+      badges += `<span class="opp-badge opp-badge-new"><i class="ph-fill ph-sparkle"></i> ${i18n.t('ui.badge_new')}</span>`;
     }
   }
   
@@ -37,18 +38,18 @@ function getBadges(opp) {
     const deadlineDate = new Date(opp.deadline);
     const diffDays = Math.ceil((deadlineDate - now) / (1000 * 60 * 60 * 24));
     if (diffDays >= 0 && diffDays <= 7) {
-      badges += `<span class="opp-badge opp-badge-urgent"><i class="ph ph-clock"></i> CIERRA PRONTO</span>`;
+      badges += `<span class="opp-badge opp-badge-urgent"><i class="ph ph-clock"></i> ${i18n.t('ui.badge_urgent')}</span>`;
     }
   }
   return badges;
 }
 
 function formatDeadline(deadline) {
-  if (!deadline) return 'Abierto';
+  if (!deadline) return i18n.t('ui.open');
   try {
     const d = new Date(deadline);
     return d.toLocaleDateString('es-PE', { day: 'numeric', month: 'short', year: 'numeric' });
-  } catch {
+  } catch (error) {
     return deadline;
   }
 }
@@ -64,7 +65,8 @@ const categoryLinks = {
   scholarship: '/becas',
   course: '/cursos',
   job: '/empleos',
-  volunteer: '/voluntariado'
+  volunteer: '/voluntariado',
+  competition: '/concursos'
 };
 
 export function generateOpportunityCards(opportunities, category, favIds, startIndex = 0) {
@@ -83,7 +85,10 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
     
     return `
       <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card" style="animation-delay: ${(index % 12) * 0.06}s;">
-        <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${opp.id}', '${opp.category}')">
+        <div class="opp-category opp-category-${opp.category}">
+          <i class="ph ${categoryIcons[opp.category] || 'ph-star'}"></i> ${i18n.t('cat.label.' + opp.category)}
+        </div>
+        <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${opp.id}', '${opp.category}')" title="${isFav ? i18n.t('ui.remove_favorite') : i18n.t('ui.save')}">
           <i class="ph-fill ph-heart"></i>
         </button>
         ${badges ? `<div class="opp-badges-row">${badges}</div>` : ''}
@@ -98,7 +103,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
           <p>${escapeHTML(opp.description || 'Descubre esta oportunidad y postula ahora.')}</p>
           <div class="card-footer">
             <span class="muted"><i class="ph-fill ph-calendar"></i> ${formatDeadline(opp.deadline)}</span>
-            <span class="card-apply-link">Ver más <i class="ph ph-arrow-right"></i></span>
+            <span class="card-apply-link">${i18n.t('ui.see_more')} <i class="ph ph-arrow-right"></i></span>
           </div>
         </div>
       </a>
@@ -133,8 +138,19 @@ export async function initDynamicList(containerId, category) {
   const searchInput = document.getElementById('searchInput');
   const featuredFilter = document.getElementById('featuredFilter');
   const cardsContainer = document.getElementById('cardsContainer');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  const spinner = document.getElementById('listSpinner');
+  let loadMoreBtn = document.getElementById('loadMoreBtn');
+  
+  // Re-create the loadMoreBtn correctly
+  if (!loadMoreBtn && cardsContainer) {
+    loadMoreBtn = document.createElement('button');
+    loadMoreBtn.id = 'loadMoreBtn';
+    loadMoreBtn.className = 'btn btn-outline';
+    loadMoreBtn.style.margin = '40px auto 0';
+    loadMoreBtn.style.display = 'none';
+    loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} <i class="ph ph-caret-down"></i>`;
+    cardsContainer.parentNode.insertBefore(loadMoreBtn, cardsContainer.nextSibling);
+    loadMoreBtn.addEventListener('click', () => loadData(false));
+  }
   
   const favIds = await dbService.getFavoriteIds();
   
@@ -158,8 +174,6 @@ export async function initDynamicList(containerId, category) {
       featured: currentFeatured,
       active: true
     });
-    
-    if (spinner) spinner.style.display = 'none';
     
     if (data.length < limit) {
       hasMore = false;
@@ -206,10 +220,19 @@ export async function initDynamicList(containerId, category) {
     });
   }
   
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => loadData(false));
-  }
-  
   // Initial load
   loadData(true);
+  
+  // Listen to language changes to re-render the list dynamically
+  const onLangChange = () => {
+    if (document.getElementById(containerId)) {
+      // Re-translate the button
+      if (loadMoreBtn) loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} <i class="ph ph-caret-down"></i>`;
+      // Re-load data to update cards
+      loadData(true);
+    } else {
+      window.removeEventListener('languageChanged', onLangChange);
+    }
+  };
+  window.addEventListener('languageChanged', onLangChange);
 }

@@ -52,13 +52,24 @@
           <img src="/logo.svg" alt="Impulsa Joven Perú" class="brand-logo" />
         </a>
         <div class="nav-links">
-          <a href="/becas" data-link><i class="ph ph-graduation-cap"></i> Estudiar</a>
-          <a href="/cursos" data-link><i class="ph ph-book-open"></i> Aprender</a>
-          <a href="/empleos" data-link><i class="ph ph-briefcase"></i> Trabajar</a>
-          <a href="/concursos" data-link><i class="ph ph-trophy"></i> Concursos</a>
-          <a href="/voluntariado" data-link><i class="ph ph-magic-wand"></i> Voluntariado</a>
+          <a href="/becas" data-link><i class="ph ph-graduation-cap"></i> <span data-i18n="nav.study">Estudiar</span></a>
+          <a href="/cursos" data-link><i class="ph ph-book-open"></i> <span data-i18n="nav.learn">Aprender</span></a>
+          <a href="/empleos" data-link><i class="ph ph-briefcase"></i> <span data-i18n="nav.work">Trabajar</span></a>
+          <a href="/concursos" data-link><i class="ph ph-trophy"></i> <span data-i18n="nav.competitions">Concursos</span></a>
+          <a href="/voluntariado" data-link><i class="ph ph-magic-wand"></i> <span data-i18n="nav.volunteer">Voluntariado</span></a>
         </div>
         <div class="nav-actions">
+          <!-- Language Selector -->
+          <div class="lang-selector" style="position: relative; margin-right: 5px;">
+            <button id="langToggleBtn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 8px 14px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: 'Outfit', sans-serif; transition: all 0.3s;">
+              <span id="currentLangText">Español 🇵🇪</span> <i class="ph ph-caret-down" style="font-size: 0.8rem;"></i>
+            </button>
+            <div id="langDropdown" class="hidden" style="position: absolute; top: 110%; right: 0; background: rgba(10, 25, 60, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; width: 150px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 100; overflow: hidden; display: flex; flex-direction: column;">
+              <button class="lang-option" data-lang="es" style="padding: 12px 15px; background: transparent; border: none; color: white; text-align: left; cursor: pointer; transition: background 0.2s; font-family: 'Outfit', sans-serif;">Español 🇵🇪</button>
+              <button class="lang-option" data-lang="qu" style="padding: 12px 15px; background: transparent; border: none; color: white; text-align: left; cursor: pointer; transition: background 0.2s; border-top: 1px solid rgba(255,255,255,0.05); font-family: 'Outfit', sans-serif;">Quechua 🏔️</button>
+            </div>
+          </div>
+
           <div id="userGreeting" class="user-greeting hidden" style="position: relative;">
             <div id="userDropdownTrigger" style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); transition: background 0.3s;">
               <div id="userNameDisplay" style="display: flex; align-items: center; gap: 8px;"></div>
@@ -69,23 +80,23 @@
               <div id="dropdownHeader" style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px;">
                 <!-- Avatar and info injected via JS -->
               </div>
-              <a href="/perfil" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-user"></i> Mi Perfil</a>
-              <a href="/favoritos" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-heart"></i> Mis Favoritos</a>
+              <a href="/perfil" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-user"></i> <span data-i18n="nav.profile">Mi Perfil</span></a>
+              <a href="/favoritos" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-heart"></i> <span data-i18n="nav.favorites">Mis Favoritos</span></a>
               <div style="border-top: 1px solid rgba(255,255,255,0.1);"></div>
-              <button id="btnLogout" class="dropdown-item" style="padding: 12px 15px; background: transparent; border: none; color: #ff6b6b; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 1rem; width: 100%; transition: background 0.2s;"><i class="ph ph-sign-out"></i> Cerrar sesión</button>
+              <button id="btnLogout" class="dropdown-item" style="padding: 12px 15px; background: transparent; border: none; color: #ff6b6b; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 1rem; width: 100%; transition: background 0.2s;"><i class="ph ph-sign-out"></i> <span data-i18n="nav.logout">Cerrar sesión</span></button>
             </div>
           </div>
-          <button id="btnRegister" class="btn btn-yellow btn-nav">Iniciar sesión</button>
+          <button id="btnRegister" class="btn btn-yellow btn-nav" data-i18n="nav.login">Iniciar sesión</button>
           <button class="icon-btn-circle" id="mobileMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileLinks"><i class="ph ph-list"></i></button>
         </div>
       </div>
       <!-- Mobile links -->
       <div class="mobile-links hidden" id="mobileLinks">
-        <a href="/becas" data-link>Estudiar</a>
-        <a href="/cursos" data-link>Aprender</a>
-        <a href="/empleos" data-link>Trabajar</a>
-        <a href="/concursos" data-link>Concursos</a>
-        <a href="/voluntariado" data-link>Voluntariado</a>
+        <a href="/becas" data-link data-i18n="nav.study">Estudiar</a>
+        <a href="/cursos" data-link data-i18n="nav.learn">Aprender</a>
+        <a href="/empleos" data-link data-i18n="nav.work">Trabajar</a>
+        <a href="/concursos" data-link data-i18n="nav.competitions">Concursos</a>
+        <a href="/voluntariado" data-link data-i18n="nav.volunteer">Voluntariado</a>
       </div>
     </nav>
 
@@ -170,7 +181,7 @@
         <!-- Column 3: Soporte y Contacto -->
         <div style="display: flex; flex-direction: column;">
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Soporte y Contacto</h4>
-          <a href="/help" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-headset"></i> Centro de Ayuda</a>
+          <a href="/help" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-headset"></i> <span data-i18n="footer.help">Centro de Ayuda</span></a>
           <a href="mailto:hola@impulsajoven.pe" style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-envelope-simple"></i> hola@impulsajoven.pe</a>
           <a href="https://wa.me/51922698107" target="_blank" style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-whatsapp-logo"></i> +51 922 698 107</a>
         </div>
@@ -178,9 +189,9 @@
         <!-- Column 4: Legal -->
         <div style="display: flex; flex-direction: column;">
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Legal</h4>
-          <a href="/terminos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Términos y Condiciones</a>
-          <a href="/privacidad" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Política de Privacidad</a>
-          <a href="/cookies" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Política de Cookies</a>
+          <a href="/terminos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Términos y Condiciones</a>
+          <a href="/privacidad" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Política de Privacidad</a>
+          <a href="/cookies" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.cookies">Política de Cookies</a>
         </div>
       </div>
 
