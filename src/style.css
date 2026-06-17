@@ -71,15 +71,12 @@ body {
 /* ═══════════════════════════════════════════════════════════════
    CUSTOM SCROLLBAR
    ═══════════════════════════════════════════════════════════════ */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+/* CUSTOM SCROLLBAR - Hidden to prevent white/blue track line on Windows */
+::-webkit-scrollbar { display: none; }
 
 /* Firefox scrollbar */
 html {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.15) transparent;
+  scrollbar-width: none;
 }
 
 
