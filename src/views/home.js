@@ -23,7 +23,7 @@ export async function renderHome() {
           <p class="hero-subtitle" data-i18n="home.hero.subtitle">${i18n.t('home.hero.subtitle')}</p>
           <div class="hero-actions">
             <a href="/becas" class="btn btn-yellow" data-link><span data-i18n="home.hero.btn_explore">${i18n.t('home.hero.btn_explore')}</span> <i class="ph ph-arrow-right"></i></a>
-            <button class="btn btn-outline" onclick="document.getElementById('registerModal').classList.remove('hidden')"><span data-i18n="home.hero.btn_new">${i18n.t('home.hero.btn_new')}</span> <i class="ph ph-user-plus"></i></button>
+            <button class="btn btn-outline" style="color: var(--primary-blue); border-color: rgba(10, 77, 163, 0.4); font-weight: 700; background: rgba(255,255,255,0.9);" onclick="document.getElementById('registerModal').classList.remove('hidden')"><span data-i18n="home.hero.btn_new">${i18n.t('home.hero.btn_new')}</span> <i class="ph ph-user-plus"></i></button>
           </div>
         </div>
         

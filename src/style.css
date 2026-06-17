@@ -928,7 +928,7 @@ select.admin-input option {
   .nav-actions { justify-content: center; }
   .hero-container { flex-direction: column; text-align: center; margin-top: 20px; }
   .hero-actions { justify-content: center; }
-  .nav-links, .btn-nav { display: none; }
+  .nav-links { display: none; }
   #mobileMenuBtn { display: flex; }
   .cards-row { grid-template-columns: repeat(2, 1fr); gap: 15px; }
   .forms-grid, .policies-section { grid-template-columns: 1fr; }
@@ -1001,6 +1001,7 @@ select.admin-input option {
   
   .hero { padding-top: 80px; min-height: auto; }
   .hero-container { margin-top: 20px; }
+  .btn-nav { padding: 8px 12px !important; font-size: 0.85rem !important; margin-left: auto !important; }
   .hero-actions { gap: 10px; flex-wrap: wrap; }
   .hero-actions .btn { padding: 12px 20px; font-size: 0.95rem; }
   
