@@ -6,10 +6,12 @@ export async function renderHome() {
 
   return `
     <!-- Decorative Shapes -->
-    <div class="dec-circle-solid-blue"></div>
-    <div class="dec-circle-solid-yellow"></div>
-    <div class="dec-dots-pattern"></div>
-    <div class="dec-waves"></div>
+    <div class="decorative-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; z-index: -1;">
+      <div class="dec-circle-solid-blue"></div>
+      <div class="dec-circle-solid-yellow"></div>
+      <div class="dec-dots-pattern"></div>
+      <div class="dec-waves"></div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
