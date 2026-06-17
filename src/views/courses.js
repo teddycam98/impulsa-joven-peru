@@ -6,7 +6,7 @@ export function renderCourses() {
   }, 50);
 
   return `
-    <div id="coursesView" class="container" style="margin-bottom: 2rem; padding-top: 260px;">
+    <div id="coursesView" class="container inner-page" style="margin-bottom: 2rem;">
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 40px;">
         <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(98,47,163,0.3); border-radius: 16px; margin-bottom: 16px;">
           <i class="ph-fill ph-book-open" style="font-size: 2rem; color: #b07aff;"></i>

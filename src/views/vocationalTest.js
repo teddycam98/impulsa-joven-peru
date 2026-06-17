@@ -2,7 +2,7 @@
 
 export function renderVocationalTest() {
   return `
-    <div class="container" style="max-width: 700px; margin-bottom: 2rem; padding-top: 260px;">
+    <div class="container inner-page" style="max-width: 700px; margin-bottom: 2rem;">
       <div style="text-align: center; margin-bottom: 40px;">
         <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: rgba(255,213,0,0.15); border-radius: 50%; margin-bottom: 20px;">
           <i class="ph-fill ph-compass" style="font-size: 2.5rem; color: var(--secondary-yellow);"></i>

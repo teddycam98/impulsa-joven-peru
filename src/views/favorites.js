@@ -30,7 +30,7 @@ export async function renderFavorites() {
 
   if (favorites.length === 0) {
     return `
-      <div class="container" style="margin-bottom: 2rem; margin-top: 40px; min-height: 60vh; padding-top: 260px;">
+      <div class="container inner-page" style="margin-bottom: 2rem; margin-top: 40px; min-height: 60vh;">
         <h1 style="color: white; font-size: 2.5rem; margin-bottom: 20px; font-weight: 800;">Mis Favoritos</h1>
         ${emptyState}
       </div>
@@ -38,7 +38,7 @@ export async function renderFavorites() {
   }
 
   return `
-    <div class="container" style="margin-bottom: 2rem; margin-top: 40px; min-height: 60vh; padding-top: 260px;">
+    <div class="container inner-page" style="margin-bottom: 2rem; margin-top: 40px; min-height: 60vh;">
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px;">
         <h1 style="color: white; font-size: 3.5rem; font-weight: 900; margin-bottom: 10px;">Mis Favoritos</h1>
         <p class="muted">${favorites.length} oportunidad${favorites.length !== 1 ? 'es' : ''} guardada${favorites.length !== 1 ? 's' : ''}</p>
