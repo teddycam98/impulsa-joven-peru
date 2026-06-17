@@ -987,8 +987,8 @@ select.admin-input option {
   .user-greeting { font-size: 0.85rem; padding: 5px 10px; }
   #btnLogout { width: 100% !important; height: auto !important; font-size: 1rem !important; margin-left: 0 !important; }
   
-  .hero { padding-top: 20px; min-height: auto; }
-  .hero-container { margin-top: 10px; }
+  .hero { padding-top: 80px; min-height: auto; }
+  .hero-container { margin-top: 20px; }
   .hero-actions { gap: 10px; flex-wrap: wrap; }
   .hero-actions .btn { padding: 12px 20px; font-size: 0.95rem; }
   
