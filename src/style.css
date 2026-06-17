@@ -923,9 +923,10 @@ select.admin-input option {
 }
 
 @media (max-width: 900px) {
+  .navbar { position: relative; padding-bottom: 20px; }
   .nav-container { flex-wrap: wrap; justify-content: center; gap: 15px; }
   .nav-actions { justify-content: center; }
-  .hero-container { flex-direction: column; text-align: center; margin-top: 100px; }
+  .hero-container { flex-direction: column; text-align: center; margin-top: 20px; }
   .hero-actions { justify-content: center; }
   .nav-links, .btn-nav { display: none; }
   #mobileMenuBtn { display: flex; }
@@ -934,7 +935,7 @@ select.admin-input option {
   .hero-image-wrapper { height: 500px; justify-content: center; margin-right: 0; }
   .stats-container-wrapper { padding: 0 20px; }
   .brand-logo { height: 140px; }
-  #app > .container.mb-2 { padding-top: 200px; }
+  #app > .container.mb-2 { padding-top: 20px; }
 }
 
 @media (max-width: 768px) {
@@ -955,7 +956,7 @@ select.admin-input option {
 
 @media (max-width: 480px) {
   .container { padding: 0 15px; }
-  .navbar { padding: 10px 0; }
+  .navbar { position: relative; padding: 10px 0 20px 0; }
   .nav-container { flex-direction: column; gap: 15px; }
   .nav-actions { width: 100%; justify-content: center; flex-wrap: wrap; gap: 10px; }
   .brand-logo { height: 140px !important; }
@@ -980,9 +981,9 @@ select.admin-input option {
   .footer .container:nth-of-type(2) > div { justify-content: center; width: 100%; }
   
   .user-greeting { font-size: 0.85rem; padding: 5px 10px; }
-  #btnLogout { width: 28px !important; height: 28px !important; font-size: 1rem !important; margin-left: 5px !important; }
+  #btnLogout { width: 100% !important; height: auto !important; font-size: 1rem !important; margin-left: 0 !important; }
   
-  .hero { padding-top: 240px; min-height: auto; }
+  .hero { padding-top: 20px; min-height: auto; }
   .hero-container { margin-top: 10px; }
   .hero-actions { gap: 10px; flex-wrap: wrap; }
   .hero-actions .btn { padding: 12px 20px; font-size: 0.95rem; }
