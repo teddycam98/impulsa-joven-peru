@@ -55,8 +55,6 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #0A2E8C;
-  overscroll-behavior: none;
 }
 
 body {
@@ -99,7 +97,7 @@ html {
    ═══════════════════════════════════════════════════════════════ */
 .global-bg {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100vh;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-image: url('/machu_picchu.png');
   background-size: cover;
   background-position: center;
@@ -110,7 +108,7 @@ html {
 /* Gradient overlay — allows Machu Picchu texture to breathe through */
 .global-bg-gradient {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100vh;
+  top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(135deg, rgba(10,46,140,0.88) 0%, rgba(23,84,204,0.85) 40%, rgba(42,117,243,0.82) 70%, rgba(77,139,255,0.78) 100%);
   z-index: -2;
 }
