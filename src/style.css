@@ -55,7 +55,6 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #0A2E8C;
 }
 
 body {
@@ -925,6 +924,7 @@ select.admin-input option {
 }
 
 @media (max-width: 900px) {
+  body { overscroll-behavior-y: none; }
   .navbar { position: relative; padding-bottom: 20px; }
   .nav-container { flex-wrap: wrap; justify-content: center; gap: 15px; }
   .nav-actions { justify-content: center; }
