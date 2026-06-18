@@ -10,8 +10,8 @@ export const qu = {
   "nav.favorites": "Munasqaykuna",
   "nav.login": "Yaykuy",
   "nav.logout": "Lluqsiy",
-  "nav.lang.es": "Español 🇵🇪",
-  "nav.lang.qu": "Quechua 🏔️",
+  "nav.lang.es": "Español",
+  "nav.lang.qu": "Quechua",
   
   // Home Section
   "home.hero.badge": "Chiqap ruraykuna chiqap waynakunapaq",

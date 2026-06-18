@@ -10,8 +10,8 @@ export const es = {
   "nav.favorites": "Mis Favoritos",
   "nav.login": "Iniciar sesión",
   "nav.logout": "Cerrar sesión",
-  "nav.lang.es": "Español 🇵🇪",
-  "nav.lang.qu": "Quechua 🏔️",
+  "nav.lang.es": "Español",
+  "nav.lang.qu": "Quechua",
   
   // Home Section
   "home.hero.badge": "Oportunidades reales para jóvenes reales",
