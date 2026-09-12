@@ -37,7 +37,7 @@ export async function renderHome() {
       </div>
     </section>
 
-    <!-- Floating Stats Bar -->
+    <!-- Floating Stats Bar (Los 7 Pilares de Impulsa Joven Perú) -->
     <div class="container stats-container-wrapper animate-on-scroll">
       <div class="stats-glass-bar">
         <div class="stat-item">
@@ -79,12 +79,20 @@ export async function renderHome() {
             <div class="stat-label" data-i18n="home.stats.universities">${i18n.t('home.stats.universities')}</div>
           </div>
         </div>
-        
+
         <div class="stat-item">
-          <div class="stat-icon-wrapper bg-purple-icon"><i class="ph-fill ph-users"></i></div>
+          <div class="stat-icon-wrapper bg-purple-icon"><i class="ph-fill ph-trophy"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${stats.usersCount || 1540}">0</div>
-            <div class="stat-label" data-i18n="home.stats.users">${i18n.t('home.stats.users')}</div>
+            <div class="stat-number" data-target="${stats.competitionsCount || 28}">0</div>
+            <div class="stat-label" data-i18n="home.stats.competitions">${i18n.t('home.stats.competitions')}</div>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon-wrapper bg-purple-icon"><i class="ph-fill ph-hand-heart"></i></div>
+          <div class="stat-text">
+            <div class="stat-number" data-target="${stats.volunteeringCount || 35}">0</div>
+            <div class="stat-label" data-i18n="home.stats.volunteering">${i18n.t('home.stats.volunteering')}</div>
           </div>
         </div>
       </div>

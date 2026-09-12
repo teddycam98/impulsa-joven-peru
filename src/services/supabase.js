@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { opportunitiesDetailData } from '../data/opportunitiesDetailData.js';
+import { enrichOpportunity } from '../utils/enrichment.js';
 
 const env = (typeof import.meta !== 'undefined' && import.meta.env) ? import.meta.env : {};
 const supabaseUrl = env.VITE_SUPABASE_URL || 'https://oiupevzywptrvuekjuea.supabase.co';
@@ -43,22 +44,22 @@ export const dbService = {
         // Merge without duplicating IDs
         const existingIds = new Set(data.map(d => d.id));
         const nonDuplicateLocals = localItems.filter(l => !existingIds.has(l.id));
-        return [...data, ...nonDuplicateLocals];
+        return [...data, ...nonDuplicateLocals].map(enrichOpportunity);
       }
     } catch (e) {
       console.warn('Supabase query fallback to local dataset:', e);
     }
     
-    return localItems;
+    return localItems.map(enrichOpportunity);
   },
 
   async getOpportunityById(id) {
     const local = opportunitiesDetailData.find(item => item.id === id);
-    if (local) return local;
+    if (local) return enrichOpportunity(local);
 
     try {
       const { data, error } = await supabase.from('opportunities').select('*').eq('id', id).single();
-      if (!error && data) return data;
+      if (!error && data) return enrichOpportunity(data);
     } catch (e) {
       console.warn('Error fetching opp by id from Supabase:', e);
     }
@@ -67,12 +68,13 @@ export const dbService = {
 
   async getStats() {
     try {
-      const [scholarships, courses, jobs, internships, competitions, users] = await Promise.all([
+      const [scholarships, courses, jobs, internships, competitions, volunteering, users] = await Promise.all([
         supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'scholarship').eq('status', 'active'),
         supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'course').eq('status', 'active'),
         supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'job').eq('status', 'active'),
         supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'internship').eq('status', 'active'),
         supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'competition').eq('status', 'active'),
+        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'volunteer').eq('status', 'active'),
         supabase.from('users').select('*', { count: 'exact', head: true })
       ]);
       return {
@@ -82,6 +84,7 @@ export const dbService = {
         jobsCount: (jobs && jobs.count) || 120,
         universitiesCount: 24,
         competitionsCount: (competitions && competitions.count) || 28,
+        volunteeringCount: (volunteering && volunteering.count) || 35,
         usersCount: (users && users.count) || 1540
       };
     } catch (e) {
@@ -92,6 +95,7 @@ export const dbService = {
         jobsCount: 120,
         universitiesCount: 24,
         competitionsCount: 28,
+        volunteeringCount: 35,
         usersCount: 1540
       };
     }

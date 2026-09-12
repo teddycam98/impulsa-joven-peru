@@ -24,12 +24,13 @@ export const en = {
   "home.hero.btn_explore": "Explore opportunities",
   "home.hero.btn_new": "I'm new here",
   
-  "home.stats.scholarships": "Available scholarships",
+  "home.stats.scholarships": "Active scholarships",
   "home.stats.courses": "Free courses",
-  "home.stats.internships": "Pre & pro internships",
-  "home.stats.jobs": "Jobs & vacancies",
+  "home.stats.internships": "Internships",
+  "home.stats.jobs": "Active jobs",
   "home.stats.universities": "Partner universities",
   "home.stats.competitions": "Open competitions",
+  "home.stats.volunteering": "Active volunteering",
   "home.stats.users": "Registered youth",
   
   "home.bento.title_1": "What do you want to achieve",

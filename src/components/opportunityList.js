@@ -182,31 +182,33 @@ export async function initDynamicList(containerId, category) {
         if (item.ageRange && item.ageRange !== 'all' && item.ageRange !== ageFilter.value) return false;
       }
       if (studyLevelFilter && studyLevelFilter.value !== 'all') {
-        if (item.typeCategory && item.typeCategory !== studyLevelFilter.value) return false;
+        if (item.typeCategory !== studyLevelFilter.value) return false;
       }
       if (coverageFilter && coverageFilter.value !== 'all') {
-        if (item.coverage && item.coverage !== coverageFilter.value) return false;
+        if (item.coverage !== coverageFilter.value) return false;
       }
       if (modalityFilter && modalityFilter.value !== 'all') {
-        if (item.modality && item.modality !== modalityFilter.value) return false;
+        if (item.modality !== modalityFilter.value) return false;
       }
       if (practiceTypeFilter && practiceTypeFilter.value !== 'all') {
-        if (item.typeCategory && item.typeCategory !== practiceTypeFilter.value) return false;
+        if (item.typeCategory !== practiceTypeFilter.value) return false;
       }
       if (areaFilter && areaFilter.value !== 'all') {
-        if (item.typeCategory && item.typeCategory !== areaFilter.value) return false;
+        if (item.typeCategory !== areaFilter.value) return false;
       }
       if (certFilter && certFilter.value === 'cert-free') {
         if (item.coverage !== 'full') return false;
       }
       if (locationFilter && locationFilter.value !== 'all') {
-        if (item.location && !item.location.includes(locationFilter.value)) return false;
+        const itemLoc = (item.location || '').toLowerCase();
+        const filterLoc = locationFilter.value.toLowerCase();
+        if (!itemLoc.includes(filterLoc)) return false;
       }
       if (causeFilter && causeFilter.value !== 'all') {
-        if (item.typeCategory && item.typeCategory !== causeFilter.value) return false;
+        if (item.typeCategory !== causeFilter.value) return false;
       }
       if (competitionTypeFilter && competitionTypeFilter.value !== 'all') {
-        if (item.typeCategory && item.typeCategory !== competitionTypeFilter.value) return false;
+        if (item.typeCategory !== competitionTypeFilter.value) return false;
       }
       return true;
     });

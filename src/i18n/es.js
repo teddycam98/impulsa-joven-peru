@@ -27,9 +27,10 @@ export const es = {
   "home.stats.scholarships": "Becas vigentes",
   "home.stats.courses": "Cursos gratuitos",
   "home.stats.internships": "Prácticas pre y pro",
-  "home.stats.jobs": "Empleos y vacantes",
+  "home.stats.jobs": "Empleos activos",
   "home.stats.universities": "Universidades aliadas",
-  "home.stats.competitions": "Concursos disponibles",
+  "home.stats.competitions": "Concursos y retos",
+  "home.stats.volunteering": "Voluntariado social",
   "home.stats.users": "Jóvenes registrados",
   
   "home.bento.title_1": "¿Qué quieres lograr",

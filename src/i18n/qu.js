@@ -30,6 +30,7 @@ export const qu = {
   "home.stats.jobs": "Llamk'anakuna",
   "home.stats.universities": "Hatun yachay wasikuna",
   "home.stats.competitions": "Atipanakuykuna",
+  "home.stats.volunteering": "Yanapakuykuna",
   "home.stats.users": "Qillqasqa waynakuna",
   
   "home.bento.title_1": "¿Imatataq rurayta munanki",

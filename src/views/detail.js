@@ -60,7 +60,7 @@ export async function renderOpportunityDetail(id) {
   ];
 
   return `
-    <div class="container inner-page" style="margin-bottom: 5rem; padding-top: 20px;">
+    <div class="container inner-page" style="margin-bottom: 5rem; padding-top: 220px;">
       
       <!-- Back navigation button -->
       <div style="margin-bottom: 25px;">
