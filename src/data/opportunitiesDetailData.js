@@ -486,5 +486,286 @@ export const opportunitiesDetailData = [
       'Revisión de código con uno de nuestros Tech Leads.',
       'Oferta laboral e incorporación al equipo.'
     ]
+  },
+
+  // ──────────────────────────────────────────────
+  // CONCURSOS Y HACKATHONS
+  // ──────────────────────────────────────────────
+  {
+    id: 'concurso-hackathon-innovacion-2026',
+    title: 'Hackathon Nacional de Innovación Juvenil 2026',
+    organization: 'CONCYTEC & Ministerio de Educación',
+    category: 'competition',
+    type: 'Hackathons y Tecnología',
+    typeCategory: 'hackathon',
+    modality: 'hybrid',
+    location: 'Nacional (Lima y Transmisión Virtual)',
+    deadline: '2026-10-30',
+    description: 'Desarrolla soluciones tecnológicas basadas en inteligencia artificial, inclusión financiera o educación rural. Premios de capital semilla, incubación y mentorías con expertos de Google y Microsoft.',
+    image_url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://portal.concytec.gob.pe',
+    featured: true,
+    requirements: [
+      'Equipos de 3 a 5 jóvenes de 18 a 29 años.',
+      'Al menos un integrante con conocimientos técnicos (software, diseño o analítica).',
+      'Propuesta orientada a resolver problemáticas de educación o desarrollo sostenible en Perú.'
+    ],
+    benefits: [
+      'S/ 35,000 en financiamiento no reembolsable para el primer lugar.',
+      'Incubación acelerada en la red de incubadoras de Perú.',
+      'Créditos Cloud de AWS y Google Cloud valorizados en $10,000.',
+      'Certificación oficial emitida por Concytec.'
+    ],
+    steps: [
+      'Inscribir a tu equipo en la plataforma oficial del concurso.',
+      'Enviar el resumen ejecutivo y video pitch (3 minutos).',
+      'Fase de hackathon intensivo de 48 horas con mentores.',
+      'Demo Day y premiación final ante jurado calificador.'
+    ]
+  },
+  {
+    id: 'concurso-premio-nacional-juventud',
+    title: 'Premio Nacional de la Juventud "Yenuri Chiguala Cruz" 2026',
+    organization: 'Secretaría Nacional de la Juventud (SENAJU / MIMP)',
+    category: 'competition',
+    type: 'Premios y Convocatorias',
+    typeCategory: 'premios',
+    modality: 'remote',
+    location: 'Nacional (Todas las Regiones)',
+    deadline: '2026-11-15',
+    description: 'El máximo reconocimiento del Estado peruano a jóvenes u organizaciones juveniles que destacan en acciones de solidaridad social, ciencia, tecnología y cuidado ambiental.',
+    image_url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://juventud.gob.pe',
+    featured: true,
+    requirements: [
+      'Jóvenes peruanos de 15 a 29 años o colectivos juveniles registrados.',
+      'Acreditar proyectos o iniciativas con impacto verificable de al menos 6 meses.',
+      'Presentar carta de respaldo de la comunidad o institución beneficiada.'
+    ],
+    benefits: [
+      'Premio económico de 3 Unidades Impositivas Tributarias (UIT) por categoría.',
+      'Trofeo y diploma de honor otorgado por el Estado.',
+      'Difusión nacional en medios y canales del MIMP.'
+    ],
+    steps: [
+      'Descargar las bases en el portal de Senaju.',
+      'Llenar la ficha de postulación virtual y adjuntar evidencias documentadas.',
+      'Evaluación del comité técnico calificador.',
+      'Ceremonia oficial de premiación en Palacio de Gobierno.'
+    ]
+  },
+  {
+    id: 'concurso-startup-peru',
+    title: 'StartUp Perú 11G: Concurso de Emprendimientos Innovadores',
+    organization: 'PROINNOVATE (Ministerio de la Producción)',
+    category: 'competition',
+    type: 'Emprendimiento e Innovación',
+    typeCategory: 'emprendimiento',
+    modality: 'remote',
+    location: 'Nacional (Todo el Perú)',
+    deadline: '2026-11-25',
+    description: 'Capital semilla no reembolsable para startups y proyectos tecnológicos fundados por jóvenes emprendedores peruanos con tracción o prototipos validados en el mercado.',
+    image_url: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://www.proinnovate.gob.pe',
+    featured: false,
+    requirements: [
+      'Equipo emprendedor de 2 a 4 integrantes.',
+      'Producto o servicio con innovación tecnológica demostrable.',
+      'Prototipo funcional o ventas iniciales en el mercado peruano.'
+    ],
+    benefits: [
+      'Capital semilla no reembolsable de hasta S/ 60,000.',
+      'Acompañamiento en incubadora o aceleradora socia.',
+      'Red de inversionistas ángeles y mentorías comerciales.'
+    ],
+    steps: [
+      'Registro en el Sistema en Línea de ProInnóvate.',
+      'Formulación del proyecto según formulario técnico.',
+      'Evaluación externa por expertos de la industria.',
+      'Pitch final ante el comité de adjudicación.'
+    ]
+  },
+  {
+    id: 'concurso-desafio-ambiental',
+    title: 'Desafío Ambiental Juvenil: Perú por el Clima 2026',
+    organization: 'Ministerio del Ambiente (MINAM) & PNUD',
+    category: 'competition',
+    type: 'Ciencia e Innovación Social',
+    typeCategory: 'ciencia',
+    modality: 'onsite',
+    location: 'Lima / Ayacucho / Cusco',
+    deadline: '2026-10-18',
+    description: 'Concurso de soluciones comunitarias y proyectos científicos juveniles para la conservación de bosques, gestión del agua y economía circular.',
+    image_url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://www.gob.pe/minam',
+    featured: false,
+    requirements: [
+      'Jóvenes de 16 a 28 años residentes en cualquier región del Perú.',
+      'Iniciativa vinculada al reciclaje, reforestación o energías limpias.'
+    ],
+    benefits: [
+      'Financiamiento de S/ 20,000 para implementación del proyecto piloto.',
+      'Pasantía técnica de aprendizaje en reservas naturales protegidas.',
+      'Kit de laboratorio y equipamiento ambiental.'
+    ],
+    steps: [
+      'Postular la memoria descriptiva de la iniciativa.',
+      'Selección de los 15 mejores proyectos regionales.',
+      'Campamento de co-creación y validación con especialistas.',
+      'Presentación de resultados en el Foro Nacional del Clima.'
+    ]
+  },
+
+  // ──────────────────────────────────────────────
+  // VOLUNTARIADO
+  // ──────────────────────────────────────────────
+  {
+    id: 'voluntariado-techo-peru',
+    title: 'Voluntariado Comunitario: Construcción y Hábitat Digno',
+    organization: 'TECHO Perú',
+    category: 'volunteer',
+    type: 'Impacto Social y Comunitario',
+    typeCategory: 'social',
+    modality: 'onsite',
+    location: 'Lima (San Juan de Lurigancho, Pachacámac)',
+    deadline: '2026-10-25',
+    description: 'Súmate a la construcción de viviendas de emergencia y proyectos comunitarios junto a pobladores de comunidades en situación de vulnerabilidad.',
+    image_url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://techo.org/peru/',
+    featured: true,
+    requirements: [
+      'Tener 16 años o más (menores de 18 con autorización de apoderado).',
+      'Compromiso y disposición para trabajo en equipo en campo.',
+      'Participar en la charla de inducción virtual previa.'
+    ],
+    benefits: [
+      'Certificado oficial de voluntariado acreditado por SENAJU.',
+      'Desarrollo de habilidades de liderazgo, empatía y trabajo comunitario.',
+      'Alimentación y transporte durante las jornadas de construcción.'
+    ],
+    steps: [
+      'Inscribirte en el formulario de la página web de TECHO.',
+      'Asistir a la charla de inducción virtual obligatoria.',
+      'Seleccionar tu cuadrilla y fecha de construcción asignada.'
+    ]
+  },
+  {
+    id: 'voluntariado-cruz-roja',
+    title: 'Voluntariado en Primeros Auxilios y Gestión del Riesgo',
+    organization: 'Cruz Roja Peruana',
+    category: 'volunteer',
+    type: 'Salud y Primeros Auxilios',
+    typeCategory: 'salud',
+    modality: 'onsite',
+    location: 'Nacional (Sedes en Lima, Arequipa, Ayacucho, Trujillo)',
+    deadline: '2026-11-05',
+    description: 'Capacítate gratuitamente en primeros auxilios, soporte vital básico y ayuda humanitaria ante desastres naturales en tu localidad.',
+    image_url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://www.cruzroja.org.pe/',
+    featured: true,
+    requirements: [
+      'Mayor de 18 años con vocación de servicio altruista.',
+      'Disponibilidad de al menos 4 horas semanales para capacitaciones y guardias.',
+      'No contar con antecedentes policiales ni penales.'
+    ],
+    benefits: [
+      'Certificación internacional de la Cruz Roja en Primeros Auxilios.',
+      'Uniforme e indumentaria institucional para operativos de campo.',
+      'Formar parte de la red de respuesta a emergencias más respetada del mundo.'
+    ],
+    steps: [
+      'Llenar el formulario de aspirante en la filial más cercana.',
+      'Entrevista vocacional psicológica y médica básica.',
+      'Aprobar el curso introductorio institucional (4 módulos formativos).'
+    ]
+  },
+  {
+    id: 'voluntariado-unv-cambio-climatico',
+    title: 'Voluntariado en Línea: Acción Climática y Difusión Digital',
+    organization: 'Voluntarios de las Naciones Unidas (UNV) & PNUD',
+    category: 'volunteer',
+    type: 'Medio Ambiente y Clima',
+    typeCategory: 'ambiente',
+    modality: 'remote',
+    location: '100% Remoto (Nacional)',
+    deadline: '2026-10-20',
+    description: 'Colabora de manera 100% virtual diseñando campañas de comunicación, traducción de guías ecológicas y monitoreo de datos sobre sostenibilidad ambiental.',
+    image_url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://www.unv.org/es',
+    featured: true,
+    requirements: [
+      'Manejo de herramientas digitales, redacción o diseño gráfico (Canva, Illustrator).',
+      'Conexión a internet estable y disponibilidad de 5 horas semanales.',
+      'Compromiso con los Objetivos de Desarrollo Sostenible (ODS).'
+    ],
+    benefits: [
+      'Certificado oficial emitido directamente por el programa UNV de Naciones Unidas.',
+      'Experiencia internacional valiosa para tu currículum y postulaciones académicas.',
+      'Mentorías de profesionales de agencias ONU.'
+    ],
+    steps: [
+      'Crear tu perfil en la plataforma de Voluntariado en Línea de la ONU.',
+      'Postular a la asignación de Acción Climática Perú 2026.',
+      'Revisión de perfil y confirmación por correo electrónico.'
+    ]
+  },
+  {
+    id: 'voluntariado-crea-mas-educacion',
+    title: 'Voluntariado de Refuerzo Escolar y Matemáticas Lúdicas',
+    organization: 'Crea+ Perú',
+    category: 'volunteer',
+    type: 'Educación e Infancia',
+    typeCategory: 'educacion',
+    modality: 'hybrid',
+    location: 'Lima / Ayacucho / Cusco',
+    deadline: '2026-10-15',
+    description: 'Transforma vidas enseñando matemáticas y talleres de talentos (arte, música, baile, deportes) a niños de primaria en colegios de zonas vulnerables los sábados por la mañana.',
+    image_url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://creamas.org/',
+    featured: false,
+    requirements: [
+      'Jóvenes universitarios o egresados con ganas de enseñar y motivar.',
+      'Disponibilidad los sábados de 8:30 AM a 1:00 PM durante el ciclo escolar.',
+      'Paciencia y entusiasmo para conectar con niños escolares.'
+    ],
+    benefits: [
+      'Certificación oficial por 60 horas de voluntariado pedagógico.',
+      'Talleres gratuitos de liderazgo, oratoria y manejo de grupos.',
+      'Una comunidad de más de 3,000 jóvenes creandos en todo el Perú.'
+    ],
+    steps: [
+      'Registrarte en el portal de Crea+ con tus datos personales.',
+      'Participar en la dinámica virtual de selección de talentos.',
+      'Capacitación pedagógica y asignación de colegio.'
+    ]
+  },
+  {
+    id: 'voluntariado-bicentenario',
+    title: 'Voluntarios Bicentenario: Red Nacional de Agentes de Cambio',
+    organization: 'Proyecto Especial Bicentenario (Ministerio de Cultura)',
+    category: 'volunteer',
+    type: 'Ciudadanía y Cultura',
+    typeCategory: 'civico',
+    modality: 'hybrid',
+    location: 'Todas las 25 Regiones del Perú',
+    deadline: '2026-11-01',
+    description: 'Forma parte de la iniciativa de voluntariado público más grande del país, impulsando proyectos de patrimonio cultural, rescate de lenguas originarias y civismo activo.',
+    image_url: 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?w=800&auto=format&fit=crop&q=80',
+    external_link: 'https://bicentenario.gob.pe/voluntarios/',
+    featured: false,
+    requirements: [
+      'Peruano o residente con DNI o carné de extranjería.',
+      'Compromiso cívico y respeto por la diversidad cultural del Perú.'
+    ],
+    benefits: [
+      'Constancia del Ministerio de Cultura y SENAJU.',
+      'Acceso a la plataforma formativa de cursos de gestión pública del Bicentenario.',
+      'Participación en eventos nacionales protocolares y ferias culturales.'
+    ],
+    steps: [
+      'Completar el registro en la plataforma de Voluntarios Bicentenario.',
+      'Realizar los cursos virtuales formativos de autoaprendizaje.',
+      'Postular a las brigadas territoriales de tu región.'
+    ]
   }
 ];

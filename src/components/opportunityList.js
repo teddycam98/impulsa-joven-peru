@@ -139,6 +139,8 @@ export async function initDynamicList(containerId, category) {
   const areaFilter = container.querySelector('#areaFilter');
   const certFilter = container.querySelector('#certFilter');
   const locationFilter = container.querySelector('#locationFilter');
+  const causeFilter = container.querySelector('#causeFilter');
+  const competitionTypeFilter = container.querySelector('#competitionTypeFilter');
   
   if (!loadMoreBtn && cardsContainer) {
     loadMoreBtn = document.createElement('button');
@@ -200,6 +202,12 @@ export async function initDynamicList(containerId, category) {
       if (locationFilter && locationFilter.value !== 'all') {
         if (item.location && !item.location.includes(locationFilter.value)) return false;
       }
+      if (causeFilter && causeFilter.value !== 'all') {
+        if (item.typeCategory && item.typeCategory !== causeFilter.value) return false;
+      }
+      if (competitionTypeFilter && competitionTypeFilter.value !== 'all') {
+        if (item.typeCategory && item.typeCategory !== competitionTypeFilter.value) return false;
+      }
       return true;
     });
     
@@ -220,7 +228,7 @@ export async function initDynamicList(containerId, category) {
         <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.06);">
           <i class="ph ph-magnifying-glass" style="font-size: 3rem; color: var(--secondary-yellow); margin-bottom: 15px;"></i>
           <h3 style="color: white; font-weight: 800; margin-bottom: 8px;">No se encontraron resultados</h3>
-          <p class="muted">Intenta ajustando los filtros de edad o términos de búsqueda.</p>
+          <p class="muted">Intenta ajustando los filtros o términos de búsqueda.</p>
         </div>
       `;
     }
@@ -249,7 +257,7 @@ export async function initDynamicList(containerId, category) {
   }
 
   // Connect all select filters to trigger reload
-  const allDropdowns = [ageFilter, studyLevelFilter, coverageFilter, modalityFilter, practiceTypeFilter, areaFilter, certFilter, locationFilter];
+  const allDropdowns = [ageFilter, studyLevelFilter, coverageFilter, modalityFilter, practiceTypeFilter, areaFilter, certFilter, locationFilter, causeFilter, competitionTypeFilter];
   allDropdowns.forEach(select => {
     if (select) {
       select.addEventListener('change', () => loadData(true));

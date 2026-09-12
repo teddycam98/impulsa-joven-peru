@@ -26,8 +26,9 @@ export const es = {
   
   "home.stats.scholarships": "Becas vigentes",
   "home.stats.courses": "Cursos gratuitos",
-  "home.stats.jobs": "Empleos y vacantes",
   "home.stats.internships": "Prácticas pre y pro",
+  "home.stats.jobs": "Empleos y vacantes",
+  "home.stats.universities": "Universidades aliadas",
   "home.stats.competitions": "Concursos disponibles",
   "home.stats.users": "Jóvenes registrados",
   
@@ -38,10 +39,12 @@ export const es = {
   "home.card.study.desc": "Becas nacionales, Pronabec<br>e internacionales",
   "home.card.learn.title": "Cursos Gratuitos",
   "home.card.learn.desc": "Cursos certificados para<br>potenciar tu perfil",
-  "home.card.work.title": "Empleos",
-  "home.card.work.desc": "Ofertas laborales para<br>jóvenes profesionales",
   "home.card.internships.title": "Prácticas",
   "home.card.internships.desc": "Prácticas pre y pro<br>con remuneración",
+  "home.card.work.title": "Empleos",
+  "home.card.work.desc": "Ofertas laborales para<br>jóvenes profesionales",
+  "home.card.universities.title": "Universidades",
+  "home.card.universities.desc": "Instituciones licenciadas<br>con convenios y Beca 18",
   "home.card.competitions.title": "Concursos",
   "home.card.competitions.desc": "Hackathons, premios<br>e innovación juvenil",
   "home.card.volunteer.title": "Voluntariado",
@@ -65,6 +68,17 @@ export const es = {
   "cat.label.internship": "Práctica",
   "cat.label.volunteer": "Voluntariado",
   "cat.label.competition": "Concurso",
+  
+  "cat.scholarships.title": "Becas Disponibles",
+  "cat.scholarships.desc": "Accede a becas nacionales e internacionales para estudiar en las mejores instituciones.",
+  "cat.courses.title": "Cursos Gratuitos",
+  "cat.courses.desc": "Mejora tus habilidades con cursos en línea y certificados gratuitos oficiales.",
+  "cat.jobs.title": "Bolsa de Empleos",
+  "cat.jobs.desc": "Vacantes laborales para jóvenes profesionales, técnicos y egresados.",
+  "cat.volunteer.title": "Programas de Voluntariado",
+  "cat.volunteer.desc": "Participa en programas de voluntariado y genera un impacto positivo en tu comunidad.",
+  "cat.competitions.title": "Concursos y Hackathons",
+  "cat.competitions.desc": "Concursos, hackathons, premios e innovación juvenil para demostrar tu talento.",
 
   // Filters
   "filter.age.title": "Rango de Edad",

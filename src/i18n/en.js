@@ -26,7 +26,9 @@ export const en = {
   
   "home.stats.scholarships": "Available scholarships",
   "home.stats.courses": "Free courses",
-  "home.stats.jobs": "Jobs & internships",
+  "home.stats.internships": "Pre & pro internships",
+  "home.stats.jobs": "Jobs & vacancies",
+  "home.stats.universities": "Partner universities",
   "home.stats.competitions": "Open competitions",
   "home.stats.users": "Registered youth",
   
@@ -37,10 +39,12 @@ export const en = {
   "home.card.study.desc": "Find national & international<br>scholarships",
   "home.card.learn.title": "Free Courses",
   "home.card.learn.desc": "Free certified courses<br>to build your skills",
-  "home.card.work.title": "Jobs",
-  "home.card.work.desc": "Full-time & part-time<br>career opportunities",
   "home.card.internships.title": "Internships",
   "home.card.internships.desc": "Pre-professional & professional<br>internships in Peru",
+  "home.card.work.title": "Jobs",
+  "home.card.work.desc": "Full-time & part-time<br>career opportunities",
+  "home.card.universities.title": "Universities",
+  "home.card.universities.desc": "Licensed institutions with<br>scholarships and agreements",
   "home.card.competitions.title": "Competitions",
   "home.card.competitions.desc": "Hackathons, awards<br>& youth innovation",
   "home.card.volunteer.title": "Volunteering",
@@ -64,6 +68,17 @@ export const en = {
   "cat.label.internship": "Internship",
   "cat.label.volunteer": "Volunteering",
   "cat.label.competition": "Competition",
+
+  "cat.scholarships.title": "Available Scholarships",
+  "cat.scholarships.desc": "Access national and international scholarships to study in top institutions.",
+  "cat.courses.title": "Free Courses",
+  "cat.courses.desc": "Boost your skills with free online courses and certified training.",
+  "cat.jobs.title": "Job Board",
+  "cat.jobs.desc": "Job openings for young professionals, technicians and graduates.",
+  "cat.volunteer.title": "Volunteering Programs",
+  "cat.volunteer.desc": "Join volunteer programs and make a positive impact in your community.",
+  "cat.competitions.title": "Competitions & Hackathons",
+  "cat.competitions.desc": "Competitions, hackathons, awards and youth innovation to showcase your talent.",
 
   // Filters
   "filter.age.title": "Age Range",

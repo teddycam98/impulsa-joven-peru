@@ -36,16 +36,18 @@ export const i18n = {
 
   translateDOM() {
     const elements = document.querySelectorAll('[data-i18n]');
+    const dict = dictionaries[this.currentLang] || dictionaries['es'];
     elements.forEach(el => {
       const key = el.getAttribute('data-i18n');
-      const translation = this.t(key);
-      
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        if (el.hasAttribute('placeholder')) {
-          el.placeholder = translation;
+      if (dict && dict[key]) {
+        const translation = dict[key];
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          if (el.hasAttribute('placeholder')) {
+            el.placeholder = translation;
+          }
+        } else {
+          el.innerHTML = translation;
         }
-      } else {
-        el.innerHTML = translation;
       }
     });
   }

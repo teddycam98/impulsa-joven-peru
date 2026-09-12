@@ -79,7 +79,9 @@ function initAnimations() {
 
 async function router() {
   let path = window.location.pathname;
-  if (!routes[path]) path = '/';
+  if (!path.startsWith('/oportunidad/') && !routes[path]) {
+    path = '/';
+  }
   
   // Show global loading state
   app.innerHTML = `

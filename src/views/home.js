@@ -43,7 +43,7 @@ export async function renderHome() {
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-graduation-cap"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${stats.scholarshipsCount}">0</div>
+            <div class="stat-number" data-target="${stats.scholarshipsCount || 45}">0</div>
             <div class="stat-label" data-i18n="home.stats.scholarships">${i18n.t('home.stats.scholarships')}</div>
           </div>
         </div>
@@ -51,31 +51,39 @@ export async function renderHome() {
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-book-open"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${stats.coursesCount}">0</div>
+            <div class="stat-number" data-target="${stats.coursesCount || 80}">0</div>
             <div class="stat-label" data-i18n="home.stats.courses">${i18n.t('home.stats.courses')}</div>
+          </div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-chalkboard-teacher"></i></div>
+          <div class="stat-text">
+            <div class="stat-number" data-target="${stats.internshipsCount || 65}">0</div>
+            <div class="stat-label" data-i18n="home.stats.internships">${i18n.t('home.stats.internships')}</div>
           </div>
         </div>
         
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-briefcase"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${stats.jobsCount}">0</div>
+            <div class="stat-number" data-target="${stats.jobsCount || 120}">0</div>
             <div class="stat-label" data-i18n="home.stats.jobs">${i18n.t('home.stats.jobs')}</div>
           </div>
         </div>
-        
+
         <div class="stat-item">
-          <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-trophy"></i></div>
+          <div class="stat-icon-wrapper bg-blue-icon"><i class="ph-fill ph-buildings"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${stats.competitionsCount}">0</div>
-            <div class="stat-label" data-i18n="home.stats.competitions">${i18n.t('home.stats.competitions')}</div>
+            <div class="stat-number" data-target="${stats.universitiesCount || 24}">0</div>
+            <div class="stat-label" data-i18n="home.stats.universities">${i18n.t('home.stats.universities')}</div>
           </div>
         </div>
         
         <div class="stat-item">
           <div class="stat-icon-wrapper bg-purple-icon"><i class="ph-fill ph-users"></i></div>
           <div class="stat-text">
-            <div class="stat-number" data-target="${stats.usersCount}">0</div>
+            <div class="stat-number" data-target="${stats.usersCount || 1540}">0</div>
             <div class="stat-label" data-i18n="home.stats.users">${i18n.t('home.stats.users')}</div>
           </div>
         </div>
@@ -92,7 +100,7 @@ export async function renderHome() {
       </div>
       
       <div class="cards-row">
-        <!-- Card 1: Estudiar -->
+        <!-- Card 1: Becas -->
         <a href="/becas" class="action-card card-blue" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-graduation-cap"></i></div>
@@ -100,11 +108,11 @@ export async function renderHome() {
             <p data-i18n="home.card.study.desc">${i18n.t('home.card.study.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/estudiar.jpg" alt="Estudiante" class="card-bg-img">
+          <img src="/images/estudiar.jpg" alt="Becas" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
-        <!-- Card 2: Aprender -->
+        <!-- Card 2: Cursos Gratuitos -->
         <a href="/cursos" class="action-card card-purple" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-book-open"></i></div>
@@ -112,12 +120,12 @@ export async function renderHome() {
             <p data-i18n="home.card.learn.desc">${i18n.t('home.card.learn.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/aprender.jpg" alt="Aprender" class="card-bg-img">
+          <img src="/images/aprender.jpg" alt="Cursos Gratuitos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 3: Prácticas -->
-        <a href="/practicas" class="action-card card-teal" data-link style="background: #0d9488;">
+        <a href="/practicas" class="action-card card-teal" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-chalkboard-teacher"></i></div>
             <h3 data-i18n="home.card.internships.title">${i18n.t('home.card.internships.title')}</h3>
@@ -136,11 +144,23 @@ export async function renderHome() {
             <p data-i18n="home.card.work.desc">${i18n.t('home.card.work.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/trabajar.jpg" alt="Trabajar" class="card-bg-img">
+          <img src="/images/trabajar.jpg" alt="Empleos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
-        <!-- Card 4: Concursos -->
+        <!-- Card 5: Universidades -->
+        <a href="/universidades" class="action-card card-navy" data-link>
+          <div class="card-content">
+            <div class="card-icon"><i class="ph ph-buildings"></i></div>
+            <h3 data-i18n="home.card.universities.title">${i18n.t('home.card.universities.title')}</h3>
+            <p data-i18n="home.card.universities.desc">${i18n.t('home.card.universities.desc')}</p>
+            <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=350&fit=crop" alt="Universidades" class="card-bg-img">
+          <div class="card-gradient"></div>
+        </a>
+
+        <!-- Card 6: Concursos -->
         <a href="/concursos" class="action-card card-orange" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-trophy"></i></div>
@@ -152,10 +172,10 @@ export async function renderHome() {
           <div class="card-gradient"></div>
         </a>
 
-        <!-- Card 5: Voluntariado -->
+        <!-- Card 7: Voluntariado -->
         <a href="/voluntariado" class="action-card card-yellow" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-magic-wand"></i></div>
+            <div class="card-icon"><i class="ph ph-hands-clapping"></i></div>
             <h3 data-i18n="home.card.volunteer.title">${i18n.t('home.card.volunteer.title')}</h3>
             <p data-i18n="home.card.volunteer.desc">${i18n.t('home.card.volunteer.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>

@@ -26,8 +26,9 @@ export const qu = {
   
   "home.stats.scholarships": "Kachkan becakuna",
   "home.stats.courses": "Mana qullqiyuq kursukuna",
-  "home.stats.jobs": "Llamk'anakuna",
   "home.stats.internships": "Yachapakuykuna",
+  "home.stats.jobs": "Llamk'anakuna",
+  "home.stats.universities": "Hatun yachay wasikuna",
   "home.stats.competitions": "Atipanakuykuna",
   "home.stats.users": "Qillqasqa waynakuna",
   
@@ -38,10 +39,12 @@ export const qu = {
   "home.card.study.desc": "Becakuna tariy<br>yachay wasikunapaq",
   "home.card.learn.title": "Mana qullqiyuq Yachaykuna",
   "home.card.learn.desc": "Kallpachakuy musuq<br>yachaykunawan",
-  "home.card.work.title": "Llamk'anakuna",
-  "home.card.work.desc": "Llamk'anakuna suyuntinpi",
   "home.card.internships.title": "Yachapakuy Llamk'aykuna",
   "home.card.internships.desc": "Yachapakuykuna wayna-sipaskunapaq",
+  "home.card.work.title": "Llamk'anakuna",
+  "home.card.work.desc": "Llamk'anakuna suyuntinpi",
+  "home.card.universities.title": "Hatun Yachay Wasikuna",
+  "home.card.universities.desc": "Sunedu kamachisqa yachay<br>wasikuna conveniokunawan",
   "home.card.competitions.title": "Atipanakuykuna",
   "home.card.competitions.desc": "Musuqyachiypi llallinakuykuna",
   "home.card.volunteer.title": "Yanapakuy",
@@ -65,6 +68,17 @@ export const qu = {
   "cat.label.internship": "Yachapakuy",
   "cat.label.volunteer": "Yanapakuy",
   "cat.label.competition": "Atipanakuy",
+
+  "cat.scholarships.title": "Kachkan Becakuna",
+  "cat.scholarships.desc": "Aswan allin hatun yachay wasikunapi yachanaykipaq becakuna.",
+  "cat.courses.title": "Mana Qullqiyuq Kursukuna",
+  "cat.courses.desc": "Kallpachakuy musuq yachaykunawan internetpi mana qullqillapaq.",
+  "cat.jobs.title": "Llamk'ana Mast'ariy",
+  "cat.jobs.desc": "Llamk'anakuna wayna-sipaskunapaq, tecnicokunapaq tukusqakunapaqpas.",
+  "cat.volunteer.title": "Yanapakuy Programakuna",
+  "cat.volunteer.desc": "Ayllunchikpaq kuska llamk'asun, yanapasun allin kawsaypaq.",
+  "cat.competitions.title": "Atipanakuykuna",
+  "cat.competitions.desc": "Musuqyachiypi llallinakuykuna kikin talentoykita rikuchinaykipaq.",
 
   // Filters
   "filter.age.title": "Wataykikuna",

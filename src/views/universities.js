@@ -6,7 +6,7 @@ export function renderUniversities() {
     <div class="universities-page" style="padding-bottom: 60px;">
       
       <!-- Top Banner Hero -->
-      <section class="hero-subpage" style="padding: 50px 0 30px 0; background: radial-gradient(circle at top center, rgba(10, 77, 163, 0.3) 0%, rgba(4, 27, 77, 0) 70%); text-center;">
+      <section class="hero-subpage" style="padding: 240px 0 40px 0; background: radial-gradient(circle at top center, rgba(10, 77, 163, 0.3) 0%, rgba(4, 27, 77, 0) 70%); text-align: center;">
         <div class="container text-center">
           <div class="hero-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 199, 0, 0.15); border: 1px solid rgba(255, 199, 0, 0.3); color: #FFC700; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 15px;">
             <i class="ph-fill ph-buildings"></i> <span>Directorio Educativo del Perú</span>
