@@ -76,24 +76,26 @@ export function renderEventsHero() {
                 <div class="slide-right">
                   <div class="slide-image-card">
                     <img src="${event.image}" alt="${event.university}" class="slide-campus-photo">
-                    <div class="slide-img-gradient"></div>
-                    <div class="slide-img-phrase">${event.phrase}</div>
-                    <div class="slide-img-footer">
-                      <div class="slide-img-university">
-                        <i class="ph-fill ph-buildings"></i>
-                        <span>${event.acronym}</span>
+                    ${event.id === 'evt-1' ? '' : `
+                      <div class="slide-img-gradient"></div>
+                      <div class="slide-img-phrase">${event.phrase}</div>
+                      <div class="slide-img-footer">
+                        <div class="slide-img-university">
+                          <i class="ph-fill ph-buildings"></i>
+                          <span>${event.acronym}</span>
+                        </div>
+                        <div class="slide-img-tags">
+                          <span class="slide-img-tag">
+                            <i class="ph-fill ph-calendar"></i>
+                            ${event.date.split(',')[0]}
+                          </span>
+                          <span class="slide-img-tag">
+                            <i class="ph-fill ph-chalkboard-teacher"></i>
+                            ${event.badge}
+                          </span>
+                        </div>
                       </div>
-                      <div class="slide-img-tags">
-                        <span class="slide-img-tag">
-                          <i class="ph-fill ph-calendar"></i>
-                          ${event.date.split(',')[0]}
-                        </span>
-                        <span class="slide-img-tag">
-                          <i class="ph-fill ph-chalkboard-teacher"></i>
-                          ${event.badge}
-                        </span>
-                      </div>
-                    </div>
+                    `}
                   </div>
                   <!-- Dots indicator below image -->
                   <div class="slide-dots" id="slideDotsContainer">

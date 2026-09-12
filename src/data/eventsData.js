@@ -16,7 +16,7 @@ export const universityEventsTranslations = {
       category: 'Feria Vocacional y Becas',
       badge: 'Entrada Libre',
       ticker: 'Inicio de clases: 26 de octubre • Convenios Beca 18 Pronabec • Licenciatura Oficial SUNEDU • Admisión Abierta 2026',
-      image: '/images/elp_campus.png',
+      image: '/images/elp_card.png',
       link: 'https://lapontificia.edu.pe',
       featured: true
     },
@@ -98,7 +98,7 @@ export const universityEventsTranslations = {
       category: 'Vocational & Scholarship Fair',
       badge: 'Free Admission',
       ticker: 'Classes Start: October 26 • Beca 18 Pronabec Agreements • Official SUNEDU Accreditation • Open Admissions 2026',
-      image: '/images/elp_campus.png',
+      image: '/images/elp_card.png',
       link: 'https://lapontificia.edu.pe',
       featured: true
     },
@@ -180,7 +180,7 @@ export const universityEventsTranslations = {
       category: 'Yachay Qhatu & Becakuna',
       badge: 'Kichasqa Yaykuna',
       ticker: 'Yachay qallariy: 26 Kantaray Killa • Beca 18 Pronabec Conveniokuna • SUNEDU Oficial Cheqanchasqa • Mana qullqiyuq qillqakuy',
-      image: '/images/elp_campus.png',
+      image: '/images/elp_card.png',
       link: 'https://lapontificia.edu.pe',
       featured: true
     },
