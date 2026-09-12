@@ -1,5 +1,4 @@
 import { universitiesData } from '../data/universitiesData.js';
-import { renderEventsHero } from '../components/eventsHero.js';
 import { i18n } from '../utils/i18n.js';
 
 export function renderUniversities() {
@@ -50,9 +49,6 @@ export function renderUniversities() {
           </div>
         </div>
       </section>
-
-      <!-- Events Hero (Embedded in Universities Page) -->
-      ${renderEventsHero()}
 
       <!-- Universities Directory Grid Section -->
       <section class="container" style="margin-top: 40px;">

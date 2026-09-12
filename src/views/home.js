@@ -14,7 +14,10 @@ export async function renderHome() {
       <div class="dec-waves"></div>
     </div>
 
-    <!-- Radiant Royal Blue Hero Section (Image 3 Reference) -->
+    <!-- 1. Hero de Eventos Universitarios (Slider Primero) -->
+    ${renderEventsHero()}
+
+    <!-- 2. Radiant Royal Blue Hero Section (Texto y Jóvenes Segundo) -->
     <section class="hero-vibrant-section">
       <div class="hero-vibrant-bg-elements">
         <div class="hero-vibrant-glow glow-1"></div>
@@ -56,7 +59,6 @@ export async function renderHome() {
         <!-- Right Stage: Cutout Students & Golden Script Quote -->
         <div class="hero-vibrant-right animate-on-scroll">
           <div class="hero-cutout-stage">
-            <div class="hero-cutout-ambient"></div>
             <img src="/jovenes.png" alt="Impulsa Joven Perú" class="hero-cutout-img" />
             
             <!-- Golden Handwritten Quote (Image 3) -->
@@ -67,7 +69,7 @@ export async function renderHome() {
         </div>
       </div>
 
-      <!-- Floating 7-Pillar Capsule Bar (At Base of Hero) -->
+      <!-- Docked Capsule Bar (At Base of Hero) -->
       <div class="hero-capsule-bar-wrapper">
         <div class="hero-capsule-bar">
           
@@ -152,9 +154,6 @@ export async function renderHome() {
         </div>
       </div>
     </section>
-
-    <!-- Hero de Eventos Universitarios -->
-    ${renderEventsHero()}
 
     <!-- Section ¿Qué quieres lograr hoy? (7 Pilares en una sola línea) -->
     <section class="container-wide bento-section animate-on-scroll">
