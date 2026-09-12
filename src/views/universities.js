@@ -58,7 +58,7 @@ export function renderUniversities() {
           </h2>
         </div>
 
-        <div id="universitiesGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px;">
+        <div id="universitiesGrid" class="grid-cards">
           ${renderUniversitiesList(universitiesData)}
         </div>
       </section>
@@ -70,8 +70,8 @@ export function renderUniversities() {
 function renderUniversitiesList(items) {
   if (!items || items.length === 0) {
     return `
-      <div style="grid-column: 1 / -1; text-center; padding: 50px 20px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
-        <i class="ph ph-buildings" style="font-size: 3rem; color: #FFC700; margin-bottom: 15px;"></i>
+      <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px;">
+        <i class="ph ph-buildings" style="font-size: 3rem; color: #FFC700; display: block; margin-bottom: 15px;"></i>
         <h3 style="color: white; font-weight: 700;">No se encontraron instituciones</h3>
         <p class="muted">Intenta ajustando el nombre de búsqueda o filtrando por otra región.</p>
       </div>
@@ -79,70 +79,28 @@ function renderUniversitiesList(items) {
   }
 
   return items.map(uni => `
-    <div class="uni-card glass-panel" style="background: rgba(10, 25, 60, 0.7); backdrop-filter: blur(15px); border: ${uni.acronym === 'LA PONTIFICIA' ? '2px solid #FFC700' : '1px solid rgba(255, 255, 255, 0.1)'}; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-      
+    <a href="${uni.website}" target="_blank" rel="noopener noreferrer" class="scroll-card" style="text-decoration: none;">
       ${uni.featured ? `
-        <div style="position: absolute; top: 15px; right: -32px; transform: rotate(45deg); background: #FFC700; color: #041B4D; font-size: 0.68rem; font-weight: 900; padding: 4px 35px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-transform: uppercase;">
-          <span data-i18n="uni.featured_badge">${i18n.t('uni.featured_badge')}</span>
+        <div class="opp-badges-row">
+          <span class="opp-badge opp-badge-featured"><i class="ph-fill ph-star"></i> DESTACADO</span>
         </div>
       ` : ''}
-
-      <!-- Header: Logo & Title -->
-      <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 16px;">
-        <img src="${uni.logo}" alt="${uni.name}" style="width: 55px; height: 55px; border-radius: 14px; object-fit: cover; border: 2px solid rgba(255,255,255,0.15);" />
-        <div>
-          <span style="display: inline-block; background: rgba(255,255,255,0.08); color: #FFC700; padding: 3px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; margin-bottom: 4px;">
-            ${uni.type}
-          </span>
-          <h3 style="font-size: 1.15rem; font-weight: 800; color: white; margin: 0; line-height: 1.3;">
-            ${uni.name}
-          </h3>
+      <div class="scroll-card-img-wrapper">
+        <img src="${uni.coverImage}" alt="${uni.name}" class="scroll-card-img" loading="lazy"
+          onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80'" />
+      </div>
+      <div class="scroll-card-content">
+        <div class="card-icon-header">
+          <span class="card-badge"><i class="ph-fill ph-buildings"></i> ${uni.type}</span>
+        </div>
+        <h3>${uni.name}</h3>
+        <p>${uni.description}</p>
+        <div class="card-footer">
+          <span class="muted"><i class="ph-fill ph-map-pin"></i> ${uni.region}</span>
+          <span class="card-apply-link">${i18n.t('uni.view_portal')} <i class="ph ph-arrow-square-out"></i></span>
         </div>
       </div>
-
-      <p style="font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 18px;">
-        ${uni.description}
-      </p>
-
-      <!-- Badges de Becas -->
-      <div style="margin-bottom: 16px;">
-        <div style="font-size: 0.8rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-          <i class="ph-fill ph-graduation-cap" style="color: #FFC700;"></i> <span data-i18n="uni.applicable_scholarships">${i18n.t('uni.applicable_scholarships')}</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-          ${uni.becas.map(b => `
-            <span style="background: rgba(4, 163, 114, 0.15); border: 1px solid rgba(4, 163, 114, 0.3); color: #34d399; font-size: 0.78rem; padding: 4px 10px; border-radius: 8px; font-weight: 600;">
-              ${b}
-            </span>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Badges de Cursos Gratuitos -->
-      <div style="margin-bottom: 20px; flex-grow: 1;">
-        <div style="font-size: 0.8rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-          <i class="ph-fill ph-book-open" style="color: #FFC700;"></i> <span data-i18n="uni.free_courses_offer">${i18n.t('uni.free_courses_offer')}</span>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-          ${uni.cursos.map(c => `
-            <span style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); color: #60a5fa; font-size: 0.78rem; padding: 4px 10px; border-radius: 8px;">
-              ${c}
-            </span>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Footer Info & Button -->
-      <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px;">
-          <i class="ph-fill ph-map-pin" style="color: #FFC700;"></i> ${uni.region}
-        </div>
-        <a href="${uni.website}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: rgba(255,199,0,0.4); color: #FFC700; font-weight: 700; font-size: 0.82rem; padding: 8px 14px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-          <span data-i18n="uni.view_portal">${i18n.t('uni.view_portal')}</span> <i class="ph ph-arrow-square-out"></i>
-        </a>
-      </div>
-
-    </div>
+    </a>
   `).join('');
 }
 
@@ -174,6 +132,8 @@ export function initUniversitiesLogic() {
 
     gridContainer.innerHTML = renderUniversitiesList(filtered);
     if (countDisplay) countDisplay.textContent = filtered.length;
+    // Reinitialize i18n translations after re-render
+    if (window.i18n) window.i18n.translateDOM();
   }
 
   searchInput.addEventListener('input', filterData);
