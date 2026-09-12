@@ -139,6 +139,16 @@ export async function renderHome() {
             </div>
           </a>
 
+          <div class="capsule-divider"></div>
+
+          <a href="/perfil" data-link class="capsule-item">
+            <div class="capsule-icon icon-gold"><i class="ph-fill ph-users-three"></i></div>
+            <div class="capsule-text">
+              <div class="capsule-num stat-number" data-target="${stats.usersCount || 5420}">0</div>
+              <div class="capsule-lbl" data-i18n="home.stats.users">${i18n.t('home.stats.users')}</div>
+            </div>
+          </a>
+
         </div>
       </div>
     </section>
@@ -146,94 +156,94 @@ export async function renderHome() {
     <!-- Hero de Eventos Universitarios -->
     ${renderEventsHero()}
 
-    <!-- Section ¿Qué quieres lograr hoy? -->
-    <section class="container bento-section animate-on-scroll">
+    <!-- Section ¿Qué quieres lograr hoy? (7 Pilares en una sola línea) -->
+    <section class="container-wide bento-section animate-on-scroll">
       <div class="bento-title-wrapper">
         <h2 class="text-center section-title"><span data-i18n="home.bento.title_1">${i18n.t('home.bento.title_1')}</span> <span class="text-yellow" data-i18n="home.bento.title_2">${i18n.t('home.bento.title_2')}</span></h2>
       </div>
       
       <div class="cards-row">
         <!-- Card 1: Becas -->
-        <a href="/becas" class="action-card card-blue" data-link>
+        <a href="/becas" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-graduation-cap"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-graduation-cap"></i></div>
             <h3 data-i18n="home.card.study.title">${i18n.t('home.card.study.title')}</h3>
             <p data-i18n="home.card.study.desc">${i18n.t('home.card.study.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/estudiar.jpg" alt="Becas" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=750&fit=crop&q=85" alt="Becas" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 2: Cursos Gratuitos -->
-        <a href="/cursos" class="action-card card-purple" data-link>
+        <a href="/cursos" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-book-open"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-book-open"></i></div>
             <h3 data-i18n="home.card.learn.title">${i18n.t('home.card.learn.title')}</h3>
             <p data-i18n="home.card.learn.desc">${i18n.t('home.card.learn.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/aprender.jpg" alt="Cursos Gratuitos" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=750&fit=crop&q=85" alt="Cursos Gratuitos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 3: Prácticas -->
-        <a href="/practicas" class="action-card card-teal" data-link>
+        <a href="/practicas" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-chalkboard-teacher"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-chalkboard-teacher"></i></div>
             <h3 data-i18n="home.card.internships.title">${i18n.t('home.card.internships.title')}</h3>
             <p data-i18n="home.card.internships.desc">${i18n.t('home.card.internships.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&h=350&fit=crop" alt="Prácticas" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=750&fit=crop&q=85" alt="Prácticas" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 4: Empleos -->
-        <a href="/empleos" class="action-card card-green" data-link>
+        <a href="/empleos" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-briefcase"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-briefcase"></i></div>
             <h3 data-i18n="home.card.work.title">${i18n.t('home.card.work.title')}</h3>
             <p data-i18n="home.card.work.desc">${i18n.t('home.card.work.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/trabajar.jpg" alt="Empleos" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=750&fit=crop&q=85" alt="Empleos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 5: Universidades -->
-        <a href="/universidades" class="action-card card-navy" data-link>
+        <a href="/universidades" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-buildings"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-buildings"></i></div>
             <h3 data-i18n="home.card.universities.title">${i18n.t('home.card.universities.title')}</h3>
             <p data-i18n="home.card.universities.desc">${i18n.t('home.card.universities.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=500&h=350&fit=crop" alt="Universidades" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&h=750&fit=crop&q=85" alt="Universidades" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 6: Concursos -->
-        <a href="/concursos" class="action-card card-orange" data-link>
+        <a href="/concursos" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-trophy"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-trophy"></i></div>
             <h3 data-i18n="home.card.competitions.title">${i18n.t('home.card.competitions.title')}</h3>
             <p data-i18n="home.card.competitions.desc">${i18n.t('home.card.competitions.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=350&fit=crop" alt="Concursos" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=750&fit=crop&q=85" alt="Concursos" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
 
         <!-- Card 7: Voluntariado -->
-        <a href="/voluntariado" class="action-card card-yellow" data-link>
+        <a href="/voluntariado" class="action-card" data-link>
           <div class="card-content">
-            <div class="card-icon"><i class="ph ph-hands-clapping"></i></div>
+            <div class="card-icon"><i class="ph-fill ph-hands-clapping"></i></div>
             <h3 data-i18n="home.card.volunteer.title">${i18n.t('home.card.volunteer.title')}</h3>
             <p data-i18n="home.card.volunteer.desc">${i18n.t('home.card.volunteer.desc')}</p>
             <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
           </div>
-          <img src="/images/voluntariado.jpg" alt="Voluntariado" class="card-bg-img">
+          <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=750&fit=crop&q=85" alt="Voluntariado" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
       </div>

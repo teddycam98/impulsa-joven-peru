@@ -148,7 +148,6 @@ export function renderEventsHero() {
 
             <div class="events-controls-buttons">
               <button id="eventsPrevBtn" class="control-btn" aria-label="Anterior"><i class="ph ph-caret-left"></i></button>
-              <button id="eventsPlayPauseBtn" class="control-btn" aria-label="Pausa"><i class="ph-fill ph-pause" id="eventsPlayPauseIcon"></i></button>
               <button id="eventsNextBtn" class="control-btn" aria-label="Siguiente"><i class="ph ph-caret-right"></i></button>
             </div>
 
@@ -164,16 +163,12 @@ export function initEventsSlider() {
   const tabs = document.querySelectorAll('.event-tab-pill');
   const prevBtn = document.getElementById('eventsPrevBtn');
   const nextBtn = document.getElementById('eventsNextBtn');
-  const playPauseBtn = document.getElementById('eventsPlayPauseBtn');
-  const playPauseIcon = document.getElementById('eventsPlayPauseIcon');
-  const wrapper = document.getElementById('eventsSliderWrapper');
 
   if (!slides.length) return;
 
   let currentIndex = 0;
-  let isPlaying = true;
   let autoplayInterval = null;
-  const AUTOPLAY_DELAY = 6500;
+  const AUTOPLAY_DELAY = 5000;
 
   function goToSlide(index) {
     if (index < 0) index = slides.length - 1;
@@ -216,31 +211,8 @@ export function initEventsSlider() {
   }
 
   function startAutoplay() {
-    stopAutoplay();
+    if (autoplayInterval) clearInterval(autoplayInterval);
     autoplayInterval = setInterval(nextSlide, AUTOPLAY_DELAY);
-    isPlaying = true;
-    if (playPauseIcon) {
-      playPauseIcon.className = 'ph-fill ph-pause';
-    }
-  }
-
-  function stopAutoplay() {
-    if (autoplayInterval) {
-      clearInterval(autoplayInterval);
-      autoplayInterval = null;
-    }
-    isPlaying = false;
-    if (playPauseIcon) {
-      playPauseIcon.className = 'ph-fill ph-play';
-    }
-  }
-
-  function togglePlayPause() {
-    if (isPlaying) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
-    }
   }
 
   // Event Listeners
@@ -248,7 +220,7 @@ export function initEventsSlider() {
     prevBtn.addEventListener('click', (e) => {
       e.preventDefault();
       prevSlide();
-      if (isPlaying) startAutoplay();
+      startAutoplay();
     });
   }
 
@@ -256,14 +228,7 @@ export function initEventsSlider() {
     nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
       nextSlide();
-      if (isPlaying) startAutoplay();
-    });
-  }
-
-  if (playPauseBtn) {
-    playPauseBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      togglePlayPause();
+      startAutoplay();
     });
   }
 
@@ -273,24 +238,10 @@ export function initEventsSlider() {
       const idx = parseInt(tab.getAttribute('data-index'), 10);
       if (!isNaN(idx)) {
         goToSlide(idx);
-        if (isPlaying) startAutoplay();
-      }
-    });
-  });
-
-  // Pause on hover
-  if (wrapper) {
-    wrapper.addEventListener('mouseenter', () => {
-      if (isPlaying) {
-        if (autoplayInterval) clearInterval(autoplayInterval);
-      }
-    });
-    wrapper.addEventListener('mouseleave', () => {
-      if (isPlaying) {
         startAutoplay();
       }
     });
-  }
+  });
 
   goToSlide(0);
   startAutoplay();
