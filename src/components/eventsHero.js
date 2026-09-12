@@ -1,4 +1,5 @@
 import { universityEventsData } from '../data/eventsData.js';
+import { i18n } from '../utils/i18n.js';
 
 export function renderEventsHero() {
   const events = universityEventsData;
@@ -27,7 +28,7 @@ export function renderEventsHero() {
                     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 18px;">
                       <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.35); color: #4ade80; padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">
                         <span style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
-                        CONVOCATORIA DESTACADA
+                        ${i18n.t('events.featured_badge')}
                       </span>
 
                       <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 199, 0, 0.12); border: 1px solid rgba(255, 199, 0, 0.3); color: #FFC700; padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 800;">
@@ -52,7 +53,7 @@ export function renderEventsHero() {
                     <!-- Feature Badges Row -->
                     <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px;">
                       <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 12px; font-size: 0.88rem; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
-                        <i class="ph-fill ph-calendar" style="color: #FFC700; font-size: 1.05rem;"></i> <span><strong>Fecha:</strong> ${event.date}</span>
+                        <i class="ph-fill ph-calendar" style="color: #FFC700; font-size: 1.05rem;"></i> <span><strong>${i18n.t('events.date_label')}</strong> ${event.date}</span>
                       </div>
                       
                       <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 12px; font-size: 0.88rem; color: rgba(255,255,255,0.95); backdrop-filter: blur(8px);">
@@ -67,11 +68,11 @@ export function renderEventsHero() {
                     <!-- Call To Action Buttons -->
                     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px;">
                       <a href="${event.link}" target="_blank" rel="noopener noreferrer" class="btn btn-yellow" style="padding: 14px 34px; border-radius: 14px; font-weight: 800; font-size: 1rem; box-shadow: 0 10px 25px rgba(255, 199, 0, 0.35); text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
-                        <span>Inscribirme gratis</span> <i class="ph ph-arrow-right" style="font-weight: 800;"></i>
+                        <span>${i18n.t('events.apply_free')}</span> <i class="ph ph-arrow-right" style="font-weight: 800;"></i>
                       </a>
                       
                       <a href="/universidades" data-link class="btn btn-outline" style="padding: 14px 24px; border-radius: 14px; font-size: 0.95rem; font-weight: 700; background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2);">
-                        <i class="ph ph-buildings"></i> <span>Ver Institución</span>
+                        <i class="ph ph-buildings"></i> <span>${i18n.t('events.view_org')}</span>
                       </a>
                     </div>
 
@@ -85,14 +86,14 @@ export function renderEventsHero() {
                       
                       <!-- Top Corner Sunedu License Badge -->
                       <div style="position: absolute; top: 16px; right: 16px; background: rgba(3, 14, 40, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); padding: 6px 12px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: white;">
-                        <i class="ph-fill ph-seal-check" style="color: #4ade80;"></i> Licenciada Sunedu / Minedu
+                        <i class="ph-fill ph-seal-check" style="color: #4ade80;"></i> ${i18n.t('events.sunedu')}
                       </div>
 
                       <!-- Bottom Glass Pill with Key Highlights -->
                       <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; background: rgba(10, 25, 60, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); padding: 12px 16px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center;">
                         <div>
                           <div style="color: white; font-weight: 800; font-size: 0.9rem;">${event.university}</div>
-                          <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem;">Sede / Cobertura: ${event.region}</div>
+                          <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem;">${i18n.t('events.location_label')} ${event.region}</div>
                         </div>
                         <span style="background: var(--secondary-yellow); color: #041B4D; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase;">
                           ${event.badge}

@@ -180,5 +180,67 @@ export const qu = {
   "filter.comp.hackathon": "Hackathonkuna, Tecnología",
   "filter.comp.awards": "Chaskikuykuna, Suñaykuna",
   "filter.comp.entrepreneurship": "Musuq ruraykuna, Startups",
-  "filter.comp.science": "Ciencia, Yachaykuna"
+  "filter.comp.science": "Ciencia, Yachaykuna",
+
+  // New High-Impact Hero
+  "home.hero.pill": "PERÚ HATUN PLATAFORMA • +5,000 LLAMK'AY & YACHAY",
+  "home.hero.title_1": "Hamuq Kawsayniykita",
+  "home.hero.title_2": "Kallpachay Perú Suyupi",
+  "home.hero.subtitle": "Wayna-sipaskunata tupachiyku 100% mana qullqiyuq becakunawan, oficial yachaykunawan, llamk'ana yachapakuypi hatun convenio yachay wasikunawanpas.",
+  "home.hero.btn_explore": "Oportunidada Mask'ay",
+  "home.hero.btn_portal": "Llamk'ana Wasi Portal",
+  "home.hero.card_badge_1": "100% TUKUY YANAPASQA",
+  "home.hero.card_badge_2": "OFICIAL CONVENIO",
+  "home.hero.card_badge_3": "PISI TIMPULLAÑA",
+  "home.hero.stat_success": "98% Allin Lluqsiy",
+  "home.hero.stat_success_sub": "Qhawasqa Qillqakuykuna",
+  "home.hero.stat_youth": "+45,000 Waynakuna Yanapasqa",
+  "home.hero.stat_youth_sub": "Kallpachasqa Waynakuna",
+  "home.hero.showcase_tag": "PRONABEC & BCP Convenios",
+  "home.hero.showcase_title": "Beca 18 & Hatun Yachay Wasikuna 2026",
+  "home.hero.showcase_desc": "100% hunt'asqa qullqi yanapay lliw allin reqsisqa hatun yachay wasikunapi.",
+  "home.hero.live_now": "Kunan Kichasqa",
+  "home.hero.quick_jump": "Utqay Yaykuna:",
+
+  // Events Hero
+  "events.featured_badge": "HATUN WILLAY",
+  "events.apply_free": "Mana qullqillawan qillqakuy",
+  "events.view_org": "Yachay Wasita Qaway",
+  "events.sunedu": "Sunedu / Minedu Acreditado",
+  "events.date_label": "P'unchaw:",
+  "events.location_label": "Tiyana / Cobertura:",
+
+  // Footer Keys
+  "footer.tagline": "Perú wayna-sipaskunapaq oportunidadkunata kicharispa. Yachayta, llamk'ayta kawsay allinchaytawan hukllachaspa.",
+  "footer.col_explore": "Mask'ay",
+  "footer.scholarships": "Mamallakta Becakuna",
+  "footer.courses": "Mana Qullqiyuq Cursokuna",
+  "footer.internships": "Yachapakuykuna",
+  "footer.jobs": "Llamk'ana Wasi",
+  "footer.company_portal": "Llamk'ana Wasi Yaykuna",
+  "footer.volunteering": "Yanapakuykuna",
+  "footer.col_support": "Yanapay & Willanakuy",
+  "footer.help": "Yanapanapaq Wasi",
+  "footer.col_legal": "Kamachikuy",
+  "footer.terms": "Kamachikuy Simikuna",
+  "footer.privacy": "Pakasqa Willay Kamachiy",
+  "footer.cookies": "Cookie Kamachikuy",
+  "footer.rights": "Impulsa Joven Perú. Tukuy hayñikuna waqaychasqa.",
+
+  // Auth Modal Keys
+  "auth.modal_title": "Allin hamusqa kaqmanta",
+  "auth.modal_desc": "Yaykuy hamuq kawsayniykita kallpachanaykipaq.",
+  "auth.google_login": "Googlewan yaykuy",
+  "auth.or_email": "Icha correoykita churay",
+  "auth.name_placeholder": "Tukuy Sutiyki",
+  "auth.email_placeholder": "correoyki@email.com",
+  "auth.password_placeholder": "Pakasqa simi (6 sanampakuna)",
+  "auth.forgot_password": "¿Pakasqa simiykita qonqarqunkichu?",
+  "auth.btn_login": "Yaykuy",
+  "auth.btn_register": "Qillqakuy",
+  "auth.no_account": "¿Manaraq qillqakunkichu?",
+  "auth.register_here": "Kaypi qillqakuy",
+  "auth.has_account": "¿Ñachu qillqasqa kanki?",
+  "auth.login_here": "Kaypi yaykuy"
 };
+

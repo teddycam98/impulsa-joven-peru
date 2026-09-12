@@ -180,5 +180,67 @@ export const en = {
   "filter.comp.hackathon": "Hackathons & Technology",
   "filter.comp.awards": "Youth Awards & Honors",
   "filter.comp.entrepreneurship": "Startups & Entrepreneurship",
-  "filter.comp.science": "Science, STEM & Sustainability"
+  "filter.comp.science": "Science, STEM & Sustainability",
+
+  // New High-Impact Hero
+  "home.hero.pill": "OFFICIAL NATIONAL PLATFORM • +5,000 ACTIVE OPPORTUNITIES",
+  "home.hero.title_1": "Empower Your Future",
+  "home.hero.title_2": "Career & Success in Peru",
+  "home.hero.subtitle": "Connecting Peruvian youth with fully-funded scholarships, certified free courses, top pre-professional internships, formal jobs, and official university partnerships.",
+  "home.hero.btn_explore": "Explore Opportunities",
+  "home.hero.btn_portal": "Company Portal & ATS",
+  "home.hero.card_badge_1": "100% COVERAGE",
+  "home.hero.card_badge_2": "OFFICIAL PARTNERSHIP",
+  "home.hero.card_badge_3": "CLOSING SOON",
+  "home.hero.stat_success": "98% Success Rate",
+  "home.hero.stat_success_sub": "Verified Applications",
+  "home.hero.stat_youth": "+45,000 Youth Empowered",
+  "home.hero.stat_youth_sub": "Empowered Youth",
+  "home.hero.showcase_tag": "PRONABEC & BCP Agreements",
+  "home.hero.showcase_title": "Beca 18 & University Careers 2026",
+  "home.hero.showcase_desc": "100% full funding at Peru's most prestigious licensed universities.",
+  "home.hero.live_now": "Live Open Calls",
+  "home.hero.quick_jump": "Quick Access:",
+
+  // Events Hero
+  "events.featured_badge": "FEATURED CALL",
+  "events.apply_free": "Register for free",
+  "events.view_org": "View Institution",
+  "events.sunedu": "Sunedu / Minedu Accredited",
+  "events.date_label": "Date:",
+  "events.location_label": "Campus / Coverage:",
+
+  // Footer Keys
+  "footer.tagline": "Bridging the opportunity gap for Peruvian youth. Connecting talent with education, employment, and social impact.",
+  "footer.col_explore": "Explore",
+  "footer.scholarships": "National Scholarships",
+  "footer.courses": "Free Courses",
+  "footer.internships": "Internship Board",
+  "footer.jobs": "Job Board",
+  "footer.company_portal": "Company Portal (Post)",
+  "footer.volunteering": "Volunteering",
+  "footer.col_support": "Support & Contact",
+  "footer.help": "Help Center",
+  "footer.col_legal": "Legal",
+  "footer.terms": "Terms & Conditions",
+  "footer.privacy": "Privacy Policy",
+  "footer.cookies": "Cookie Policy",
+  "footer.rights": "Impulsa Joven Peru. All rights reserved.",
+
+  // Auth Modal Keys
+  "auth.modal_title": "Welcome back",
+  "auth.modal_desc": "Sign in to keep empowering your future.",
+  "auth.google_login": "Continue with Google",
+  "auth.or_email": "Or use your email",
+  "auth.name_placeholder": "Your Full Name",
+  "auth.email_placeholder": "your@email.com",
+  "auth.password_placeholder": "Password (minimum 6 characters)",
+  "auth.forgot_password": "Forgot your password?",
+  "auth.btn_login": "Sign In",
+  "auth.btn_register": "Sign Up",
+  "auth.no_account": "Don't have an account?",
+  "auth.register_here": "Sign up here",
+  "auth.has_account": "Already have an account?",
+  "auth.login_here": "Log in here"
 };
+

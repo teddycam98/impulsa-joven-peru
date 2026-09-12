@@ -180,5 +180,67 @@ export const es = {
   "filter.comp.hackathon": "Hackathons y Tecnología",
   "filter.comp.awards": "Premios y Reconocimientos Juveniles",
   "filter.comp.entrepreneurship": "Startups y Emprendimiento",
-  "filter.comp.science": "Ciencia, STEM y Sostenibilidad"
+  "filter.comp.science": "Ciencia, STEM y Sostenibilidad",
+
+  // New High-Impact Hero
+  "home.hero.pill": "PLATAFORMA NACIONAL OFICIAL • +5,000 OPORTUNIDADES ACTIVAS",
+  "home.hero.title_1": "Impulsa tu Futuro",
+  "home.hero.title_2": "Profesional en el Perú",
+  "home.hero.subtitle": "Conectamos el talento joven con becas 100% subvencionadas, cursos con certificación oficial, prácticas pre y profesionales, empleos formales y convenios universitarios.",
+  "home.hero.btn_explore": "Explorar Oportunidades",
+  "home.hero.btn_portal": "Portal Empresas & ATS",
+  "home.hero.card_badge_1": "100% COBERTURA",
+  "home.hero.card_badge_2": "CONVENIO OFICIAL",
+  "home.hero.card_badge_3": "CIERRA PRONTO",
+  "home.hero.stat_success": "98% Tasa de Éxito",
+  "home.hero.stat_success_sub": "Postulaciones Verificadas",
+  "home.hero.stat_youth": "+45,000 Jóvenes Beneficiados",
+  "home.hero.stat_youth_sub": "Juventud Conectada",
+  "home.hero.showcase_tag": "PRONABEC & BCP Convenios",
+  "home.hero.showcase_title": "Beca 18 & Carreras Universitarias 2026",
+  "home.hero.showcase_desc": "Financiamiento 100% integral en las universidades licenciadas más prestigiosas del Perú.",
+  "home.hero.live_now": "Convocatorias en Vivo",
+  "home.hero.quick_jump": "Acceso Rápido:",
+
+  // Events Hero
+  "events.featured_badge": "CONVOCATORIA DESTACADA",
+  "events.apply_free": "Inscribirme gratis",
+  "events.view_org": "Ver Institución",
+  "events.sunedu": "Licenciada Sunedu / Minedu",
+  "events.date_label": "Fecha:",
+  "events.location_label": "Sede / Cobertura:",
+
+  // Footer Keys
+  "footer.tagline": "Reduciendo la brecha de oportunidades para los jóvenes del Perú. Conectamos talento con educación, empleo y desarrollo social.",
+  "footer.col_explore": "Explorar",
+  "footer.scholarships": "Becas Nacionales",
+  "footer.courses": "Cursos Gratuitos",
+  "footer.internships": "Bolsa de Prácticas",
+  "footer.jobs": "Bolsa de Empleo",
+  "footer.company_portal": "Portal Empresas (Publicar)",
+  "footer.volunteering": "Voluntariados",
+  "footer.col_support": "Soporte y Contacto",
+  "footer.help": "Centro de Ayuda",
+  "footer.col_legal": "Legal",
+  "footer.terms": "Términos y Condiciones",
+  "footer.privacy": "Política de Privacidad",
+  "footer.cookies": "Política de Cookies",
+  "footer.rights": "Impulsa Joven Perú. Todos los derechos reservados.",
+
+  // Auth Modal Keys
+  "auth.modal_title": "Bienvenido de vuelta",
+  "auth.modal_desc": "Ingresa para seguir impulsando tu futuro.",
+  "auth.google_login": "Continuar con Google",
+  "auth.or_email": "O usa tu correo",
+  "auth.name_placeholder": "Tu Nombre Completo",
+  "auth.email_placeholder": "tu@correo.com",
+  "auth.password_placeholder": "Contraseña (mínimo 6 caracteres)",
+  "auth.forgot_password": "¿Olvidaste tu contraseña?",
+  "auth.btn_login": "Entrar",
+  "auth.btn_register": "Registrarse",
+  "auth.no_account": "¿No tienes cuenta?",
+  "auth.register_here": "Regístrate aquí",
+  "auth.has_account": "¿Ya tienes cuenta?",
+  "auth.login_here": "Inicia sesión aquí"
 };
+

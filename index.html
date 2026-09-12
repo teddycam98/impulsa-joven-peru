@@ -125,18 +125,18 @@
         <div class="close-modal" style="top: 15px; right: 15px; background: rgba(255,255,255,0.1);"><i class="ph ph-x"></i></div>
         <div>
           <img src="/logo.svg" alt="Impulsa Joven" style="height: 90px; margin-bottom: 20px; display: inline-block;">
-          <h2 id="modalTitle" style="margin-bottom: 10px; color: white; font-weight: 800; font-size: 1.8rem;">Bienvenido de vuelta</h2>
-          <p id="modalDesc" class="muted" style="margin-bottom: 25px;">Ingresa para seguir impulsando tu futuro.</p>
+          <h2 id="modalTitle" style="margin-bottom: 10px; color: white; font-weight: 800; font-size: 1.8rem;" data-i18n="auth.modal_title">Bienvenido de vuelta</h2>
+          <p id="modalDesc" class="muted" style="margin-bottom: 25px;" data-i18n="auth.modal_desc">Ingresa para seguir impulsando tu futuro.</p>
           
           <div id="socialLoginGroup">
             <button id="btnGoogleLogin" class="btn w-100" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #333; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
               <svg width="20" height="20" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M17.64 9.20455C17.64 8.56636 17.5827 7.95273 17.4764 7.36364H9V10.845H13.8436C13.635 11.97 13.0009 12.9232 12.0477 13.5614V15.8195H14.9564C16.6582 14.2527 17.64 11.9455 17.64 9.20455Z" fill="#4285F4"/><path d="M9 18C11.43 18 13.4673 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4205 9 14.4205C6.65591 14.4205 4.67182 12.8373 3.96409 10.71H0.957275V13.0418C2.43818 15.9832 5.48182 18 9 18Z" fill="#34A853"/><path d="M3.96409 10.71C3.78409 10.17 3.68182 9.59318 3.68182 9C3.68182 8.40682 3.78409 7.83 3.96409 7.29V4.95818H0.957275C0.347727 6.17318 0 7.54773 0 9C0 10.4523 0.347727 11.8268 0.957275 13.0418L3.96409 10.71Z" fill="#FBBC05"/><path d="M9 3.57955C10.3214 3.57955 11.5077 4.03364 12.4405 4.92545L15.0218 2.34409C13.4632 0.891818 11.4259 0 9 0C5.48182 0 2.43818 2.01682 0.957275 4.95818L3.96409 7.29C4.67182 5.16273 6.65591 3.57955 9 3.57955Z" fill="#EA4335"/></svg>
-              Continuar con Google
+              <span data-i18n="auth.google_login">Continuar con Google</span>
             </button>
             
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
               <hr style="flex: 1; border-color: rgba(255,255,255,0.1);">
-              <span style="padding: 0 10px; color: var(--text-muted); font-size: 0.9rem;">O usa tu correo</span>
+              <span style="padding: 0 10px; color: var(--text-muted); font-size: 0.9rem;" data-i18n="auth.or_email">O usa tu correo</span>
               <hr style="flex: 1; border-color: rgba(255,255,255,0.1);">
             </div>
           </div>
@@ -145,28 +145,28 @@
             <div id="authMessageContainer" style="display:none; margin-bottom: 15px; padding: 10px; border-radius: 8px; font-size: 0.9rem;"></div>
             
             <div class="form-group" id="nameGroup" style="display: none;">
-              <input type="text" id="regName" name="name" placeholder="Tu Nombre Completo" aria-label="Tu Nombre Completo" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" title="Solo letras" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
+              <input type="text" id="regName" name="name" placeholder="Tu Nombre Completo" data-i18n-placeholder="auth.name_placeholder" aria-label="Tu Nombre Completo" maxlength="50" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+" title="Solo letras" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
             </div>
             <div class="form-group">
-              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" aria-label="Correo Electrónico" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
+              <input type="email" id="regEmail" name="email" required placeholder="tu@correo.com" data-i18n-placeholder="auth.email_placeholder" aria-label="Correo Electrónico" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
             </div>
             <div class="form-group" id="passwordGroup">
-              <input type="password" id="regPassword" name="password" required placeholder="Contraseña (mínimo 6 caracteres)" aria-label="Contraseña" minlength="6" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
+              <input type="password" id="regPassword" name="password" required placeholder="Contraseña (mínimo 6 caracteres)" data-i18n-placeholder="auth.password_placeholder" aria-label="Contraseña" minlength="6" style="border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white;" />
             </div>
             
             <div id="forgotPasswordLink" style="text-align: right; margin-bottom: 20px; font-size: 0.85rem;">
-              <a href="#" id="btnShowReset" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">¿Olvidaste tu contraseña?</a>
+              <a href="#" id="btnShowReset" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" data-i18n="auth.forgot_password">¿Olvidaste tu contraseña?</a>
             </div>
 
             <button type="submit" id="btnAuthSubmit" class="btn btn-yellow w-100" style="margin-bottom: 15px; border-radius: 12px; padding: 15px; font-weight: bold; position: relative;">
-              <span id="btnAuthText">Entrar</span>
+              <span id="btnAuthText" data-i18n="auth.btn_login">Entrar</span>
               <div id="authSpinner" class="spinner hidden" style="width: 20px; height: 20px; border-width: 2px; position: absolute; right: 20px; top: 50%; transform: translateY(-50%);"></div>
             </button>
           </form>
           
           <p id="authToggleContainer" style="font-size: 0.9rem; margin-top: 15px;">
-            <span id="authToggleText" class="muted">¿No tienes cuenta?</span> 
-            <a href="#" id="authToggleBtn" style="color: var(--secondary-yellow); text-decoration: none; font-weight: bold;">Regístrate aquí</a>
+            <span id="authToggleText" class="muted" data-i18n="auth.no_account">¿No tienes cuenta?</span> 
+            <a href="#" id="authToggleBtn" style="color: var(--secondary-yellow); text-decoration: none; font-weight: bold;" data-i18n="auth.register_here">Regístrate aquí</a>
           </p>
         </div>
       </div>
@@ -179,23 +179,23 @@
         <!-- Column 1: Brand -->
         <div style="display: flex; flex-direction: column;">
           <img src="/logo.svg" alt="Logo Impulsa Joven" class="footer-logo" style="height: 180px; margin-bottom: 20px; align-self: flex-start; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));" />
-          <p class="muted" style="font-size: 1rem; line-height: 1.6; max-width: 300px;">Reduciendo la brecha de oportunidades para los jóvenes del Perú. Conectamos talento con educación, empleo y desarrollo social.</p>
+          <p class="muted" style="font-size: 1rem; line-height: 1.6; max-width: 300px;" data-i18n="footer.tagline">Reduciendo la brecha de oportunidades para los jóvenes del Perú. Conectamos talento con educación, empleo y desarrollo social.</p>
         </div>
 
         <!-- Column 2: Oportunidades -->
         <div style="display: flex; flex-direction: column;">
-          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Explorar</h4>
-          <a href="/becas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Becas Nacionales</a>
-          <a href="/cursos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Cursos Gratuitos</a>
-          <a href="/practicas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Bolsa de Prácticas</a>
-          <a href="/empleos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Bolsa de Empleo</a>
-          <a href="/portal-empresa" data-link style="color: #FFC700; text-decoration: none; margin-bottom: 12px; font-weight: 700; transition: opacity 0.3s;">Portal Empresas (Publicar)</a>
-          <a href="/voluntariado" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Voluntariados</a>
+          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;" data-i18n="footer.col_explore">Explorar</h4>
+          <a href="/becas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.scholarships">Becas Nacionales</a>
+          <a href="/cursos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.courses">Cursos Gratuitos</a>
+          <a href="/practicas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.internships">Bolsa de Prácticas</a>
+          <a href="/empleos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.jobs">Bolsa de Empleo</a>
+          <a href="/portal-empresa" data-link style="color: #FFC700; text-decoration: none; margin-bottom: 12px; font-weight: 700; transition: opacity 0.3s;" data-i18n="footer.company_portal">Portal Empresas (Publicar)</a>
+          <a href="/voluntariado" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.volunteering">Voluntariados</a>
         </div>
 
         <!-- Column 3: Soporte y Contacto -->
         <div style="display: flex; flex-direction: column;">
-          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Soporte y Contacto</h4>
+          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;" data-i18n="footer.col_support">Soporte y Contacto</h4>
           <a href="/help" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-headset"></i> <span data-i18n="footer.help">Centro de Ayuda</span></a>
           <a href="mailto:hola@impulsajoven.pe" style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-envelope-simple"></i> hola@impulsajoven.pe</a>
           <a href="https://wa.me/51922698107" target="_blank" style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'"><i class="ph-fill ph-whatsapp-logo"></i> +51 922 698 107</a>
@@ -203,7 +203,7 @@
 
         <!-- Column 4: Legal -->
         <div style="display: flex; flex-direction: column;">
-          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Legal</h4>
+          <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;" data-i18n="footer.col_legal">Legal</h4>
           <a href="/terminos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.terms">Términos y Condiciones</a>
           <a href="/privacidad" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.privacy">Política de Privacidad</a>
           <a href="/cookies" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'" data-i18n="footer.cookies">Política de Cookies</a>
@@ -211,7 +211,7 @@
       </div>
 
       <div class="container" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
-        <p class="muted" style="margin: 0; font-size: 0.95rem;">&copy; <span id="currentYear">2024</span> Impulsa Joven Perú. Todos los derechos reservados.</p>
+        <p class="muted" style="margin: 0; font-size: 0.95rem;">&copy; <span id="currentYear">2024</span> <span data-i18n="footer.rights">Impulsa Joven Perú. Todos los derechos reservados.</span></p>
         <div style="display: flex; gap: 15px;">
           <a href="#" style="color: white; font-size: 1.5rem; transition: transform 0.3s, color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.color='white'; this.style.transform='none'"><i class="ph-fill ph-facebook-logo"></i></a>
           <a href="#" style="color: white; font-size: 1.5rem; transition: transform 0.3s, color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.color='white'; this.style.transform='none'"><i class="ph-fill ph-instagram-logo"></i></a>
