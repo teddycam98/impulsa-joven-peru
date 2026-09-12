@@ -1,30 +1,68 @@
 import { createClient } from '@supabase/supabase-js';
+import { opportunitiesDetailData } from '../data/opportunitiesDetailData.js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://oiupevzywptrvuekjuea.supabase.co';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_YNzJoRqjVlZV0Xu3BEWhPw_eNMtt6lX';
+const env = (typeof import.meta !== 'undefined' && import.meta.env) ? import.meta.env : {};
+const supabaseUrl = env.VITE_SUPABASE_URL || 'https://oiupevzywptrvuekjuea.supabase.co';
+const supabaseKey = env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_YNzJoRqjVlZV0Xu3BEWhPw_eNMtt6lX';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const dbService = {
   async getOpportunities(params = {}) {
     let { category, limit = 12, page = 0, search = '', featured, active = true } = params;
-    let query = supabase.from('opportunities').select('*');
     
-    if (category) query = query.eq('category', category);
-    if (active !== undefined) query = query.eq('status', active ? 'active' : 'expired');
-    if (featured !== undefined) query = query.eq('featured', featured);
-    if (search) {
-      query = query.or(`title.ilike.%${search}%,organization.ilike.%${search}%`);
+    // Check local rich dataset matching category
+    let localItems = opportunitiesDetailData.filter(item => {
+      if (category && item.category !== category) return false;
+      if (featured !== undefined && item.featured !== featured) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        const match = item.title.toLowerCase().includes(q) || 
+                      item.organization.toLowerCase().includes(q) ||
+                      item.description.toLowerCase().includes(q);
+        if (!match) return false;
+      }
+      return true;
+    });
+
+    try {
+      let query = supabase.from('opportunities').select('*');
+      if (category) query = query.eq('category', category);
+      if (active !== undefined) query = query.eq('status', active ? 'active' : 'expired');
+      if (featured !== undefined) query = query.eq('featured', featured);
+      if (search) {
+        query = query.or(`title.ilike.%${search}%,organization.ilike.%${search}%`);
+      }
+      
+      const from = page * limit;
+      const to = from + limit - 1;
+      query = query.range(from, to).order('created_at', { ascending: false });
+      
+      const { data, error } = await query;
+      if (!error && data && data.length > 0) {
+        // Merge without duplicating IDs
+        const existingIds = new Set(data.map(d => d.id));
+        const nonDuplicateLocals = localItems.filter(l => !existingIds.has(l.id));
+        return [...data, ...nonDuplicateLocals];
+      }
+    } catch (e) {
+      console.warn('Supabase query fallback to local dataset:', e);
     }
     
-    // Pagination
-    const from = page * limit;
-    const to = from + limit - 1;
-    query = query.range(from, to).order('created_at', { ascending: false });
-    
-    const { data, error } = await query;
-    if (error) { console.error(error); return []; }
-    return data;
+    return localItems;
+  },
+
+  async getOpportunityById(id) {
+    const local = opportunitiesDetailData.find(item => item.id === id);
+    if (local) return local;
+
+    try {
+      const { data, error } = await supabase.from('opportunities').select('*').eq('id', id).single();
+      if (!error && data) return data;
+    } catch (e) {
+      console.warn('Error fetching opp by id from Supabase:', e);
+    }
+    return null;
   },
 
   async getStats() {

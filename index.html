@@ -38,6 +38,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Import Map for ES Modules -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/+esm"
+        }
+      }
+    </script>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
@@ -52,9 +60,11 @@
           <img src="/logo.svg" alt="Impulsa Joven Perú" class="brand-logo" />
         </a>
         <div class="nav-links">
-          <a href="/becas" data-link><i class="ph ph-graduation-cap"></i> <span data-i18n="nav.study">Estudiar</span></a>
-          <a href="/cursos" data-link><i class="ph ph-book-open"></i> <span data-i18n="nav.learn">Aprender</span></a>
-          <a href="/empleos" data-link><i class="ph ph-briefcase"></i> <span data-i18n="nav.work">Trabajar</span></a>
+          <a href="/becas" data-link><i class="ph ph-graduation-cap"></i> <span data-i18n="nav.study">Becas</span></a>
+          <a href="/cursos" data-link><i class="ph ph-book-open"></i> <span data-i18n="nav.learn">Cursos Gratuitos</span></a>
+          <a href="/practicas" data-link><i class="ph ph-chalkboard-teacher"></i> <span data-i18n="nav.internships">Prácticas</span></a>
+          <a href="/empleos" data-link><i class="ph ph-briefcase"></i> <span data-i18n="nav.work">Empleos</span></a>
+          <a href="/universidades" data-link><i class="ph ph-buildings"></i> <span data-i18n="nav.universities">Universidades</span></a>
           <a href="/concursos" data-link><i class="ph ph-trophy"></i> <span data-i18n="nav.competitions">Concursos</span></a>
           <a href="/voluntariado" data-link><i class="ph ph-magic-wand"></i> <span data-i18n="nav.volunteer">Voluntariado</span></a>
         </div>
@@ -67,6 +77,7 @@
             <div id="langDropdown" class="hidden" style="position: absolute; top: 110%; right: 0; background: rgba(10, 25, 60, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; width: 150px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 100; overflow: hidden; display: flex; flex-direction: column;">
               <button class="lang-option" data-lang="es" style="padding: 12px 15px; background: transparent; border: none; color: white; text-align: left; cursor: pointer; transition: background 0.2s; font-family: 'Outfit', sans-serif;">Español</button>
               <button class="lang-option" data-lang="qu" style="padding: 12px 15px; background: transparent; border: none; color: white; text-align: left; cursor: pointer; transition: background 0.2s; border-top: 1px solid rgba(255,255,255,0.05); font-family: 'Outfit', sans-serif;">Quechua</button>
+              <button class="lang-option" data-lang="en" style="padding: 12px 15px; background: transparent; border: none; color: white; text-align: left; cursor: pointer; transition: background 0.2s; border-top: 1px solid rgba(255,255,255,0.05); font-family: 'Outfit', sans-serif;">English</button>
             </div>
           </div>
 
@@ -92,9 +103,11 @@
       </div>
       <!-- Mobile links -->
       <div class="mobile-links hidden" id="mobileLinks">
-        <a href="/becas" data-link data-i18n="nav.study">Estudiar</a>
-        <a href="/cursos" data-link data-i18n="nav.learn">Aprender</a>
-        <a href="/empleos" data-link data-i18n="nav.work">Trabajar</a>
+        <a href="/becas" data-link data-i18n="nav.study">Becas</a>
+        <a href="/cursos" data-link data-i18n="nav.learn">Cursos Gratuitos</a>
+        <a href="/practicas" data-link data-i18n="nav.internships">Prácticas</a>
+        <a href="/empleos" data-link data-i18n="nav.work">Empleos</a>
+        <a href="/universidades" data-link data-i18n="nav.universities">Universidades</a>
         <a href="/concursos" data-link data-i18n="nav.competitions">Concursos</a>
         <a href="/voluntariado" data-link data-i18n="nav.volunteer">Voluntariado</a>
       </div>
@@ -174,7 +187,9 @@
           <h4 style="color: white; font-size: 1.2rem; margin-bottom: 20px; font-weight: 700;">Explorar</h4>
           <a href="/becas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Becas Nacionales</a>
           <a href="/cursos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Cursos Gratuitos</a>
+          <a href="/practicas" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Bolsa de Prácticas</a>
           <a href="/empleos" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Bolsa de Empleo</a>
+          <a href="/portal-empresa" data-link style="color: #FFC700; text-decoration: none; margin-bottom: 12px; font-weight: 700; transition: opacity 0.3s;">Portal Empresas (Publicar)</a>
           <a href="/voluntariado" data-link style="color: var(--text-muted); text-decoration: none; margin-bottom: 12px; transition: color 0.3s;" onmouseover="this.style.color='var(--secondary-yellow)'" onmouseout="this.style.color='var(--text-muted)'">Voluntariados</a>
         </div>
 

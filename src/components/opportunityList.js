@@ -4,7 +4,8 @@ import { i18n } from '../utils/i18n.js';
 
 const categoryLabels = {
   scholarship: 'Beca',
-  course: 'Curso',
+  course: 'Curso Gratuito',
+  internship: 'Práctica',
   job: 'Empleo',
   volunteer: 'Voluntariado',
   competition: 'Concurso'
@@ -13,6 +14,7 @@ const categoryLabels = {
 const categoryIcons = {
   scholarship: 'ph-graduation-cap',
   course: 'ph-book-open',
+  internship: 'ph-chalkboard-teacher',
   job: 'ph-briefcase',
   volunteer: 'ph-hands-clapping',
   competition: 'ph-trophy'
@@ -61,14 +63,6 @@ const escapeHTML = (str) => {
   }[tag] || tag));
 };
 
-const categoryLinks = {
-  scholarship: '/becas',
-  course: '/cursos',
-  job: '/empleos',
-  volunteer: '/voluntariado',
-  competition: '/concursos'
-};
-
 export function generateOpportunityCards(opportunities, category, favIds, startIndex = 0) {
   return opportunities.map((opp, index) => {
     const isFav = favIds.includes(opp.id);
@@ -79,12 +73,11 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
       imgUrl = getUniqueImage(opp);
     }
 
-    const safeLink = opp.external_link || '#';
     const catLabel = categoryLabels[opp.category] || 'Oportunidad';
     const catIcon = categoryIcons[opp.category] || 'ph-globe';
     
     return `
-      <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card" style="animation-delay: ${(index % 12) * 0.06}s;">
+      <a href="/oportunidad/${opp.id}" data-link class="scroll-card" style="animation-delay: ${(index % 12) * 0.06}s; text-decoration: none;">
         <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${opp.id}', '${opp.category}')" title="${isFav ? i18n.t('ui.remove_favorite') : i18n.t('ui.save')}">
           <i class="ph-fill ph-heart"></i>
         </button>
@@ -97,7 +90,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
             <span class="card-badge"><i class="ph-fill ${catIcon}"></i> ${escapeHTML(opp.organization || catLabel)}</span>
           </div>
           <h3>${escapeHTML(opp.title || 'Sin título')}</h3>
-          <p>${escapeHTML(opp.description || 'Descubre esta oportunidad y postula ahora.')}</p>
+          <p>${escapeHTML(opp.description || 'Conoce los requisitos, fechas y cómo postular.')}</p>
           <div class="card-footer">
             <span class="muted"><i class="ph-fill ph-calendar"></i> ${formatDeadline(opp.deadline)}</span>
             <span class="card-apply-link">${i18n.t('ui.see_more')} <i class="ph ph-arrow-right"></i></span>
@@ -132,12 +125,21 @@ export async function initDynamicList(containerId, category) {
   const container = document.getElementById(containerId);
   if (!container) return;
   
-  const searchInput = document.getElementById('searchInput');
-  const featuredFilter = document.getElementById('featuredFilter');
-  const cardsContainer = document.getElementById('cardsContainer');
-  let loadMoreBtn = document.getElementById('loadMoreBtn');
+  const searchInput = container.querySelector('#searchInput');
+  const featuredFilter = container.querySelector('#featuredFilter');
+  const cardsContainer = container.querySelector('#cardsContainer');
+  let loadMoreBtn = container.querySelector('#loadMoreBtn');
+
+  // Specific dropdown filters
+  const ageFilter = container.querySelector('#ageFilter');
+  const studyLevelFilter = container.querySelector('#studyLevelFilter');
+  const coverageFilter = container.querySelector('#coverageFilter');
+  const modalityFilter = container.querySelector('#modalityFilter');
+  const practiceTypeFilter = container.querySelector('#practiceTypeFilter');
+  const areaFilter = container.querySelector('#areaFilter');
+  const certFilter = container.querySelector('#certFilter');
+  const locationFilter = container.querySelector('#locationFilter');
   
-  // Re-create the loadMoreBtn correctly
   if (!loadMoreBtn && cardsContainer) {
     loadMoreBtn = document.createElement('button');
     loadMoreBtn.id = 'loadMoreBtn';
@@ -163,7 +165,7 @@ export async function initDynamicList(containerId, category) {
     
     if (loadMoreBtn) loadMoreBtn.style.display = 'none';
     
-    const data = await dbService.getOpportunities({
+    let rawData = await dbService.getOpportunities({
       category,
       limit,
       page,
@@ -171,8 +173,37 @@ export async function initDynamicList(containerId, category) {
       featured: currentFeatured,
       active: true
     });
+
+    // Client-side filtering for advanced dropdown filters
+    let data = rawData.filter(item => {
+      if (ageFilter && ageFilter.value !== 'all') {
+        if (item.ageRange && item.ageRange !== 'all' && item.ageRange !== ageFilter.value) return false;
+      }
+      if (studyLevelFilter && studyLevelFilter.value !== 'all') {
+        if (item.typeCategory && item.typeCategory !== studyLevelFilter.value) return false;
+      }
+      if (coverageFilter && coverageFilter.value !== 'all') {
+        if (item.coverage && item.coverage !== coverageFilter.value) return false;
+      }
+      if (modalityFilter && modalityFilter.value !== 'all') {
+        if (item.modality && item.modality !== modalityFilter.value) return false;
+      }
+      if (practiceTypeFilter && practiceTypeFilter.value !== 'all') {
+        if (item.typeCategory && item.typeCategory !== practiceTypeFilter.value) return false;
+      }
+      if (areaFilter && areaFilter.value !== 'all') {
+        if (item.typeCategory && item.typeCategory !== areaFilter.value) return false;
+      }
+      if (certFilter && certFilter.value === 'cert-free') {
+        if (item.coverage !== 'full') return false;
+      }
+      if (locationFilter && locationFilter.value !== 'all') {
+        if (item.location && !item.location.includes(locationFilter.value)) return false;
+      }
+      return true;
+    });
     
-    if (data.length < limit) {
+    if (rawData.length < limit) {
       hasMore = false;
     }
     
@@ -186,10 +217,10 @@ export async function initDynamicList(containerId, category) {
       if (hasMore && loadMoreBtn) loadMoreBtn.style.display = 'inline-flex';
     } else if (reset) {
       cardsContainer.innerHTML = `
-        <div class="empty-state">
-          <i class="ph ph-magnifying-glass"></i>
-          <h3>No se encontraron resultados</h3>
-          <p>Intenta con otros términos de búsqueda o quita los filtros.</p>
+        <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.06);">
+          <i class="ph ph-magnifying-glass" style="font-size: 3rem; color: var(--secondary-yellow); margin-bottom: 15px;"></i>
+          <h3 style="color: white; font-weight: 800; margin-bottom: 8px;">No se encontraron resultados</h3>
+          <p class="muted">Intenta ajustando los filtros de edad o términos de búsqueda.</p>
         </div>
       `;
     }
@@ -206,7 +237,7 @@ export async function initDynamicList(containerId, category) {
       timeout = setTimeout(() => {
         currentSearch = e.target.value.trim();
         loadData(true);
-      }, 400);
+      }, 350);
     });
   }
   
@@ -216,16 +247,22 @@ export async function initDynamicList(containerId, category) {
       loadData(true);
     });
   }
+
+  // Connect all select filters to trigger reload
+  const allDropdowns = [ageFilter, studyLevelFilter, coverageFilter, modalityFilter, practiceTypeFilter, areaFilter, certFilter, locationFilter];
+  allDropdowns.forEach(select => {
+    if (select) {
+      select.addEventListener('change', () => loadData(true));
+    }
+  });
   
   // Initial load
   loadData(true);
   
-  // Listen to language changes to re-render the list dynamically
+  // Listen to language changes
   const onLangChange = () => {
     if (document.getElementById(containerId)) {
-      // Re-translate the button
       if (loadMoreBtn) loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} <i class="ph ph-caret-down"></i>`;
-      // Re-load data to update cards
       loadData(true);
     } else {
       window.removeEventListener('languageChanged', onLangChange);

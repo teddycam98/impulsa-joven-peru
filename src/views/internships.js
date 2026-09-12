@@ -1,22 +1,22 @@
 import { initDynamicList } from '../components/opportunityList.js';
 import { i18n } from '../utils/i18n.js';
 
-export function renderJobs() {
+export function renderInternships() {
   setTimeout(() => {
-    initDynamicList('jobsView', 'job');
+    initDynamicList('internshipsView', 'internship');
   }, 50);
 
   return `
-    <div id="jobsView" class="container inner-page" style="margin-bottom: 3rem;">
+    <div id="internshipsView" class="container inner-page" style="margin-bottom: 3rem;">
       <div style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 40px;">
-        <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(10, 122, 96, 0.25); border: 1px solid rgba(10, 122, 96, 0.5); border-radius: 18px; margin-bottom: 16px;">
-          <i class="ph-fill ph-briefcase" style="font-size: 2rem; color: #10b981;"></i>
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(10, 122, 96, 0.25); border: 1px solid rgba(10, 122, 96, 0.4); border-radius: 18px; margin-bottom: 16px;">
+          <i class="ph-fill ph-chalkboard-teacher" style="font-size: 2rem; color: #34d399;"></i>
         </div>
-        <h1 style="color: white; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">
-          Bolsa de <span style="color: var(--secondary-yellow);">Empleos</span>
+        <h1 style="color: white; font-size: 2.8rem; font-weight: 900; margin-bottom: 10px;">
+          Bolsa de Prácticas <span style="color: var(--secondary-yellow);">Pre y Pro</span>
         </h1>
-        <p class="muted" style="font-size: 1.1rem; max-width: 650px;">
-          Vacantes laborales para jóvenes profesionales, técnicos y egresados en empresas líderes y startups en todo el Perú.
+        <p class="muted" style="font-size: 1.1rem; max-width: 680px;">
+          Conecta con las mejores empresas e instituciones del Perú. Inicia tu trayectoria laboral con prácticas remuneradas, aprendizaje continuo y convenios oficiales.
         </p>
       </div>
       
@@ -26,7 +26,7 @@ export function renderJobs() {
         <!-- Search Input -->
         <div style="position: relative;">
           <i class="ph ph-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 1.1rem;"></i>
-          <input type="text" id="searchInput" placeholder="Buscar empleo por puesto, empresa o tecnología..." style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
+          <input type="text" id="searchInput" placeholder="Buscar práctica por carrera, empresa o ciudad..." style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
         </div>
 
         <!-- Filter Modality -->
@@ -39,14 +39,12 @@ export function renderJobs() {
           </select>
         </div>
 
-        <!-- Filter Location -->
+        <!-- Filter Practice Type -->
         <div>
-          <select id="locationFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
-            <option value="all">Todas las Ciudades (Perú)</option>
-            <option value="Lima">Lima Metropolitana</option>
-            <option value="Arequipa">Arequipa</option>
-            <option value="Ayacucho">Ayacucho</option>
-            <option value="Nacional">Nacional / Remoto</option>
+          <select id="practiceTypeFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
+            <option value="all">Pre y Profesionales</option>
+            <option value="pre-profesional">Prácticas Pre-Profesionales (Estudiantes)</option>
+            <option value="profesional">Prácticas Profesionales (Egresados)</option>
           </select>
         </div>
 

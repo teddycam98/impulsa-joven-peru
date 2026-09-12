@@ -15,6 +15,11 @@ import { renderPrivacy } from './views/privacy.js';
 import { renderTerms } from './views/terms.js';
 import { renderCookies } from './views/cookies.js';
 import { renderAdmin } from './views/admin.js';
+import { renderUniversities, initUniversitiesLogic } from './views/universities.js';
+import { renderInternships } from './views/internships.js';
+import { renderOpportunityDetail } from './views/detail.js';
+import { renderCompanyPortal } from './views/companyPortal.js';
+import { initEventsSlider } from './components/eventsHero.js';
 import { initVirtualAssistant } from './components/virtualAssistant.js';
 
 const app = document.getElementById('app');
@@ -23,6 +28,7 @@ const routes = {
   '/': renderHome,
   '/becas': renderScholarships,
   '/cursos': renderCourses,
+  '/practicas': renderInternships,
   '/empleos': renderJobs,
   '/voluntariado': renderVolunteering,
   '/concursos': renderCompetitions,
@@ -34,7 +40,9 @@ const routes = {
   '/privacidad': renderPrivacy,
   '/terminos': renderTerms,
   '/cookies': renderCookies,
-  '/admin': renderAdmin
+  '/admin': renderAdmin,
+  '/universidades': renderUniversities,
+  '/portal-empresa': renderCompanyPortal
 };
 
 function initAnimations() {
@@ -83,9 +91,19 @@ async function router() {
   `;
   
   try {
+    if (path.startsWith('/oportunidad/')) {
+      const oppId = path.replace('/oportunidad/', '').trim();
+      const html = await renderOpportunityDetail(oppId);
+      app.innerHTML = html;
+      i18n.translateDOM();
+      window.scrollTo(0, 0);
+      return;
+    }
+
     const html = await routes[path]();
     app.innerHTML = html;
     i18n.translateDOM();
+    window.scrollTo(0, 0);
   } catch (error) {
     console.error('Routing error:', error);
     app.innerHTML = `
@@ -102,6 +120,14 @@ async function router() {
 
   if (path === '/help') {
     initHelpCenterLogic();
+  }
+
+  if (path === '/universidades') {
+    initUniversitiesLogic();
+  }
+
+  if (path === '/' || path === '/universidades') {
+    initEventsSlider();
   }
   
   setTimeout(initAnimations, 100);

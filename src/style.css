@@ -1049,3 +1049,17 @@ textarea.admin-input:focus-visible,
 select.admin-input:focus-visible {
   animation: focusRing 0.5s ease forwards;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   UNIVERSITIES & EVENTS HERO CUSTOM STYLES
+   ═══════════════════════════════════════════════════════════════ */
+.event-card:hover, .uni-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 199, 0, 0.35) !important;
+}
+
+.event-card:hover .event-card-img {
+  transform: scale(1.05);
+}
+

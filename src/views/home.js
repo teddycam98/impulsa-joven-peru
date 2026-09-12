@@ -1,5 +1,6 @@
 import { dbService } from '../services/supabase.js';
 import { i18n } from '../utils/i18n.js';
+import { renderEventsHero } from '../components/eventsHero.js';
 
 export async function renderHome() {
   const stats = await dbService.getStats();
@@ -81,6 +82,9 @@ export async function renderHome() {
       </div>
     </div>
 
+    <!-- Hero de Eventos Universitarios -->
+    ${renderEventsHero()}
+
     <!-- Section ¿Qué quieres lograr hoy? -->
     <section class="container bento-section animate-on-scroll">
       <div class="bento-title-wrapper">
@@ -112,7 +116,19 @@ export async function renderHome() {
           <div class="card-gradient"></div>
         </a>
 
-        <!-- Card 3: Trabajar -->
+        <!-- Card 3: Prácticas -->
+        <a href="/practicas" class="action-card card-teal" data-link style="background: #0d9488;">
+          <div class="card-content">
+            <div class="card-icon"><i class="ph ph-chalkboard-teacher"></i></div>
+            <h3 data-i18n="home.card.internships.title">${i18n.t('home.card.internships.title')}</h3>
+            <p data-i18n="home.card.internships.desc">${i18n.t('home.card.internships.desc')}</p>
+            <div class="card-arrow"><i class="ph ph-arrow-right"></i></div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&h=350&fit=crop" alt="Prácticas" class="card-bg-img">
+          <div class="card-gradient"></div>
+        </a>
+
+        <!-- Card 4: Empleos -->
         <a href="/empleos" class="action-card card-green" data-link>
           <div class="card-content">
             <div class="card-icon"><i class="ph ph-briefcase"></i></div>

@@ -1,7 +1,8 @@
 import { es } from '../i18n/es.js';
 import { qu } from '../i18n/qu.js';
+import { en } from '../i18n/en.js';
 
-const dictionaries = { es, qu };
+const dictionaries = { es, qu, en };
 
 export const i18n = {
   currentLang: localStorage.getItem('lang') || 'es',
