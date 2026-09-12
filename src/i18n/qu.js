@@ -84,9 +84,9 @@ export const qu = {
   // Filters
   "filter.age.title": "Wataykikuna",
   "filter.age.all": "Tukuy watakuna",
-  "filter.age.under18": "15 watamanta 18 watakama",
-  "filter.age.18to25": "18 watamanta 25 watakama",
-  "filter.age.over25": "25 wata aswan",
+  "filter.age.under18": "15 watamanta 18 watakama (Yachakuqkuna / Egresados)",
+  "filter.age.18to25": "18 watamanta 25 watakama (Wayna-sipaskuna)",
+  "filter.age.over25": "25 wata aswan (Posgrado / Kuraqkuna)",
   "filter.type.title": "Yachay niraq",
   "filter.type.all": "Tukuy yachaykuna",
   "filter.type.undergraduate": "Hatun yachay wasi",
@@ -101,5 +101,84 @@ export const qu = {
   "filter.modality.all": "Tukuy niraqkuna",
   "filter.modality.remote": "Karumanta",
   "filter.modality.hybrid": "Chaqrusqa",
-  "filter.modality.onsite": "Chayllapipuni"
+  "filter.modality.onsite": "Chayllapipuni",
+
+  // Category Titles with colored highlight span
+  "cat.scholarships.title_h1": "Kachkan <span style=\"color: var(--secondary-yellow);\">Becakuna</span>",
+  "cat.scholarships.desc": "Aswan allin hatun yachay wasikunapi yachanaykipaq becakuna, Pronabec, hawa suyukunamantapas.",
+  "cat.courses.title_h1": "Mana Qullqiyuq <span style=\"color: var(--secondary-yellow);\">Kursukuna</span>",
+  "cat.courses.desc": "Kallpachakuy musuq yachaykunawan internetpi Google, Cisco, Microsoft hatun yachay wasikunawan.",
+  "cat.internships.title_h1": "Yachapakuy <span style=\"color: var(--secondary-yellow);\">Llamk'aykuna</span>",
+  "cat.internships.desc": "Qallariy llamk'ayta allin empresakunapi Perú suyuntinpi yachapakuykunawan.",
+  "cat.jobs.title_h1": "Llamk'ana <span style=\"color: var(--secondary-yellow);\">Mast'ariy</span>",
+  "cat.jobs.desc": "Llamk'anakuna wayna-sipaskunapaq, tecnicokunapaq, tukusqakunapaqpas allin qullqiyuq.",
+  "cat.universities.title_h1": "Hatun Yachay <span style=\"color: var(--secondary-yellow);\">Wasikuna</span>",
+  "cat.universities.desc": "Rikuy sunedu licenciada yachay wasikunata convenioyuq waynakunapaq.",
+  "cat.competitions.title_h1": "Atipanakuykuna <span style=\"color: var(--secondary-yellow);\">Hackathons</span>",
+  "cat.competitions.desc": "Musuqyachiypi llallinakuykuna kikin talentoykita rikuchinaykipaq qullqi yanapayta chaskinaykipaqpas.",
+  "cat.volunteer.title_h1": "Yanapakuy <span style=\"color: var(--secondary-yellow);\">Programakuna</span>",
+  "cat.volunteer.desc": "Ayllunchikpaq kuska llamk'asun, yanapasun allin kawsaypaq, yachaypaq pacha mamapaqpas.",
+
+  // Detail Page Keys
+  "detail.back": "Kutiy listaman",
+  "detail.official_entity": "Oficial Kamachiq",
+  "detail.about_title": "Imamantan kay willakuy?",
+  "detail.requirements_title": "Mañakuykuna yaykunaykipaq",
+  "detail.benefits_title": "Allin kaqkuna yanapaypas",
+  "detail.steps_title": "Imayna yaykuna ñan",
+  "detail.specs_title": "Willakuy K'iti",
+  "detail.deadline": "TUKUY PUNCHAW",
+  "detail.age_range": "WATAYKIKUNA",
+  "detail.coverage": "YANAPAY",
+  "detail.location_modality": "MAYPI / IMATAN RURAY",
+  "detail.apply_official": "Riy oficial portalman",
+  "detail.not_found_title": "Willakuy mana tarisqachu",
+  "detail.not_found_desc": "Maskasqayki willakuyqa manam kanchu icha tukukunña.",
+  "detail.explore_other": "Huk willakuykunata maskay",
+
+  // Search Placeholders
+  "filter.search_courses": "Yachayta, tecnologiata maskay...",
+  "filter.search_scholarships": "Becata maskay...",
+  "filter.search_jobs": "Llamk'ayta maskay...",
+  "filter.search_internships": "Yachapakuyta maskay...",
+  "filter.search_volunteer": "Yanapakuyta maskay...",
+  "filter.search_competitions": "Atipanakuyta maskay...",
+  "filter.search_universities": "Hatun yachay wasita maskay...",
+
+  // Dropdown options
+  "filter.area.all": "Tukuy k'itikuna",
+  "filter.area.tech": "Tecnología, Programación",
+  "filter.area.business": "Negocios, Qullqi Kamachiy",
+  "filter.area.languages": "Simikuna (Inglés / Runasimi)",
+  "filter.area.skills": "Umalliy, Yachaykuna",
+
+  "filter.cert.all": "Tukuy niraqkuna",
+  "filter.cert.free": "100% Mana qullqiyuq certificado",
+  "filter.cert.open": "Kichasqa kursukuna",
+
+  "filter.practice.all": "Tukuy yachapakuykuna",
+  "filter.practice.pre": "Yachakuqkunapaq yachapakuy",
+  "filter.practice.pro": "Tukusqakunapaq yachapakuy",
+
+  "filter.location.all": "Tukuy suyukuna",
+  "filter.location.lima": "Lima Callao",
+  "filter.location.arequipa": "Arequipa",
+  "filter.location.cusco": "Cusco",
+  "filter.location.la_libertad": "La Libertad",
+  "filter.location.piura": "Piura",
+  "filter.location.junin": "Junín",
+  "filter.location.nacional": "Suyuntin (Tukuy Perú)",
+
+  "filter.cause.all": "Tukuy yanapakuykuna",
+  "filter.cause.social": "Ayllu kawsay, Wasi",
+  "filter.cause.health": "Qhali kay, Hampiy",
+  "filter.cause.environment": "Pacha mama waqaychay",
+  "filter.cause.education": "Yachachiy, Wawakuna",
+  "filter.cause.civic": "Llaqta umalliy",
+
+  "filter.comp.all": "Tukuy atipanakuykuna",
+  "filter.comp.hackathon": "Hackathonkuna, Tecnología",
+  "filter.comp.awards": "Chaskikuykuna, Suñaykuna",
+  "filter.comp.entrepreneurship": "Musuq ruraykuna, Startups",
+  "filter.comp.science": "Ciencia, Yachaykuna"
 };

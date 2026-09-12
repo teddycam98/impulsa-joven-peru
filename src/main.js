@@ -162,14 +162,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     document.querySelectorAll('.lang-option').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const lang = e.target.getAttribute('data-lang');
-        i18n.setLanguage(lang);
-        langDropdown.classList.add('hidden');
-        
-        // Ensure dynamic content like current route is re-rendered to apply i18n
-        // Only if it doesn't break things. Given we use data-i18n, we might not need to re-render everything,
-        // but re-rendering the router ensures dynamically generated strings are translated.
-        router();
+        const lang = e.currentTarget.getAttribute('data-lang') || e.target.getAttribute('data-lang');
+        if (lang) {
+          i18n.setLanguage(lang);
+          langDropdown.classList.add('hidden');
+          router();
+        }
       });
     });
     

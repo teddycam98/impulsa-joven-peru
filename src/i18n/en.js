@@ -84,9 +84,9 @@ export const en = {
   // Filters
   "filter.age.title": "Age Range",
   "filter.age.all": "All Ages",
-  "filter.age.under18": "15 to 18 years old",
-  "filter.age.18to25": "18 to 25 years old",
-  "filter.age.over25": "25+ years old",
+  "filter.age.under18": "15 to 18 years old (High School / Graduates)",
+  "filter.age.18to25": "18 to 25 years old (Youth)",
+  "filter.age.over25": "25+ years old (Postgraduate / Adults)",
   "filter.type.title": "Study Level",
   "filter.type.all": "All Levels",
   "filter.type.undergraduate": "Undergraduate",
@@ -101,5 +101,84 @@ export const en = {
   "filter.modality.all": "All Modalities",
   "filter.modality.remote": "Remote",
   "filter.modality.hybrid": "Hybrid",
-  "filter.modality.onsite": "On-site"
+  "filter.modality.onsite": "On-site",
+
+  // Category Titles with colored highlight span
+  "cat.scholarships.title_h1": "Available <span style=\"color: var(--secondary-yellow);\">Scholarships</span>",
+  "cat.scholarships.desc": "Access national, Pronabec and international scholarships to study your technical degree, bachelor or master with full financial coverage.",
+  "cat.courses.title_h1": "Free <span style=\"color: var(--secondary-yellow);\">Courses</span>",
+  "cat.courses.desc": "Boost your professional and tech skills with free online courses and verified certificates from Google, Cisco, Microsoft, and top universities.",
+  "cat.internships.title_h1": "Internships <span style=\"color: var(--secondary-yellow);\">Board</span>",
+  "cat.internships.desc": "Launch your career with paid pre-professional and professional internships at Peru's leading companies and public institutions.",
+  "cat.jobs.title_h1": "Job <span style=\"color: var(--secondary-yellow);\">Board</span>",
+  "cat.jobs.desc": "Find formal jobs, entry-level opportunities, and junior roles with clear career progression across Peru.",
+  "cat.universities.title_h1": "Partner <span style=\"color: var(--secondary-yellow);\">Universities</span>",
+  "cat.universities.desc": "Explore accredited universities and institutes offering scholarship partnerships, preferential admission, and youth aid.",
+  "cat.competitions.title_h1": "Competitions & <span style=\"color: var(--secondary-yellow);\">Hackathons</span>",
+  "cat.competitions.desc": "Participate in hackathons, youth awards, open innovation challenges, and secure seed funding for your ideas.",
+  "cat.volunteer.title_h1": "Volunteering <span style=\"color: var(--secondary-yellow);\">Programs</span>",
+  "cat.volunteer.desc": "Contribute your passion and skills to organizations transforming Peru through social, educational, and environmental causes.",
+
+  // Detail Page Keys
+  "detail.back": "Back to listings",
+  "detail.official_entity": "Official Organization",
+  "detail.about_title": "About this opportunity",
+  "detail.requirements_title": "Application Requirements",
+  "detail.benefits_title": "Benefits and Coverage",
+  "detail.steps_title": "Step-by-step application guide",
+  "detail.specs_title": "Key Information",
+  "detail.deadline": "DEADLINE",
+  "detail.age_range": "AGE RANGE",
+  "detail.coverage": "COVERAGE",
+  "detail.location_modality": "LOCATION / MODALITY",
+  "detail.apply_official": "Apply on official website",
+  "detail.not_found_title": "Opportunity not found",
+  "detail.not_found_desc": "The opportunity you are looking for does not exist or has expired.",
+  "detail.explore_other": "Explore other opportunities",
+
+  // Search Placeholders
+  "filter.search_courses": "Search by topic, skill or institution...",
+  "filter.search_scholarships": "Search scholarship by title or institution...",
+  "filter.search_jobs": "Search by role, company or skill...",
+  "filter.search_internships": "Search internships by major or company...",
+  "filter.search_volunteer": "Search by social cause or organization...",
+  "filter.search_competitions": "Search hackathon, competition or challenge...",
+  "filter.search_universities": "Search university by name or city...",
+
+  // Dropdown options
+  "filter.area.all": "All Fields",
+  "filter.area.tech": "Technology, IT & Coding",
+  "filter.area.business": "Business, Entrepreneurship & Finance",
+  "filter.area.languages": "Languages (English / Quechua)",
+  "filter.area.skills": "Soft Skills & Leadership",
+
+  "filter.cert.all": "Any Format",
+  "filter.cert.free": "100% Free Certificate Included",
+  "filter.cert.open": "Open / Self-paced Courses",
+
+  "filter.practice.all": "All Internships",
+  "filter.practice.pre": "Pre-Professional Internships (Students)",
+  "filter.practice.pro": "Professional Internships (Graduates)",
+
+  "filter.location.all": "Any Location",
+  "filter.location.lima": "Lima & Callao",
+  "filter.location.arequipa": "Arequipa",
+  "filter.location.cusco": "Cusco",
+  "filter.location.la_libertad": "La Libertad (Trujillo)",
+  "filter.location.piura": "Piura",
+  "filter.location.junin": "Junín (Huancayo)",
+  "filter.location.nacional": "Nationwide (All Peru)",
+
+  "filter.cause.all": "All Social Causes",
+  "filter.cause.social": "Social Development & Housing",
+  "filter.cause.health": "Health, Blood & First Aid",
+  "filter.cause.environment": "Environment & Climate",
+  "filter.cause.education": "Education & Childhood",
+  "filter.cause.civic": "Civic & Community Leadership",
+
+  "filter.comp.all": "All Competition Types",
+  "filter.comp.hackathon": "Hackathons & Technology",
+  "filter.comp.awards": "Youth Awards & Honors",
+  "filter.comp.entrepreneurship": "Startups & Entrepreneurship",
+  "filter.comp.science": "Science, STEM & Sustainability"
 };

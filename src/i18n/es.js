@@ -101,5 +101,84 @@ export const es = {
   "filter.modality.all": "Todas las modalidades",
   "filter.modality.remote": "Remoto / Virtual",
   "filter.modality.hybrid": "Híbrido",
-  "filter.modality.onsite": "Presencial"
+  "filter.modality.onsite": "Presencial",
+
+  // Category Titles with colored highlight span
+  "cat.scholarships.title_h1": "Becas <span style=\"color: var(--secondary-yellow);\">Disponibles</span>",
+  "cat.scholarships.desc": "Accede a becas nacionales, Pronabec e internacionales para estudiar tu carrera técnica, universitaria o posgrado con cobertura completa.",
+  "cat.courses.title_h1": "Cursos <span style=\"color: var(--secondary-yellow);\">Gratuitos</span>",
+  "cat.courses.desc": "Mejora tus habilidades técnicas y profesionales con cursos en línea y certificados gratuitos de Google, Cisco, Microsoft y las mejores universidades.",
+  "cat.internships.title_h1": "Bolsa de <span style=\"color: var(--secondary-yellow);\">Prácticas</span>",
+  "cat.internships.desc": "Inicia tu camino profesional con prácticas pre y profesionales remuneradas en las empresas e instituciones líderes del país.",
+  "cat.jobs.title_h1": "Bolsa de <span style=\"color: var(--secondary-yellow);\">Empleos</span>",
+  "cat.jobs.desc": "Encuentra empleos formales, oportunidades de primer empleo y puestos juniors con línea de carrera en todo el Perú.",
+  "cat.universities.title_h1": "Universidades <span style=\"color: var(--secondary-yellow);\">con Convenio</span>",
+  "cat.universities.desc": "Explora instituciones licenciadas con convenios de becas, admisión preferente y programas de inclusión juvenil.",
+  "cat.competitions.title_h1": "Concursos y <span style=\"color: var(--secondary-yellow);\">Hackathons</span>",
+  "cat.competitions.desc": "Participa en hackathons, premios juveniles, desafíos de innovación abierta y financiamiento para tus ideas.",
+  "cat.volunteer.title_h1": "Programas de <span style=\"color: var(--secondary-yellow);\">Voluntariado</span>",
+  "cat.volunteer.desc": "Suma tu talento y energía a organizaciones que transforman el Perú a través de causas sociales, educativas y ambientales.",
+
+  // Detail Page Keys
+  "detail.back": "Volver al listado",
+  "detail.official_entity": "Entidad Oficial",
+  "detail.about_title": "¿En qué consiste esta convocatoria?",
+  "detail.requirements_title": "Requisitos para postular",
+  "detail.benefits_title": "Beneficios y Cobertura",
+  "detail.steps_title": "Guía paso a paso para postular",
+  "detail.specs_title": "Ficha Técnica",
+  "detail.deadline": "FECHA LÍMITE",
+  "detail.age_range": "RANGO DE EDAD",
+  "detail.coverage": "COBERTURA",
+  "detail.location_modality": "UBICACIÓN / MODALIDAD",
+  "detail.apply_official": "Ir al portal oficial",
+  "detail.not_found_title": "Convocatoria no encontrada",
+  "detail.not_found_desc": "La oportunidad que buscas no existe o ha sido dada de baja.",
+  "detail.explore_other": "Explorar otras oportunidades",
+
+  // Search Placeholders
+  "filter.search_courses": "Buscar por tema, tecnología o institución...",
+  "filter.search_scholarships": "Buscar beca por título o institución...",
+  "filter.search_jobs": "Buscar por puesto, empresa o tecnología...",
+  "filter.search_internships": "Buscar prácticas por carrera o empresa...",
+  "filter.search_volunteer": "Buscar por causa social o institución...",
+  "filter.search_competitions": "Buscar hackathon, concurso o reto...",
+  "filter.search_universities": "Buscar universidad por nombre o ciudad...",
+
+  // Dropdown options
+  "filter.area.all": "Todas las Áreas",
+  "filter.area.tech": "Tecnología, TI y Programación",
+  "filter.area.business": "Negocios, Emprendimiento y Finanzas",
+  "filter.area.languages": "Idiomas (Inglés / Quechua)",
+  "filter.area.skills": "Habilidades Blandas y Liderazgo",
+
+  "filter.cert.all": "Cualquier Formato",
+  "filter.cert.free": "100% Con Certificado Gratuito",
+  "filter.cert.open": "Cursos Abiertos / Autodidactas",
+
+  "filter.practice.all": "Todas las Prácticas",
+  "filter.practice.pre": "Prácticas Pre-Profesionales (Estudiantes)",
+  "filter.practice.pro": "Prácticas Profesionales (Egresados)",
+
+  "filter.location.all": "Cualquier Ubicación",
+  "filter.location.lima": "Lima y Callao",
+  "filter.location.arequipa": "Arequipa",
+  "filter.location.cusco": "Cusco",
+  "filter.location.la_libertad": "La Libertad (Trujillo)",
+  "filter.location.piura": "Piura",
+  "filter.location.junin": "Junín (Huancayo)",
+  "filter.location.nacional": "Nacional (Todo el Perú)",
+
+  "filter.cause.all": "Todas las Causas Sociales",
+  "filter.cause.social": "Desarrollo Social y Vivienda",
+  "filter.cause.health": "Salud, Sangre y Primeros Auxilios",
+  "filter.cause.environment": "Medio Ambiente y Clima",
+  "filter.cause.education": "Educación e Infancia",
+  "filter.cause.civic": "Ciudadanía y Gobernanza",
+
+  "filter.comp.all": "Todos los Tipos de Concurso",
+  "filter.comp.hackathon": "Hackathons y Tecnología",
+  "filter.comp.awards": "Premios y Reconocimientos Juveniles",
+  "filter.comp.entrepreneurship": "Startups y Emprendimiento",
+  "filter.comp.science": "Ciencia, STEM y Sostenibilidad"
 };

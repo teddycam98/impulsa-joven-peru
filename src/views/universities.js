@@ -1,5 +1,6 @@
 import { universitiesData } from '../data/universitiesData.js';
 import { renderEventsHero } from '../components/eventsHero.js';
+import { i18n } from '../utils/i18n.js';
 
 export function renderUniversities() {
   return `
@@ -12,10 +13,10 @@ export function renderUniversities() {
             <i class="ph-fill ph-buildings"></i> <span>Directorio Educativo del Perú</span>
           </div>
           <h1 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 12px;">
-            Universidades y Escuelas Superiores <span style="color: #FFC700;">Con Convenio</span>
+            ${i18n.t('cat.universities.title_h1')}
           </h1>
           <p class="muted" style="max-width: 750px; margin: 0 auto 30px auto; font-size: 1.05rem; line-height: 1.6;">
-            Encuentra las instituciones educativas licenciadas donde puedes estudiar con <strong>Beca 18</strong>, acceder a <strong>Becas de Excelencia</strong> o llevar <strong>Cursos Gratuitos de Especialización</strong> en todo el Perú.
+            ${i18n.t('cat.universities.desc')}
           </p>
 
           <!-- Search & Filter Controls -->
@@ -23,13 +24,13 @@ export function renderUniversities() {
             <!-- Search Input -->
             <div style="position: relative;">
               <i class="ph ph-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.1rem;"></i>
-              <input type="text" id="uniSearchInput" placeholder="Buscar por universidad o ciudad..." style="width: 100%; padding: 12px 14px 12px 40px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;" />
+              <input type="text" id="uniSearchInput" placeholder="${i18n.t('filter.search_universities')}" style="width: 100%; padding: 12px 14px 12px 40px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;" />
             </div>
 
             <!-- Type Filter -->
             <div>
               <select id="uniTypeFilter" style="width: 100%; padding: 12px 14px; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
-                <option value="all">Todas las Instituciones</option>
+                <option value="all">${i18n.t('filter.type.all')}</option>
                 <option value="publica">Universidades Públicas</option>
                 <option value="privada">Universidades Privadas</option>
                 <option value="instituto">Escuelas Superiores / Institutos</option>
@@ -39,7 +40,7 @@ export function renderUniversities() {
             <!-- Region Filter -->
             <div>
               <select id="uniRegionFilter" style="width: 100%; padding: 12px 14px; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
-                <option value="all">Todas las Regiones (Perú)</option>
+                <option value="all">${i18n.t('filter.location.all')}</option>
                 <option value="Ayacucho">Ayacucho</option>
                 <option value="Lima">Lima</option>
                 <option value="Arequipa">Arequipa</option>

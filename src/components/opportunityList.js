@@ -1,6 +1,7 @@
 import { dbService } from '../services/supabase.js';
 import { getUniqueImage } from '../utils/images.js';
 import { i18n } from '../utils/i18n.js';
+import { translateOpportunity } from '../utils/opportunityTranslations.js';
 
 const categoryLabels = {
   scholarship: 'Beca',
@@ -50,7 +51,8 @@ function formatDeadline(deadline) {
   if (!deadline) return i18n.t('ui.open');
   try {
     const d = new Date(deadline);
-    return d.toLocaleDateString('es-PE', { day: 'numeric', month: 'short', year: 'numeric' });
+    const locale = i18n.currentLang === 'en' ? 'en-US' : 'es-PE';
+    return d.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
   } catch (error) {
     return deadline;
   }
@@ -64,7 +66,8 @@ const escapeHTML = (str) => {
 };
 
 export function generateOpportunityCards(opportunities, category, favIds, startIndex = 0) {
-  return opportunities.map((opp, index) => {
+  return opportunities.map((rawOpp, index) => {
+    const opp = translateOpportunity(rawOpp, i18n.currentLang);
     const isFav = favIds.includes(opp.id);
     const badges = getBadges(opp);
     
@@ -73,7 +76,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
       imgUrl = getUniqueImage(opp);
     }
 
-    const catLabel = categoryLabels[opp.category] || 'Oportunidad';
+    const catLabel = i18n.t(`cat.label.${opp.category}`) || categoryLabels[opp.category] || 'Oportunidad';
     const catIcon = categoryIcons[opp.category] || 'ph-globe';
     
     return `

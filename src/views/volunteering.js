@@ -1,4 +1,5 @@
 import { initDynamicList } from '../components/opportunityList.js';
+import { i18n } from '../utils/i18n.js';
 
 export function renderVolunteering() {
   setTimeout(() => {
@@ -11,8 +12,12 @@ export function renderVolunteering() {
         <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(217,75,27,0.3); border-radius: 16px; margin-bottom: 16px;">
           <i class="ph-fill ph-hands-clapping" style="font-size: 2rem; color: #ff8c5a;"></i>
         </div>
-        <h1 style="color: white; font-size: 3rem; font-weight: 900; margin-bottom: 10px;" data-i18n="cat.volunteer.title">Voluntariado</h1>
-        <p class="muted" style="font-size: 1.1rem; max-width: 600px;" data-i18n="cat.volunteer.desc">Participa en programas de voluntariado y genera un impacto positivo en tu comunidad mientras desarrollas nuevas habilidades.</p>
+        <h1 style="color: white; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">
+          ${i18n.t('cat.volunteer.title_h1')}
+        </h1>
+        <p class="muted" style="font-size: 1.1rem; max-width: 600px;">
+          ${i18n.t('cat.volunteer.desc')}
+        </p>
       </div>
       
       <!-- Filters Panel -->
@@ -21,47 +26,46 @@ export function renderVolunteering() {
         <!-- Search Input -->
         <div style="position: relative;">
           <i class="ph ph-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 1.1rem;"></i>
-          <input type="text" id="searchInput" placeholder="Buscar voluntariado por causa u ONG..." aria-label="Buscar voluntariado" style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
+          <input type="text" id="searchInput" placeholder="${i18n.t('filter.search_volunteer')}" aria-label="Buscar voluntariado" style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
         </div>
 
         <!-- Filter Cause -->
         <div>
           <select id="causeFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
-            <option value="all">Todas las Causas Sociales</option>
-            <option value="social">Impacto Social y Hábitat</option>
-            <option value="salud">Salud y Primeros Auxilios</option>
-            <option value="ambiente">Medio Ambiente y Clima</option>
-            <option value="educacion">Educación e Infancia</option>
-            <option value="civico">Ciudadanía y Cultura</option>
+            <option value="all">${i18n.t('filter.cause.all')}</option>
+            <option value="social">${i18n.t('filter.cause.social')}</option>
+            <option value="salud">${i18n.t('filter.cause.health')}</option>
+            <option value="ambiente">${i18n.t('filter.cause.environment')}</option>
+            <option value="educacion">${i18n.t('filter.cause.education')}</option>
+            <option value="civico">${i18n.t('filter.cause.civic')}</option>
           </select>
         </div>
 
         <!-- Filter Modality -->
         <div>
           <select id="modalityFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
-            <option value="all">Todas las Modalidades</option>
-            <option value="onsite">Presencial (En campo)</option>
-            <option value="remote">100% Remoto / En línea</option>
-            <option value="hybrid">Híbrido</option>
+            <option value="all">${i18n.t('filter.modality.all')}</option>
+            <option value="onsite">${i18n.t('filter.modality.onsite')}</option>
+            <option value="remote">${i18n.t('filter.modality.remote')}</option>
+            <option value="hybrid">${i18n.t('filter.modality.hybrid')}</option>
           </select>
         </div>
 
         <!-- Filter Location -->
         <div>
           <select id="locationFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
-            <option value="all">Todas las Regiones</option>
-            <option value="Lima">Lima</option>
-            <option value="Ayacucho">Ayacucho</option>
-            <option value="Cusco">Cusco</option>
-            <option value="Arequipa">Arequipa</option>
-            <option value="Nacional">Nacional (Todo el Perú)</option>
+            <option value="all">${i18n.t('filter.location.all')}</option>
+            <option value="Lima">${i18n.t('filter.location.lima')}</option>
+            <option value="Cusco">${i18n.t('filter.location.cusco')}</option>
+            <option value="Arequipa">${i18n.t('filter.location.arequipa')}</option>
+            <option value="Nacional">${i18n.t('filter.location.nacional')}</option>
           </select>
         </div>
 
         <!-- Featured Checkbox -->
         <label style="display: flex; align-items: center; justify-content: center; gap: 10px; color: rgba(255,255,255,0.85); cursor: pointer; font-size: 0.95rem; font-weight: 600; white-space: nowrap;">
           <input type="checkbox" id="featuredFilter" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--secondary-yellow);">
-          <span data-i18n="ui.featured_only">Solo Destacados</span>
+          <span data-i18n="ui.featured_only">${i18n.t('ui.featured_only')}</span>
         </label>
       </div>
 
@@ -73,7 +77,7 @@ export function renderVolunteering() {
       
       <div style="display: flex; justify-content: center; margin-top: 30px;">
         <button id="loadMoreBtn" class="btn btn-outline" style="display: none; padding: 12px 32px;">
-          <i class="ph ph-arrow-down"></i> Cargar más
+          <i class="ph ph-arrow-down"></i> ${i18n.t('ui.load_more')}
         </button>
       </div>
     </div>

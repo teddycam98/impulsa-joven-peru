@@ -35,19 +35,26 @@ export const i18n = {
   },
 
   translateDOM() {
-    const elements = document.querySelectorAll('[data-i18n]');
     const dict = dictionaries[this.currentLang] || dictionaries['es'];
-    elements.forEach(el => {
+
+    // 1. data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict && dict[key]) {
         const translation = dict[key];
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          if (el.hasAttribute('placeholder')) {
-            el.placeholder = translation;
-          }
+          el.placeholder = translation;
         } else {
           el.innerHTML = translation;
         }
+      }
+    });
+
+    // 2. data-i18n-placeholder
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict && dict[key]) {
+        el.placeholder = dict[key];
       }
     });
   }

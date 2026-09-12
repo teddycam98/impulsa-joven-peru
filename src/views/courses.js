@@ -13,10 +13,10 @@ export function renderCourses() {
           <i class="ph-fill ph-book-open" style="font-size: 2rem; color: #b07aff;"></i>
         </div>
         <h1 style="color: white; font-size: 3rem; font-weight: 900; margin-bottom: 10px;">
-          Cursos <span style="color: var(--secondary-yellow);">Gratuitos</span>
+          ${i18n.t('cat.courses.title_h1')}
         </h1>
         <p class="muted" style="font-size: 1.1rem; max-width: 650px;">
-          Mejora tus habilidades técnicas y profesionales con cursos en línea y certificados gratuitos de Google, Cisco, Microsoft y las mejores universidades.
+          ${i18n.t('cat.courses.desc')}
         </p>
       </div>
       
@@ -26,33 +26,33 @@ export function renderCourses() {
         <!-- Search Input -->
         <div style="position: relative;">
           <i class="ph ph-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 1.1rem;"></i>
-          <input type="text" id="searchInput" placeholder="Buscar por tema, tecnología o institución..." style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
+          <input type="text" id="searchInput" placeholder="${i18n.t('filter.search_courses')}" style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px 12px 40px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
         </div>
 
         <!-- Filter Area -->
         <div>
           <select id="areaFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
-            <option value="all">Todas las Áreas</option>
-            <option value="tecnologia">Tecnología, TI y Programación</option>
-            <option value="negocios">Negocios, Emprendimiento y Finanzas</option>
-            <option value="idiomas">Idiomas (Inglés / Quechua)</option>
-            <option value="habilidades">Habilidades Blandas y Liderazgo</option>
+            <option value="all">${i18n.t('filter.area.all')}</option>
+            <option value="tecnologia">${i18n.t('filter.area.tech')}</option>
+            <option value="negocios">${i18n.t('filter.area.business')}</option>
+            <option value="idiomas">${i18n.t('filter.area.languages')}</option>
+            <option value="habilidades">${i18n.t('filter.area.skills')}</option>
           </select>
         </div>
 
         <!-- Filter Certification -->
         <div>
           <select id="certFilter" style="width: 100%; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.12); color: white; border-radius: 12px; padding: 12px 15px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;">
-            <option value="all">Cualquier Formato</option>
-            <option value="cert-free">100% Con Certificado Gratuito</option>
-            <option value="open">Cursos Abiertos / Autodidactas</option>
+            <option value="all">${i18n.t('filter.cert.all')}</option>
+            <option value="cert-free">${i18n.t('filter.cert.free')}</option>
+            <option value="open">${i18n.t('filter.cert.open')}</option>
           </select>
         </div>
 
         <!-- Featured Checkbox -->
         <label style="display: flex; align-items: center; justify-content: center; gap: 10px; color: rgba(255,255,255,0.85); cursor: pointer; font-size: 0.95rem; font-weight: 600; white-space: nowrap;">
           <input type="checkbox" id="featuredFilter" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--secondary-yellow);">
-          <span data-i18n="ui.featured_only">Solo Destacados</span>
+          <span data-i18n="ui.featured_only">${i18n.t('ui.featured_only')}</span>
         </label>
 
       </div>
@@ -65,7 +65,7 @@ export function renderCourses() {
       
       <div style="display: flex; justify-content: center; margin-top: 30px;">
         <button id="loadMoreBtn" class="btn btn-outline" style="display: none; padding: 12px 32px;">
-          <i class="ph ph-arrow-down"></i> Cargar más
+          <i class="ph ph-arrow-down"></i> ${i18n.t('ui.load_more')}
         </button>
       </div>
     </div>
