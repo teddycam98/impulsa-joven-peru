@@ -10,12 +10,12 @@ export function renderUniversities() {
       <section class="hero-subpage" style="padding: 240px 0 40px 0; background: radial-gradient(circle at top center, rgba(10, 77, 163, 0.3) 0%, rgba(4, 27, 77, 0) 70%); text-align: center;">
         <div class="container text-center">
           <div class="hero-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 199, 0, 0.15); border: 1px solid rgba(255, 199, 0, 0.3); color: #FFC700; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 15px;">
-            <i class="ph-fill ph-buildings"></i> <span>Directorio Educativo del Perú</span>
+            <i class="ph-fill ph-buildings"></i> <span data-i18n="cat.universities.badge">${i18n.t('cat.universities.badge')}</span>
           </div>
           <h1 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 12px;">
             ${i18n.t('cat.universities.title_h1')}
           </h1>
-          <p class="muted" style="max-width: 750px; margin: 0 auto 30px auto; font-size: 1.05rem; line-height: 1.6;">
+          <p class="muted" style="max-width: 750px; margin: 0 auto 30px auto; font-size: 1.05rem; line-height: 1.6;" data-i18n="cat.universities.desc">
             ${i18n.t('cat.universities.desc')}
           </p>
 
@@ -24,23 +24,23 @@ export function renderUniversities() {
             <!-- Search Input -->
             <div style="position: relative;">
               <i class="ph ph-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.1rem;"></i>
-              <input type="text" id="uniSearchInput" placeholder="${i18n.t('filter.search_universities')}" style="width: 100%; padding: 12px 14px 12px 40px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;" />
+              <input type="text" id="uniSearchInput" placeholder="${i18n.t('filter.search_universities')}" data-i18n-placeholder="filter.search_universities" style="width: 100%; padding: 12px 14px 12px 40px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;" />
             </div>
 
             <!-- Type Filter -->
             <div>
               <select id="uniTypeFilter" style="width: 100%; padding: 12px 14px; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
-                <option value="all">${i18n.t('filter.type.all')}</option>
-                <option value="publica">Universidades Públicas</option>
-                <option value="privada">Universidades Privadas</option>
-                <option value="instituto">Escuelas Superiores / Institutos</option>
+                <option value="all" data-i18n="filter.type.all">${i18n.t('filter.type.all')}</option>
+                <option value="publica" data-i18n="filter.type.public">${i18n.t('filter.type.public')}</option>
+                <option value="privada" data-i18n="filter.type.private">${i18n.t('filter.type.private')}</option>
+                <option value="instituto" data-i18n="filter.type.institute">${i18n.t('filter.type.institute')}</option>
               </select>
             </div>
 
             <!-- Region Filter -->
             <div>
               <select id="uniRegionFilter" style="width: 100%; padding: 12px 14px; background: rgba(10, 25, 60, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-family: 'Outfit', sans-serif; font-size: 0.9rem;">
-                <option value="all">${i18n.t('filter.location.all')}</option>
+                <option value="all" data-i18n="filter.location.all">${i18n.t('filter.location.all')}</option>
                 <option value="Ayacucho">Ayacucho</option>
                 <option value="Lima">Lima</option>
                 <option value="Arequipa">Arequipa</option>
@@ -58,7 +58,7 @@ export function renderUniversities() {
       <section class="container" style="margin-top: 40px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
           <h2 style="font-size: 1.6rem; font-weight: 700; color: white; margin: 0;">
-            Listado de Instituciones Disponibles (<span id="uniCountDisplay">${universitiesData.length}</span>)
+            <span data-i18n="cat.universities.list_title">${i18n.t('cat.universities.list_title')}</span> (<span id="uniCountDisplay">${universitiesData.length}</span>)
           </h2>
         </div>
 
@@ -87,7 +87,7 @@ function renderUniversitiesList(items) {
       
       ${uni.featured ? `
         <div style="position: absolute; top: 15px; right: -32px; transform: rotate(45deg); background: #FFC700; color: #041B4D; font-size: 0.68rem; font-weight: 900; padding: 4px 35px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-transform: uppercase;">
-          Destacado
+          <span data-i18n="uni.featured_badge">${i18n.t('uni.featured_badge')}</span>
         </div>
       ` : ''}
 
@@ -111,7 +111,7 @@ function renderUniversitiesList(items) {
       <!-- Badges de Becas -->
       <div style="margin-bottom: 16px;">
         <div style="font-size: 0.8rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-          <i class="ph-fill ph-graduation-cap" style="color: #FFC700;"></i> <span>Becas Aplicables:</span>
+          <i class="ph-fill ph-graduation-cap" style="color: #FFC700;"></i> <span data-i18n="uni.applicable_scholarships">${i18n.t('uni.applicable_scholarships')}</span>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 6px;">
           ${uni.becas.map(b => `
@@ -125,7 +125,7 @@ function renderUniversitiesList(items) {
       <!-- Badges de Cursos Gratuitos -->
       <div style="margin-bottom: 20px; flex-grow: 1;">
         <div style="font-size: 0.8rem; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-          <i class="ph-fill ph-book-open" style="color: #FFC700;"></i> <span>Oferta / Cursos Gratuitos:</span>
+          <i class="ph-fill ph-book-open" style="color: #FFC700;"></i> <span data-i18n="uni.free_courses_offer">${i18n.t('uni.free_courses_offer')}</span>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 6px;">
           ${uni.cursos.map(c => `
@@ -142,7 +142,7 @@ function renderUniversitiesList(items) {
           <i class="ph-fill ph-map-pin" style="color: #FFC700;"></i> ${uni.region}
         </div>
         <a href="${uni.website}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: rgba(255,199,0,0.4); color: #FFC700; font-weight: 700; font-size: 0.82rem; padding: 8px 14px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-          Ver Portal <i class="ph ph-arrow-square-out"></i>
+          <span data-i18n="uni.view_portal">${i18n.t('uni.view_portal')}</span> <i class="ph ph-arrow-square-out"></i>
         </a>
       </div>
 
