@@ -23,6 +23,7 @@ export const es = {
   "home.hero.subtitle": "Encuentra becas, cursos gratuitos, empleos, prácticas, concursos y voluntariados<br>para crecer sin límites en todo el Perú.",
   "home.hero.btn_explore": "Explorar oportunidades",
   "home.hero.btn_new": "Soy nuevo aquí",
+  "home.hero.phrase": "Grandes sueños comienzan con grandes oportunidades",
   
   "home.stats.scholarships": "Becas vigentes",
   "home.stats.courses": "Cursos gratuitos",

@@ -23,6 +23,7 @@ export const qu = {
   "home.hero.subtitle": "Tariy becakunata, mana qullqiyuq kursukunata, llamk'anakunata, yachapakuykunata<br>ñawpaqman rinaykipaq.",
   "home.hero.btn_explore": "Qaway tukuyta",
   "home.hero.btn_new": "Musuq kani kaypi",
+  "home.hero.phrase": "Hatun musquykuna hatun oportunidadkunawan qallarin",
   
   "home.stats.scholarships": "Kachkan becakuna",
   "home.stats.courses": "Mana qullqiyuq kursukuna",

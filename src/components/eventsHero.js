@@ -6,10 +6,8 @@ export function renderEventsHero() {
 
   return `
     <section class="events-hero-section">
-      <div class="container">
-        
-        <!-- Cinematic Panoramic Showcase Slider (Image 5 Reference) -->
-        <div id="eventsSliderWrapper" class="events-cinematic-container">
+      <!-- Cinematic Panoramic Showcase Slider (Image 5 Reference - Edge-to-Edge) -->
+      <div id="eventsSliderWrapper" class="events-cinematic-container">
           
           <!-- Top Luminous Line -->
           <div class="events-top-luminous-line"></div>
@@ -157,8 +155,6 @@ export function renderEventsHero() {
           </div>
 
         </div>
-
-      </div>
     </section>
   `;
 }
