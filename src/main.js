@@ -84,15 +84,6 @@ async function router() {
     path = '/';
   }
   
-  // Show global loading state
-  app.innerHTML = `
-    <div style="position: fixed; inset: 0; display: flex; justify-content: center; align-items: center; z-index: 9999; flex-direction: column; background: #041B4D;">
-      <div class="spinner" style="border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--secondary-yellow); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
-      <p style="margin-top: 15px; color: var(--secondary-yellow); font-weight: bold;">Cargando...</p>
-    </div>
-    <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-  `;
-  
   try {
     if (path.startsWith('/oportunidad/')) {
       const oppId = path.replace('/oportunidad/', '').trim();

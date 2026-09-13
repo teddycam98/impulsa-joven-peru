@@ -2529,3 +2529,31 @@ select.admin-input:focus-visible {
   .uni-modal-footer { padding: 14px 16px; flex-direction: column-reverse; }
   .btn-uni-portal { width: 100%; justify-content: center; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE & GPU ACCELERATION OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════════ */
+.event-slide,
+.hero-cutout-img,
+.scroll-card,
+.events-slider-wrap {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  /* Lightweight blur on mobile devices for 60 FPS smooth scrolling */
+  .navbar,
+  .slide-live-badge,
+  .slide-info-card,
+  .uni-modal-container,
+  .glass-panel {
+    -webkit-backdrop-filter: blur(14px) !important;
+    backdrop-filter: blur(14px) !important;
+  }
+  
+  .slide-campus-photo {
+    transition: none !important;
+  }
+}

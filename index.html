@@ -31,8 +31,12 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <title>Impulsa Joven Perú - Oportunidades para tu futuro</title>
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Preload Critical Hero Image & Preconnect External CDNs -->
+    <link rel="preload" as="image" href="/jovenes.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <!-- Phosphor Icons (Non-blocking) -->
+    <script defer src="https://unpkg.com/@phosphor-icons/web"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

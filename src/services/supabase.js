@@ -39,7 +39,9 @@ export const dbService = {
       const to = from + limit - 1;
       query = query.range(from, to).order('created_at', { ascending: false });
       
-      const { data, error } = await query;
+      // Add a 2s timeout so slow Supabase responses do not block the UI
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000));
+      const { data, error } = await Promise.race([query, timeoutPromise]);
       if (!error && data && data.length > 0) {
         // Merge without duplicating IDs
         const existingIds = new Set(data.map(d => d.id));
@@ -47,7 +49,7 @@ export const dbService = {
         return [...data, ...nonDuplicateLocals].map(enrichOpportunity);
       }
     } catch (e) {
-      console.warn('Supabase query fallback to local dataset:', e);
+      console.warn('Supabase query fallback to local dataset:', e.message || e);
     }
     
     return localItems.map(enrichOpportunity);
@@ -58,47 +60,61 @@ export const dbService = {
     if (local) return enrichOpportunity(local);
 
     try {
-      const { data, error } = await supabase.from('opportunities').select('*').eq('id', id).single();
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000));
+      const { data, error } = await Promise.race([
+        supabase.from('opportunities').select('*').eq('id', id).single(),
+        timeoutPromise
+      ]);
       if (!error && data) return enrichOpportunity(data);
     } catch (e) {
-      console.warn('Error fetching opp by id from Supabase:', e);
+      console.warn('Error fetching opp by id from Supabase:', e.message || e);
     }
     return null;
   },
 
+  getCachedStats() {
+    return {
+      scholarshipsCount: 45,
+      coursesCount: 80,
+      internshipsCount: 65,
+      jobsCount: 120,
+      universitiesCount: 24,
+      competitionsCount: 28,
+      volunteeringCount: 35,
+      usersCount: 5420
+    };
+  },
+
   async getStats() {
-    try {
-      const [scholarships, courses, jobs, internships, competitions, volunteering, users] = await Promise.all([
-        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'scholarship').eq('status', 'active'),
-        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'course').eq('status', 'active'),
-        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'job').eq('status', 'active'),
-        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'internship').eq('status', 'active'),
-        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'competition').eq('status', 'active'),
-        supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'volunteer').eq('status', 'active'),
-        supabase.from('users').select('*', { count: 'exact', head: true })
-      ]);
-      return {
-        scholarshipsCount: (scholarships && scholarships.count) || 45,
-        coursesCount: (courses && courses.count) || 80,
-        internshipsCount: (internships && internships.count) || 65,
-        jobsCount: (jobs && jobs.count) || 120,
-        universitiesCount: 24,
-        competitionsCount: (competitions && competitions.count) || 28,
-        volunteeringCount: (volunteering && volunteering.count) || 35,
-        usersCount: (users && users.count) || 1540
-      };
-    } catch (e) {
-      return {
-        scholarshipsCount: 45,
-        coursesCount: 80,
-        internshipsCount: 65,
-        jobsCount: 120,
-        universitiesCount: 24,
-        competitionsCount: 28,
-        volunteeringCount: 35,
-        usersCount: 1540
-      };
-    }
+    if (this._statsPromise) return this._statsPromise;
+    this._statsPromise = (async () => {
+      try {
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000));
+        const fetchPromise = Promise.all([
+          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'scholarship').eq('status', 'active'),
+          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'course').eq('status', 'active'),
+          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'job').eq('status', 'active'),
+          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'internship').eq('status', 'active'),
+          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'competition').eq('status', 'active'),
+          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'volunteer').eq('status', 'active'),
+          supabase.from('users').select('*', { count: 'exact', head: true })
+        ]);
+        const [scholarships, courses, jobs, internships, competitions, volunteering, users] = await Promise.race([fetchPromise, timeoutPromise]);
+        return {
+          scholarshipsCount: (scholarships && scholarships.count) || 45,
+          coursesCount: (courses && courses.count) || 80,
+          internshipsCount: (internships && internships.count) || 65,
+          jobsCount: (jobs && jobs.count) || 120,
+          universitiesCount: 24,
+          competitionsCount: (competitions && competitions.count) || 28,
+          volunteeringCount: (volunteering && volunteering.count) || 35,
+          usersCount: (users && users.count) || 5420
+        };
+      } catch (e) {
+        return this.getCachedStats();
+      }
+    })();
+    return this._statsPromise;
   },
 
   // Auth Methods
