@@ -160,7 +160,7 @@ export const OPPORTUNITY_TRANSLATIONS = {
       description: 'Professional technical training scholarship for youth with a vocation in technology and business. Fast-track job placement and official degree in the Name of the Nation.',
       requirements: ['Completed secondary education.', 'Passing grade in vocational orientation test.', 'Dedication to complete technical major.'],
       benefits: ['Up to 100% tuition subsidy throughout the program.', 'Official national technical degree certification.', 'Direct corporate agreements for job placement.'],
-      steps: ['Register online at lapontificia.edu.pe.', 'Take aptitude assessment.', 'Complete academic interview and formal enrollment.']
+      steps: ['Register online at elp.edu.pe.', 'Take aptitude assessment.', 'Complete academic interview and formal enrollment.']
     },
     'beca-permanencia': {
       title: 'Beca Permanencia Académica',
@@ -1045,7 +1045,7 @@ export const OPPORTUNITY_TRANSLATIONS = {
       description: 'Tecnico profesional yachay negociospi tecnologiapipas, oficial titulowan.',
       requirements: ['Secundaria tukusqa kay.', 'Vocacional pruebata pasay.'],
       benefits: ['100%kama beca yanapay.', 'Titulo a Nombre de la Nación chaskiy.'],
-      steps: ['lapontificia.edu.pe portalpi qillqakuy.', 'Entrevistata pasay.']
+      steps: ['elp.edu.pe portalpi qillqakuy.', 'Entrevistata pasay.']
     },
     'beca-permanencia': {
       title: 'Beca Permanencia Académica',

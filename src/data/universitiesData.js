@@ -8,7 +8,7 @@ export const universitiesData = [
     region: 'Ayacucho',
     regionsAvailable: ['Ayacucho', 'Huancayo', 'Lima'],
     logo: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80',
-    coverImage: '/images/elp_card.png',
+    coverImage: '/images/elp_card.jpg',
     modalidad: 'Presencial, Semipresencial y Virtual',
     description: 'Institución de educación superior enfocada en la formación tecnológica de alta empleabilidad con convenios de becas nacionales e internacionales y titulación a nombre de la Nación.',
     carreras: [
@@ -39,7 +39,7 @@ export const universitiesData = [
       'Ficha de inscripción debidamente llenada',
       'Acreditación de tercio superior o condición Pronabec (para becas)'
     ],
-    website: 'https://lapontificia.edu.pe',
+    website: 'https://www.elp.edu.pe/',
     phone: '+51 966 123 456',
     featured: true
   },

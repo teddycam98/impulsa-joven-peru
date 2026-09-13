@@ -96,7 +96,7 @@ export const opportunitiesDetailData = [
     deadline: '2026-09-30',
     description: 'Beca de formación técnica profesional para jóvenes con vocación tecnológica y de negocios. Convenios de rápida inserción laboral y titulación oficial a nombre de la Nación.',
     image_url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80',
-    external_link: 'https://lapontificia.edu.pe',
+    external_link: 'https://www.elp.edu.pe/',
     featured: true,
     requirements: [
       'Haber culminado la educación secundaria completa.',
@@ -391,7 +391,7 @@ export const opportunitiesDetailData = [
     deadline: '2026-10-10',
     description: 'Oportunidad de prácticas para jóvenes estudiantes interesados en administración educativa, gestión de plataformas virtuales y atención al estudiante.',
     image_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80',
-    external_link: 'https://lapontificia.edu.pe',
+    external_link: 'https://www.elp.edu.pe/',
     featured: false,
     requirements: [
       'Estudiante de últimos ciclos de Administración, Contabilidad o Sistemas.',
