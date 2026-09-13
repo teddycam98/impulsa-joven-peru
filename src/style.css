@@ -72,11 +72,16 @@ body {
    CUSTOM SCROLLBAR
    ═══════════════════════════════════════════════════════════════ */
 /* CUSTOM SCROLLBAR - Hidden to prevent white/blue track line on Windows */
-::-webkit-scrollbar { display: none; }
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
 
-/* Firefox scrollbar */
-html {
-  scrollbar-width: none;
+html, body, * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 
@@ -2248,7 +2253,13 @@ select.admin-input:focus-visible {
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transform: translateY(20px) scale(0.97);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  scrollbar-width: thin;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.uni-modal-container::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 .uni-modal-backdrop.is-open .uni-modal-container {
   transform: translateY(0) scale(1);
