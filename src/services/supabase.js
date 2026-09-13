@@ -8,6 +8,39 @@ const supabaseKey = env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_YNzJoRqjVlZV0X
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
+export const DEMO_ACCOUNTS = {
+  'admin@impulsajoven.pe': {
+    id: 'demo-admin-id',
+    email: 'admin@impulsajoven.pe',
+    password: 'Admin123!',
+    name: 'Administrador General',
+    role: 'admin',
+    roleLabel: 'Administrador',
+    avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    created_at: '2026-01-15T10:00:00.000Z'
+  },
+  'empresa@impulsajoven.pe': {
+    id: 'demo-company-id',
+    email: 'empresa@impulsajoven.pe',
+    password: 'Empresa123!',
+    name: 'Banco de Crédito BCP (Empresa)',
+    role: 'company',
+    roleLabel: 'Empresa / Reclutador',
+    avatar_url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&auto=format&fit=crop&q=80',
+    created_at: '2026-02-20T10:00:00.000Z'
+  },
+  'usuario@impulsajoven.pe': {
+    id: 'demo-user-id',
+    email: 'usuario@impulsajoven.pe',
+    password: 'Usuario123!',
+    name: 'Carlos Mendoza (Estudiante)',
+    role: 'user',
+    roleLabel: 'Estudiante / Postulante',
+    avatar_url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+    created_at: '2026-03-01T10:00:00.000Z'
+  }
+};
+
 export const dbService = {
   async getOpportunities(params = {}) {
     let { category, limit = 12, page = 0, search = '', featured, active = true } = params;
@@ -141,6 +174,18 @@ export const dbService = {
   },
 
   async signIn(email, password) {
+    const cleanEmail = email ? email.toLowerCase().trim() : '';
+    const demo = DEMO_ACCOUNTS[cleanEmail];
+    if (demo) {
+      if (password === demo.password) {
+        localStorage.setItem('ij_demo_user', JSON.stringify(demo));
+        window.dispatchEvent(new CustomEvent('authStateChanged', { detail: { event: 'SIGNED_IN', user: demo } }));
+        return { user: demo, session: { user: demo, access_token: 'demo-token' } };
+      } else {
+        throw new Error('Credenciales incorrectas');
+      }
+    }
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -178,11 +223,25 @@ export const dbService = {
   },
 
   async logout() {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    localStorage.removeItem('ij_demo_user');
+    window.dispatchEvent(new CustomEvent('authStateChanged', { detail: { event: 'SIGNED_OUT', user: null } }));
+    try {
+      await supabase.auth.signOut();
+    } catch (e) {
+      console.warn('Supabase signout warning:', e);
+    }
   },
 
   async getCurrentUser() {
+    const stored = localStorage.getItem('ij_demo_user');
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        localStorage.removeItem('ij_demo_user');
+      }
+    }
+
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return null;
     
@@ -198,11 +257,17 @@ export const dbService = {
       email: session.user.email,
       name: userRecord?.full_name || session.user.user_metadata?.full_name || session.user.email.split('@')[0],
       avatar_url: userRecord?.avatar_url || session.user.user_metadata?.avatar_url,
+      role: userRecord?.role || 'user',
+      roleLabel: userRecord?.role === 'admin' ? 'Administrador' : (userRecord?.role === 'company' ? 'Empresa' : 'Estudiante'),
       created_at: userRecord?.created_at || session.user.created_at
     };
   },
 
   onAuthStateChange(callback) {
+    window.addEventListener('authStateChanged', (e) => {
+      callback(e.detail.event, e.detail.user ? { user: e.detail.user } : null);
+    });
+
     return supabase.auth.onAuthStateChange(async (event, session) => {
       if (session) {
         // Ensure user is synced to public.users on OAuth login
@@ -222,6 +287,35 @@ export const dbService = {
   
   // Favorites
   async toggleFavorite(opportunityId, category) {
+    const user = await this.getCurrentUser();
+    if (!user) throw new Error('Debes iniciar sesión para guardar favoritos');
+    
+    if (user.id && user.id.startsWith('demo-')) {
+      const key = `ij_demo_favs_${user.id}`;
+      let favs = [];
+      try {
+        favs = JSON.parse(localStorage.getItem(key) || '[]');
+      } catch (e) {
+        favs = [];
+      }
+      const idx = favs.findIndex(f => f.opportunity_id === opportunityId);
+      if (idx >= 0) {
+        favs.splice(idx, 1);
+        localStorage.setItem(key, JSON.stringify(favs));
+        return false;
+      } else {
+        favs.unshift({
+          id: 'fav-' + Date.now(),
+          user_id: user.id,
+          opportunity_id: opportunityId,
+          category: category || 'scholarship',
+          created_at: new Date().toISOString()
+        });
+        localStorage.setItem(key, JSON.stringify(favs));
+        return true;
+      }
+    }
+
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) throw new Error('Debes iniciar sesión para guardar favoritos');
     
@@ -250,6 +344,19 @@ export const dbService = {
   },
   
   async getFavoriteIds() {
+    const user = await this.getCurrentUser();
+    if (!user) return [];
+
+    if (user.id && user.id.startsWith('demo-')) {
+      const key = `ij_demo_favs_${user.id}`;
+      try {
+        const favs = JSON.parse(localStorage.getItem(key) || '[]');
+        return favs.map(f => f.opportunity_id);
+      } catch (e) {
+        return [];
+      }
+    }
+
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return [];
     
@@ -258,14 +365,37 @@ export const dbService = {
   },
   
   async getFavoritesCount() {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return 0;
-    
-    const { count } = await supabase.from('favorites').select('id', { count: 'exact', head: true }).eq('user_id', session.user.id);
-    return count || 0;
+    const ids = await this.getFavoriteIds();
+    return ids.length;
   },
   
   async getFavorites(userId) {
+    const user = await this.getCurrentUser();
+    if (user && user.id && user.id.startsWith('demo-')) {
+      const key = `ij_demo_favs_${user.id}`;
+      let favs = [];
+      try {
+        favs = JSON.parse(localStorage.getItem(key) || '[]');
+      } catch (e) {
+        favs = [];
+      }
+      // Seed if empty for demo users so they have immediate interactive data
+      if (favs.length === 0) {
+        favs = opportunitiesDetailData.slice(0, 3).map(item => ({
+          id: 'fav-seed-' + item.id,
+          user_id: user.id,
+          opportunity_id: item.id,
+          category: item.category,
+          created_at: new Date().toISOString()
+        }));
+        localStorage.setItem(key, JSON.stringify(favs));
+      }
+      return favs.map(fav => ({
+        ...fav,
+        opportunity_data: opportunitiesDetailData.find(i => i.id === fav.opportunity_id)
+      })).filter(f => f.opportunity_data);
+    }
+
     const { data: favs } = await supabase.from('favorites').select('*').eq('user_id', userId).order('created_at', { ascending: false });
     if (!favs || favs.length === 0) return [];
     
@@ -276,7 +406,7 @@ export const dbService = {
     
     // Map items back to favorites for consistent ordering
     const enriched = favs.map(fav => {
-      return { ...fav, opportunity_data: items.find(i => i.id === fav.opportunity_id) };
+      return { ...fav, opportunity_data: items.find(i => i.id === fav.opportunity_id) || opportunitiesDetailData.find(i => i.id === fav.opportunity_id) };
     });
     
     return enriched.filter(f => f.opportunity_data);
@@ -284,18 +414,39 @@ export const dbService = {
   
   // Admin Methods
   async createOpportunity(data) {
-    const { data: res, error } = await supabase.from('opportunities').insert([data]);
-    if (error) throw error;
-    return res;
+    try {
+      const { data: res, error } = await supabase.from('opportunities').insert([data]);
+      if (error) throw error;
+      return res;
+    } catch (err) {
+      console.warn('Supabase create fallback to local:', err.message);
+      const newOpp = { id: 'opp-demo-' + Date.now(), ...data, created_at: new Date().toISOString() };
+      opportunitiesDetailData.unshift(newOpp);
+      return [newOpp];
+    }
   },
   async updateOpportunity(id, data) {
-    const { data: res, error } = await supabase.from('opportunities').update(data).eq('id', id);
-    if (error) throw error;
-    return res;
+    try {
+      const { data: res, error } = await supabase.from('opportunities').update(data).eq('id', id);
+      if (error) throw error;
+      return res;
+    } catch (err) {
+      console.warn('Supabase update fallback to local:', err.message);
+      const idx = opportunitiesDetailData.findIndex(o => o.id === id);
+      if (idx >= 0) opportunitiesDetailData[idx] = { ...opportunitiesDetailData[idx], ...data };
+      return [opportunitiesDetailData[idx]];
+    }
   },
   async deleteOpportunity(id) {
-    const { data: res, error } = await supabase.from('opportunities').delete().eq('id', id);
-    if (error) throw error;
-    return res;
+    try {
+      const { data: res, error } = await supabase.from('opportunities').delete().eq('id', id);
+      if (error) throw error;
+      return res;
+    } catch (err) {
+      console.warn('Supabase delete fallback to local:', err.message);
+      const idx = opportunitiesDetailData.findIndex(o => o.id === id);
+      if (idx >= 0) opportunitiesDetailData.splice(idx, 1);
+      return true;
+    }
   }
 };

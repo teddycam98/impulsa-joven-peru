@@ -42,9 +42,32 @@ export async function renderProfile() {
           <i class="ph-fill ph-envelope-simple"></i> ${user.email}
         </p>
         
-        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,213,0,0.1); color: var(--secondary-yellow); padding: 8px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: 600; margin-bottom: 35px;">
-          <i class="ph-fill ph-calendar-check"></i> Miembro desde ${formattedDate}
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;">
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,213,0,0.1); color: var(--secondary-yellow); padding: 8px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: 600;">
+            <i class="ph-fill ph-calendar-check"></i> Miembro desde ${formattedDate}
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: ${user.role === 'admin' ? 'rgba(239,68,68,0.2)' : (user.role === 'company' ? 'rgba(59,130,246,0.2)' : 'rgba(255,213,0,0.15)')}; color: ${user.role === 'admin' ? '#f87171' : (user.role === 'company' ? '#60a5fa' : '#FFD600')}; border: 1px solid ${user.role === 'admin' ? '#ef4444' : (user.role === 'company' ? '#3b82f6' : '#FFD600')}; padding: 8px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">
+            <i class="ph-fill ${user.role === 'admin' ? 'ph-shield-check' : (user.role === 'company' ? 'ph-buildings' : 'ph-user')}"></i> Rol: ${user.roleLabel || (user.role === 'admin' ? 'Administrador' : (user.role === 'company' ? 'Empresa' : 'Estudiante'))}
+          </div>
         </div>
+
+        ${user.role === 'admin' ? `
+          <div style="width: 100%; margin-bottom: 25px; padding: 18px; border-radius: 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); text-align: center;">
+            <p style="color: #fca5a5; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Tienes acceso privilegiado de <strong>Administrador General</strong></p>
+            <a href="/admin" data-link class="btn" style="background: #ef4444; color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 22px; border-radius: 12px;">
+              <i class="ph-fill ph-shield-check"></i> Ir al Panel de Control Admin
+            </a>
+          </div>
+        ` : ''}
+
+        ${user.role === 'company' ? `
+          <div style="width: 100%; margin-bottom: 25px; padding: 18px; border-radius: 16px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); text-align: center;">
+            <p style="color: #93c5fd; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Tienes acceso al <strong>Portal de Empresas y Reclutadores ATS</strong></p>
+            <a href="/portal-empresa" data-link class="btn" style="background: #3b82f6; color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; padding: 10px 22px; border-radius: 12px;">
+              <i class="ph-fill ph-buildings"></i> Ir al Portal Empresa & ATS
+            </a>
+          </div>
+        ` : ''}
 
         <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 35px;">
           <a href="/favoritos" data-link style="text-decoration: none; background: rgba(255,255,255,0.05); padding: 25px 20px; border-radius: 20px; transition: transform 0.3s ease; cursor: pointer; display: block;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">

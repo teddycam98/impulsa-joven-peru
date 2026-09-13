@@ -267,13 +267,34 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       const dropdownHeader = document.getElementById('dropdownHeader');
       if (dropdownHeader) {
+        const roleColor = user.role === 'admin' ? '#ef4444' : (user.role === 'company' ? '#3b82f6' : '#FFD600');
+        const roleTextColor = user.role === 'user' ? '#041B4D' : '#ffffff';
         dropdownHeader.innerHTML = `
           <img src="${avatar}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--secondary-yellow);">
           <div style="display: flex; flex-direction: column;">
             <span style="color: white; font-weight: bold; font-size: 0.95rem;">${user.name}</span>
-            <span class="muted" style="font-size: 0.8rem;">${user.email}</span>
+            <span class="muted" style="font-size: 0.78rem;">${user.email}</span>
+            <span style="display: inline-block; background: ${roleColor}; color: ${roleTextColor}; font-size: 0.7rem; font-weight: 800; border-radius: 4px; padding: 2px 8px; width: fit-content; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px;">
+              ${user.roleLabel || (user.role === 'admin' ? 'Administrador' : (user.role === 'company' ? 'Empresa' : 'Estudiante'))}
+            </span>
           </div>
         `;
+      }
+
+      const roleNavLinks = document.getElementById('roleNavLinks');
+      if (roleNavLinks) {
+        if (user.role === 'admin') {
+          roleNavLinks.innerHTML = `
+            <a href="/admin" data-link class="dropdown-item" style="padding: 12px 15px; color: #FFD600; text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; background: rgba(255,214,0,0.08); transition: background 0.2s;"><i class="ph-fill ph-shield-check" style="font-size: 1.1rem; color: #ef4444;"></i> <span>Panel Admin</span></a>
+            <a href="/portal-empresa" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph-fill ph-buildings" style="font-size: 1.1rem; color: #60a5fa;"></i> <span>Portal Empresa</span></a>
+          `;
+        } else if (user.role === 'company') {
+          roleNavLinks.innerHTML = `
+            <a href="/portal-empresa" data-link class="dropdown-item" style="padding: 12px 15px; color: #FFD600; text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; background: rgba(59,130,246,0.08); transition: background 0.2s;"><i class="ph-fill ph-buildings" style="font-size: 1.1rem; color: #60a5fa;"></i> <span>Portal Empresa / ATS</span></a>
+          `;
+        } else {
+          roleNavLinks.innerHTML = '';
+        }
       }
       
       const btnLogout = document.getElementById('btnLogout');
@@ -295,6 +316,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       greeting.classList.add('hidden');
       document.getElementById('userNameDisplay').innerHTML = '';
+      const roleNavLinks = document.getElementById('roleNavLinks');
+      if (roleNavLinks) roleNavLinks.innerHTML = '';
       btnReg.classList.remove('hidden');
     }
   }
@@ -375,6 +398,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     setAuthMode('reset');
   });
 
+  // Demo 1-Click Login Helper
+  window.ijDemoLogin = async (email, password) => {
+    const emailInput = document.getElementById('regEmail');
+    const passwordInput = document.getElementById('regPassword');
+    if (emailInput) emailInput.value = email;
+    if (passwordInput) passwordInput.value = password;
+    hideMessage();
+    btnAuthSubmit.disabled = true;
+    authSpinner.classList.remove('hidden');
+    try {
+      const res = await dbService.signIn(email, password);
+      const loggedUser = res?.user || (await dbService.getCurrentUser());
+      updateUserUI(loggedUser);
+      modal.classList.add('hidden');
+      if (loggedUser?.role === 'admin') {
+        window.history.pushState(null, null, '/admin');
+      } else if (loggedUser?.role === 'company') {
+        window.history.pushState(null, null, '/portal-empresa');
+      } else {
+        window.history.pushState(null, null, '/perfil');
+      }
+      router();
+    } catch (err) {
+      showMessage(err.message === 'Invalid login credentials' ? 'Credenciales incorrectas' : err.message);
+    } finally {
+      btnAuthSubmit.disabled = false;
+      authSpinner.classList.add('hidden');
+    }
+  };
+
   // Social Login
   if (btnGoogleLogin) {
     btnGoogleLogin.addEventListener('click', async (e) => {
@@ -382,7 +435,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       try { await dbService.signInWithGoogle(); } catch (err) { showMessage(err.message); }
     });
   }
-  
   
   // Submit Form
   authForm.addEventListener('submit', async (e) => {
@@ -396,8 +448,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
       if (authMode === 'login') {
-        await dbService.signIn(email, password);
-        window.history.pushState(null, null, '/perfil');
+        const res = await dbService.signIn(email, password);
+        const loggedUser = res?.user || (await dbService.getCurrentUser());
+        updateUserUI(loggedUser);
+        modal.classList.add('hidden');
+        if (loggedUser?.role === 'admin') {
+          window.history.pushState(null, null, '/admin');
+        } else if (loggedUser?.role === 'company') {
+          window.history.pushState(null, null, '/portal-empresa');
+        } else {
+          window.history.pushState(null, null, '/perfil');
+        }
         router();
       } else if (authMode === 'register') {
         const name = document.getElementById('regName').value;

@@ -97,6 +97,7 @@
               </div>
               <a href="/perfil" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-user"></i> <span data-i18n="nav.profile">Mi Perfil</span></a>
               <a href="/favoritos" data-link class="dropdown-item" style="padding: 12px 15px; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; transition: background 0.2s;"><i class="ph ph-heart"></i> <span data-i18n="nav.favorites">Mis Favoritos</span></a>
+              <div id="roleNavLinks"></div>
               <div style="border-top: 1px solid rgba(255,255,255,0.1);"></div>
               <button id="btnLogout" class="dropdown-item" style="padding: 12px 15px; background: transparent; border: none; color: #ff6b6b; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 1rem; width: 100%; transition: background 0.2s;"><i class="ph ph-sign-out"></i> <span data-i18n="nav.logout">Cerrar sesión</span></button>
             </div>
@@ -142,7 +143,36 @@
         <div>
           <img src="/logo.svg" alt="Impulsa Joven" style="height: 90px; margin-bottom: 20px; display: inline-block;">
           <h2 id="modalTitle" style="margin-bottom: 10px; color: white; font-weight: 800; font-size: 1.8rem;" data-i18n="auth.modal_title">Bienvenido de vuelta</h2>
-          <p id="modalDesc" class="muted" style="margin-bottom: 25px;" data-i18n="auth.modal_desc">Ingresa para seguir impulsando tu futuro.</p>
+          <p id="modalDesc" class="muted" style="margin-bottom: 20px;" data-i18n="auth.modal_desc">Ingresa para seguir impulsando tu futuro.</p>
+          
+          <!-- Demo Accounts 1-Click Access Panel -->
+          <div id="demoAccountsPanel" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 214, 0, 0.35); border-radius: 16px; padding: 14px 16px; margin-bottom: 22px; text-align: left;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+              <span style="font-size: 0.78rem; font-weight: 800; color: #FFD600; text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; gap: 6px;">
+                <i class="ph-fill ph-lightning"></i> Cuentas Demo de Prueba (1 Clic)
+              </span>
+              <span style="font-size: 0.72rem; color: rgba(255,255,255,0.5);">Auto-ingreso</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+              <button type="button" class="btn-demo-quick" onclick="window.ijDemoLogin('usuario@impulsajoven.pe', 'Usuario123!')" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 8px 6px; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Outfit', sans-serif; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,214,0,0.2)'; this.style.borderColor='#FFD600';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.borderColor='rgba(255,255,255,0.18)';">
+                <i class="ph-fill ph-user" style="color: #FFD600; font-size: 1.1rem;"></i>
+                <span style="font-size: 0.76rem; font-weight: 700;">Estudiante</span>
+                <span style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">usuario@</span>
+              </button>
+
+              <button type="button" class="btn-demo-quick" onclick="window.ijDemoLogin('admin@impulsajoven.pe', 'Admin123!')" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 8px 6px; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Outfit', sans-serif; transition: all 0.2s;" onmouseover="this.style.background='rgba(239,68,68,0.2)'; this.style.borderColor='#ef4444';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.borderColor='rgba(255,255,255,0.18)';">
+                <i class="ph-fill ph-shield-check" style="color: #f87171; font-size: 1.1rem;"></i>
+                <span style="font-size: 0.76rem; font-weight: 700;">Admin</span>
+                <span style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">admin@</span>
+              </button>
+
+              <button type="button" class="btn-demo-quick" onclick="window.ijDemoLogin('empresa@impulsajoven.pe', 'Empresa123!')" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 8px 6px; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Outfit', sans-serif; transition: all 0.2s;" onmouseover="this.style.background='rgba(59,130,246,0.2)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.borderColor='rgba(255,255,255,0.18)';">
+                <i class="ph-fill ph-buildings" style="color: #60a5fa; font-size: 1.1rem;"></i>
+                <span style="font-size: 0.76rem; font-weight: 700;">Empresa</span>
+                <span style="font-size: 0.65rem; color: rgba(255,255,255,0.6);">empresa@</span>
+              </button>
+            </div>
+          </div>
           
           <div id="socialLoginGroup">
             <button id="btnGoogleLogin" class="btn w-100" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #333; border: none; font-weight: 600; padding: 12px; border-radius: 12px; transition: all 0.3s ease;">
