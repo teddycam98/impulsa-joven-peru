@@ -1190,7 +1190,7 @@ input { width: 100%; padding: 15px 20px; border: 2px solid #eee; border-radius: 
 .admin-container {
   max-width: 1480px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 140px 24px 60px 24px;
 }
 
 /* --- Admin Header Banner --- */
@@ -1896,11 +1896,13 @@ input { width: 100%; padding: 15px 20px; border: 2px solid #eee; border-radius: 
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 1024px) {
+  .admin-container { padding-top: 120px !important; }
   .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .admin-header-card { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 640px) {
+  .admin-container { padding-top: 110px !important; padding-left: 14px !important; padding-right: 14px !important; }
   .admin-stats-grid { grid-template-columns: 1fr; }
   .admin-tabs-bar { flex-direction: column; }
   .proposal-actions-bar { flex-direction: column; align-items: stretch; }
@@ -2190,7 +2192,7 @@ input { width: 100%; padding: 15px 20px; border: 2px solid #eee; border-radius: 
   .modal-content { padding: 25px; }
 
   .admin-stats-grid { grid-template-columns: 1fr; }
-  .admin-container { padding: 0 10px; }
+  .admin-container { padding-left: 10px !important; padding-right: 10px !important; padding-top: 110px !important; }
   .admin-stat-value { font-size: 2rem; }
 }
 

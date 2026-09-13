@@ -382,7 +382,7 @@ export async function renderAdmin() {
   }).join('');
 
   return `
-    <div class="admin-container" style="margin-top: 30px; margin-bottom: 60px; min-height: 75vh;">
+    <div class="admin-container" style="min-height: 75vh;">
 
       <!-- Header Banner -->
       <div class="admin-header-card">
