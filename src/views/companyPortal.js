@@ -298,19 +298,57 @@ export function initCompanyPortalLogic() {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    if (msgBox) {
-      msgBox.style.display = 'block';
-      msgBox.style.background = 'rgba(16, 185, 129, 0.2)';
-      msgBox.style.color = '#34d399';
-      msgBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
-      msgBox.innerHTML = `
-        <i class="ph-fill ph-check-circle"></i> ¡Convocatoria enviada con éxito! Ha ingresado a la cola de <strong>Aprobación del Administrador</strong>. Te notificaremos apenas sea aprobada.
-      `;
+    const submitBtn = document.getElementById('btnSubmitCompanyPost');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Enviando...';
     }
 
-    form.reset();
+    try {
+      const proposalData = {
+        title: document.getElementById('postTitle')?.value || '',
+        category: document.getElementById('postCategory')?.value || 'internship',
+        organization: document.getElementById('postOrg')?.value || 'Empresa Aliada',
+        modality: document.getElementById('postModality')?.value || 'Híbrido',
+        location: document.getElementById('postLocation')?.value || 'Lima / Nacional',
+        deadline: document.getElementById('postDeadline')?.value || '',
+        description: document.getElementById('postDesc')?.value || '',
+        skills: document.getElementById('postSkills')?.value || '',
+        external_link: document.getElementById('postLink')?.value || 'https://impulsajoven.pe',
+        company_email: 'empresa@impulsajoven.pe',
+        company_phone: '+51 987 654 321',
+        contact_name: 'Área de Selección & Talento'
+      };
+
+      await dbService.submitCompanyProposal(proposalData);
+
+      if (msgBox) {
+        msgBox.style.display = 'block';
+        msgBox.style.background = 'rgba(16, 185, 129, 0.2)';
+        msgBox.style.color = '#34d399';
+        msgBox.style.border = '1px solid rgba(16, 185, 129, 0.4)';
+        msgBox.innerHTML = `
+          <i class="ph-fill ph-check-circle"></i> ¡Convocatoria enviada con éxito! Ha ingresado a la cola de <strong>Aprobación del Administrador</strong>. Te notificaremos apenas sea aprobada.
+        `;
+      }
+
+      form.reset();
+    } catch (err) {
+      if (msgBox) {
+        msgBox.style.display = 'block';
+        msgBox.style.background = 'rgba(239, 68, 68, 0.2)';
+        msgBox.style.color = '#f87171';
+        msgBox.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+        msgBox.innerHTML = `<i class="ph-fill ph-warning-circle"></i> Error al enviar: ${err.message}`;
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Enviar Convocatoria a Aprobación';
+      }
+    }
   });
 }
