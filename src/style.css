@@ -1742,7 +1742,7 @@ select.admin-input:focus-visible {
 .events-slides-track {
   position: relative;
   width: 100%;
-  min-height: 680px; /* Grand & majestic height — no longer compressed */
+  min-height: 760px; /* Grand & majestic height — ample room for huge photo */
 }
 
 .event-slide {
@@ -1770,20 +1770,20 @@ select.admin-input:focus-visible {
   z-index: 0;
 }
 
-/* Content grid — 50/50 split so image occupies half the slider */
+/* Content grid — wide canvas giving the image column maximum prominence */
 .slide-content-grid {
   position: relative;
   z-index: 5;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.9fr 1.15fr;
   align-items: center;
   width: 100%;
-  max-width: 1680px;
+  max-width: 1840px;
   margin: 0 auto;
-  padding: 35px 70px 55px 70px;
-  gap: 50px;
+  padding: 30px 60px 45px 60px;
+  gap: 45px;
   flex: 1;
-  min-height: 680px;
+  min-height: 760px;
   box-sizing: border-box;
 }
 
@@ -2001,16 +2001,16 @@ select.admin-input:focus-visible {
   width: 100%;
 }
 
-/* IMAGE CARD — large, majestic, occupying ~50% of the slider */
+/* IMAGE CARD — substantially larger, occupying the prominent right half of the slider */
 .slide-image-card {
   position: relative;
   width: 100%;
-  max-width: 720px;
-  height: 420px;
-  border-radius: 26px;
+  max-width: 980px; /* Truly grand scale across wide monitors */
+  height: 530px; /* High-impact majestic height */
+  border-radius: 30px;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 30px 85px rgba(0, 0, 0, 0.75);
   background: #020b24;
 }
 .slide-campus-photo {
@@ -2037,9 +2037,9 @@ select.admin-input:focus-visible {
 /* Big phrase overlay on image */
 .slide-img-phrase {
   position: absolute;
-  bottom: 65px;
-  right: 20px;
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  bottom: 80px;
+  right: 28px;
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
   font-weight: 900;
   color: #ffffff;
   text-align: right;
@@ -2480,6 +2480,16 @@ select.admin-input:focus-visible {
 }
 
 /* Responsive */
+@media (max-width: 1400px) {
+  .slide-content-grid {
+    padding: 30px 40px 45px 40px;
+    gap: 35px;
+  }
+  .slide-image-card {
+    height: 470px;
+  }
+}
+
 @media (max-width: 1024px) {
   .slide-content-grid {
     grid-template-columns: 1fr;
