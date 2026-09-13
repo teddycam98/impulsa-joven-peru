@@ -80,7 +80,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
     const catIcon = categoryIcons[opp.category] || 'ph-globe';
     
     return `
-      <a href="/oportunidad/${opp.id}" data-link class="scroll-card" style="animation-delay: ${(index % 12) * 0.06}s; text-decoration: none;">
+      <div class="scroll-card uni-card-clickable" onclick="window.openOpportunityModal('${opp.id}')" style="animation-delay: ${(index % 12) * 0.06}s; cursor: pointer; text-decoration: none;">
         <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${opp.id}" data-category="${opp.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${opp.id}', '${opp.category}')" title="${isFav ? i18n.t('ui.remove_favorite') : i18n.t('ui.save')}">
           <i class="ph-fill ph-heart"></i>
         </button>
@@ -96,10 +96,10 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
           <p>${escapeHTML(opp.description || 'Conoce los requisitos, fechas y cómo postular.')}</p>
           <div class="card-footer">
             <span class="muted"><i class="ph-fill ph-calendar"></i> ${formatDeadline(opp.deadline)}</span>
-            <span class="card-apply-link">${i18n.t('ui.see_more')} <i class="ph ph-arrow-right"></i></span>
+            <span class="card-apply-link" style="color: #FFD600; font-weight: 700;">${i18n.t('ui.see_more')} <i class="ph ph-arrow-right"></i></span>
           </div>
         </div>
-      </a>
+      </div>
     `;
   }).join('');
 }

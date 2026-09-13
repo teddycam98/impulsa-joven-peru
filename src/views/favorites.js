@@ -50,7 +50,7 @@ export async function renderFavorites() {
           const safeLink = item.external_link || '#';
           const imgUrl = item.image_url || getUniqueImage(fav.category, index);
           return `
-            <a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="scroll-card" style="animation-delay: ${index * 0.06}s">
+            <div class="scroll-card uni-card-clickable" onclick="window.openOpportunityModal('${fav.opportunity_id}')" style="animation-delay: ${index * 0.06}s; cursor: pointer; text-decoration: none;">
               <button class="btn-favorite active" data-id="${fav.opportunity_id}" data-category="${fav.category}" onclick="event.preventDefault(); event.stopPropagation(); window.toggleFav(this, '${fav.opportunity_id}', '${fav.category}')">
                 <i class="ph-fill ph-heart"></i>
               </button>
@@ -64,10 +64,10 @@ export async function renderFavorites() {
                 <h3>${item.title || 'Sin título'}</h3>
                 <p>${item.description || 'Descubre esta oportunidad.'}</p>
                 <div class="card-footer">
-                  <span class="card-apply-link" style="font-weight: bold;">Ver más <i class="ph ph-arrow-right"></i></span>
+                  <span class="card-apply-link" style="color: #FFD600; font-weight: bold;">Ver más <i class="ph ph-arrow-right"></i></span>
                 </div>
               </div>
-            </a>
+            </div>
           `;
         }).join('')}
       </div>

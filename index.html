@@ -119,6 +119,18 @@
     <!-- Virtual Assistant -->
     <div id="virtualAssistant"></div>
 
+    <!-- Global Opportunity Detail Modal (Becas, Cursos, Empleos, etc.) -->
+    <div id="oppDetailModal" class="uni-modal-backdrop" onclick="window.handleOppModalBackdrop(event)">
+      <div class="uni-modal-container">
+        <button class="uni-modal-close-btn" onclick="window.closeOppModal()" aria-label="Cerrar modal">
+          <i class="ph ph-x"></i>
+        </button>
+        <div id="oppModalContent">
+          <!-- Dynamically populated on opportunity card click -->
+        </div>
+      </div>
+    </div>
+
     <!-- Register / Login / Reset Modal -->
     <div id="registerModal" class="modal hidden">
       <div class="modal-content text-center" style="max-width: 450px; padding: 40px 30px; border-radius: 20px; background: rgba(10, 25, 60, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">

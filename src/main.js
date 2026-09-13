@@ -21,6 +21,7 @@ import { renderOpportunityDetail } from './views/detail.js';
 import { renderCompanyPortal } from './views/companyPortal.js';
 import { initEventsSlider } from './components/eventsHero.js';
 import { initVirtualAssistant } from './components/virtualAssistant.js';
+import { initOpportunityModal } from './components/opportunityModal.js';
 
 const app = document.getElementById('app');
 
@@ -185,6 +186,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   initVirtualAssistant();
+  initOpportunityModal();
   
   const greeting = document.getElementById('userGreeting');
   const btnReg = document.getElementById('btnRegister');
