@@ -90,7 +90,7 @@ export async function scrapeScholarships() {
       deadline: '2026-11-20',
       description: 'El BCP financia carreras completas en PUCP, Universidad del Pacífico, UTEC, UDEP y Cayetano Heredia para talentos jóvenes peruanos con necesidad económica demostrable.',
       image_url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop&q=80',
-      external_link: 'https://www.viabcp.com/becas-bcp',
+      external_link: 'https://www.viabcp.com/becasbcp',
       featured: true,
       requirements: [
         'Culminar secundaria en tercio superior.',

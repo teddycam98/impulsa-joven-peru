@@ -75,7 +75,7 @@ export const INITIAL_COMPANY_PROPOSALS = [
     ],
     skills: 'Rendimiento académico sobresaliente, Liderazgo social, Compromiso de retribución',
     coverage: '100% Cobertura Integral + Laptop + Manutención Mensual',
-    external_link: 'https://www.viabcp.com/becas-bcp',
+    external_link: 'https://www.viabcp.com/becasbcp',
     image_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80',
     status: 'pending', // 'pending' | 'approved' | 'rejected'
     created_at: '2026-03-12T16:45:00.000Z'
@@ -194,35 +194,7 @@ export const dbService = {
   },
 
   async getStats() {
-    if (this._statsPromise) return this._statsPromise;
-    this._statsPromise = (async () => {
-      try {
-        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000));
-        const fetchPromise = Promise.all([
-          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'scholarship').eq('status', 'active'),
-          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'course').eq('status', 'active'),
-          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'job').eq('status', 'active'),
-          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'internship').eq('status', 'active'),
-          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'competition').eq('status', 'active'),
-          supabase.from('opportunities').select('*', { count: 'exact', head: true }).eq('category', 'volunteer').eq('status', 'active'),
-          supabase.from('users').select('*', { count: 'exact', head: true })
-        ]);
-        const [scholarships, courses, jobs, internships, competitions, volunteering, users] = await Promise.race([fetchPromise, timeoutPromise]);
-        return {
-          scholarshipsCount: (scholarships && scholarships.count) || 45,
-          coursesCount: (courses && courses.count) || 80,
-          internshipsCount: (internships && internships.count) || 65,
-          jobsCount: (jobs && jobs.count) || 120,
-          universitiesCount: 24,
-          competitionsCount: (competitions && competitions.count) || 28,
-          volunteeringCount: (volunteering && volunteering.count) || 35,
-          usersCount: (users && users.count) || 5420
-        };
-      } catch (e) {
-        return this.getCachedStats();
-      }
-    })();
-    return this._statsPromise;
+    return this.getCachedStats();
   },
 
   // Auth Methods
