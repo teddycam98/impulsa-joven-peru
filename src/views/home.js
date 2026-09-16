@@ -92,7 +92,7 @@ export function renderHome() {
           <a href="/becas" data-link class="capsule-item">
             <div class="capsule-icon icon-blue"><i class="ph-fill ph-graduation-cap"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="scholarshipsCount" data-target="${stats.scholarshipsCount || 45}">+${stats.scholarshipsCount || 45}</div>
+              <div class="capsule-num stat-number" data-target-cat="scholarshipsCount" data-target="${stats.scholarshipsCount || 25}">+${stats.scholarshipsCount || 25}</div>
               <div class="capsule-lbl" data-i18n="home.stats.scholarships">${i18n.t('home.stats.scholarships')}</div>
             </div>
           </a>
@@ -102,7 +102,7 @@ export function renderHome() {
           <a href="/cursos" data-link class="capsule-item">
             <div class="capsule-icon icon-cyan"><i class="ph-fill ph-book-open"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="coursesCount" data-target="${stats.coursesCount || 80}">+${stats.coursesCount || 80}</div>
+              <div class="capsule-num stat-number" data-target-cat="coursesCount" data-target="${stats.coursesCount || 22}">+${stats.coursesCount || 22}</div>
               <div class="capsule-lbl" data-i18n="home.stats.courses">${i18n.t('home.stats.courses')}</div>
             </div>
           </a>
@@ -112,7 +112,7 @@ export function renderHome() {
           <a href="/practicas" data-link class="capsule-item">
             <div class="capsule-icon icon-teal"><i class="ph-fill ph-chalkboard-teacher"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="internshipsCount" data-target="${stats.internshipsCount || 65}">+${stats.internshipsCount || 65}</div>
+              <div class="capsule-num stat-number" data-target-cat="internshipsCount" data-target="${stats.internshipsCount || 20}">+${stats.internshipsCount || 20}</div>
               <div class="capsule-lbl" data-i18n="home.stats.internships">${i18n.t('home.stats.internships')}</div>
             </div>
           </a>
@@ -122,7 +122,7 @@ export function renderHome() {
           <a href="/empleos" data-link class="capsule-item">
             <div class="capsule-icon icon-green"><i class="ph-fill ph-briefcase"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="jobsCount" data-target="${stats.jobsCount || 120}">+${stats.jobsCount || 120}</div>
+              <div class="capsule-num stat-number" data-target-cat="jobsCount" data-target="${stats.jobsCount || 24}">+${stats.jobsCount || 24}</div>
               <div class="capsule-lbl" data-i18n="home.stats.jobs">${i18n.t('home.stats.jobs')}</div>
             </div>
           </a>
@@ -142,7 +142,7 @@ export function renderHome() {
           <a href="/concursos" data-link class="capsule-item">
             <div class="capsule-icon icon-purple"><i class="ph-fill ph-trophy"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="competitionsCount" data-target="${stats.competitionsCount || 28}">+${stats.competitionsCount || 28}</div>
+              <div class="capsule-num stat-number" data-target-cat="competitionsCount" data-target="${stats.competitionsCount || 21}">+${stats.competitionsCount || 21}</div>
               <div class="capsule-lbl" data-i18n="home.stats.competitions">${i18n.t('home.stats.competitions')}</div>
             </div>
           </a>
@@ -152,7 +152,7 @@ export function renderHome() {
           <a href="/voluntariado" data-link class="capsule-item">
             <div class="capsule-icon icon-coral"><i class="ph-fill ph-hands-clapping"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="volunteeringCount" data-target="${stats.volunteeringCount || 35}">+${stats.volunteeringCount || 35}</div>
+              <div class="capsule-num stat-number" data-target-cat="volunteeringCount" data-target="${stats.volunteeringCount || 22}">+${stats.volunteeringCount || 22}</div>
               <div class="capsule-lbl" data-i18n="home.stats.volunteering">${i18n.t('home.stats.volunteering')}</div>
             </div>
           </a>
@@ -162,7 +162,7 @@ export function renderHome() {
           <a href="/perfil" data-link class="capsule-item">
             <div class="capsule-icon icon-gold"><i class="ph-fill ph-users-three"></i></div>
             <div class="capsule-text">
-              <div class="capsule-num stat-number" data-target-cat="usersCount" data-target="${stats.usersCount || 5420}">+${stats.usersCount || 5420}</div>
+              <div class="capsule-num stat-number" data-target-cat="usersCount" data-target="${stats.usersCount || 22}">+${stats.usersCount || 22}</div>
               <div class="capsule-lbl" data-i18n="home.stats.users">${i18n.t('home.stats.users')}</div>
             </div>
           </a>

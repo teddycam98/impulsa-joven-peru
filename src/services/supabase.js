@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { opportunitiesDetailData } from '../data/opportunitiesDetailData.js';
+import { universitiesData } from '../data/universitiesData.js';
 import { enrichOpportunity } from '../utils/enrichment.js';
 
 const env = (typeof import.meta !== 'undefined' && import.meta.env) ? import.meta.env : {};
@@ -11,6 +12,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 // In-memory performance cache for 0ms instant UI responses
 let _currentUserCache = null;
 let _cachedFavIds = null;
+let _cachedUsersCount = 22;
 const _oppsMemoryCache = new Map();
 
 
@@ -181,19 +183,28 @@ export const dbService = {
   },
 
   getCachedStats() {
+    const opps = opportunitiesDetailData || [];
     return {
-      scholarshipsCount: 45,
-      coursesCount: 80,
-      internshipsCount: 65,
-      jobsCount: 120,
-      universitiesCount: 24,
-      competitionsCount: 28,
-      volunteeringCount: 35,
-      usersCount: 5420
+      scholarshipsCount: opps.filter(o => o.category === 'scholarship').length || 25,
+      coursesCount: opps.filter(o => o.category === 'course').length || 22,
+      internshipsCount: opps.filter(o => o.category === 'internship').length || 20,
+      jobsCount: opps.filter(o => o.category === 'job').length || 24,
+      universitiesCount: (universitiesData && universitiesData.length) || 24,
+      competitionsCount: opps.filter(o => o.category === 'competition').length || 21,
+      volunteeringCount: opps.filter(o => o.category === 'volunteer').length || 22,
+      usersCount: _cachedUsersCount || 22
     };
   },
 
   async getStats() {
+    try {
+      const { count, error } = await supabase.from('users').select('*', { count: 'exact', head: true });
+      if (!error && typeof count === 'number' && count > 0) {
+        _cachedUsersCount = count;
+      }
+    } catch (e) {
+      console.warn('Error fetching real user count from Supabase:', e);
+    }
     return this.getCachedStats();
   },
 
