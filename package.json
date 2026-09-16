@@ -6,7 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape": "node scripts/scraper/index.js",
+    "scrape:becas": "node scripts/scraper/index.js --category=scholarship",
+    "scrape:cursos": "node scripts/scraper/index.js --category=course",
+    "scrape:practicas": "node scripts/scraper/index.js --category=internship",
+    "scrape:empleos": "node scripts/scraper/index.js --category=job",
+    "scrape:universidades": "node scripts/scraper/index.js --category=university",
+    "scrape:concursos": "node scripts/scraper/index.js --category=competition",
+    "scrape:voluntariado": "node scripts/scraper/index.js --category=volunteer"
   },
   "devDependencies": {
     "png-to-ico": "^3.0.1",

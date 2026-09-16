@@ -8,6 +8,12 @@ const supabaseKey = env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_YNzJoRqjVlZV0X
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
+// In-memory performance cache for 0ms instant UI responses
+let _currentUserCache = null;
+let _cachedFavIds = null;
+const _oppsMemoryCache = new Map();
+
+
 export const DEMO_ACCOUNTS = {
   'admin@impulsajoven.pe': {
     id: 'demo-admin-id',
@@ -107,8 +113,14 @@ export const INITIAL_COMPANY_PROPOSALS = [
 export const dbService = {
   async getOpportunities(params = {}) {
     let { category, limit = 12, page = 0, search = '', featured, active = true } = params;
-    
-    // Check local rich dataset matching category
+    const cacheKey = `${category || 'all'}_${limit}_${page}_${search}_${featured}_${active}`;
+
+    // 1. Quick in-memory cache check
+    if (_oppsMemoryCache.has(cacheKey)) {
+      return _oppsMemoryCache.get(cacheKey);
+    }
+
+    // 2. Compute local rich dataset matching query (instant 0ms execution)
     let localItems = opportunitiesDetailData.filter(item => {
       if (category && item.category !== category) return false;
       if (featured !== undefined && item.featured !== featured) return false;
@@ -122,33 +134,37 @@ export const dbService = {
       return true;
     });
 
-    try {
-      let query = supabase.from('opportunities').select('*');
-      if (category) query = query.eq('category', category);
-      if (active !== undefined) query = query.eq('status', active ? 'active' : 'expired');
-      if (featured !== undefined) query = query.eq('featured', featured);
-      if (search) {
-        query = query.or(`title.ilike.%${search}%,organization.ilike.%${search}%`);
+    const from = page * limit;
+    const paged = localItems.slice(from, from + limit).map(enrichOpportunity);
+    _oppsMemoryCache.set(cacheKey, paged);
+
+    // 3. Stale-While-Revalidate: fetch remote Supabase silently in background
+    (async () => {
+      try {
+        let query = supabase.from('opportunities').select('*');
+        if (category) query = query.eq('category', category);
+        if (active !== undefined) query = query.eq('status', active ? 'active' : 'expired');
+        if (featured !== undefined) query = query.eq('featured', featured);
+        if (search) {
+          query = query.or(`title.ilike.%${search}%,organization.ilike.%${search}%`);
+        }
+        const to = from + limit - 1;
+        query = query.range(from, to).order('created_at', { ascending: false });
+
+        const { data, error } = await query;
+        if (!error && data && data.length > 0) {
+          const existingIds = new Set(data.map(d => d.id));
+          const nonDuplicateLocals = localItems.slice(from, from + limit).filter(l => !existingIds.has(l.id));
+          const merged = [...data, ...nonDuplicateLocals].map(enrichOpportunity);
+          _oppsMemoryCache.set(cacheKey, merged);
+          window.dispatchEvent(new CustomEvent('opportunitiesUpdated', { detail: { category, items: merged } }));
+        }
+      } catch (e) {
+        // Silent background fallback
       }
-      
-      const from = page * limit;
-      const to = from + limit - 1;
-      query = query.range(from, to).order('created_at', { ascending: false });
-      
-      // Add a 2s timeout so slow Supabase responses do not block the UI
-      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000));
-      const { data, error } = await Promise.race([query, timeoutPromise]);
-      if (!error && data && data.length > 0) {
-        // Merge without duplicating IDs
-        const existingIds = new Set(data.map(d => d.id));
-        const nonDuplicateLocals = localItems.filter(l => !existingIds.has(l.id));
-        return [...data, ...nonDuplicateLocals].map(enrichOpportunity);
-      }
-    } catch (e) {
-      console.warn('Supabase query fallback to local dataset:', e.message || e);
-    }
-    
-    return localItems.map(enrichOpportunity);
+    })();
+
+    return paged;
   },
 
   async getOpportunityById(id) {
@@ -156,11 +172,7 @@ export const dbService = {
     if (local) return enrichOpportunity(local);
 
     try {
-      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2000));
-      const { data, error } = await Promise.race([
-        supabase.from('opportunities').select('*').eq('id', id).single(),
-        timeoutPromise
-      ]);
+      const { data, error } = await supabase.from('opportunities').select('*').eq('id', id).single();
       if (!error && data) return enrichOpportunity(data);
     } catch (e) {
       console.warn('Error fetching opp by id from Supabase:', e.message || e);
@@ -241,6 +253,7 @@ export const dbService = {
     const demo = DEMO_ACCOUNTS[cleanEmail];
     if (demo) {
       if (password === demo.password) {
+        _currentUserCache = demo;
         localStorage.setItem('ij_demo_user', JSON.stringify(demo));
         window.dispatchEvent(new CustomEvent('authStateChanged', { detail: { event: 'SIGNED_IN', user: demo } }));
         return { user: demo, session: { user: demo, access_token: 'demo-token' } };
@@ -254,6 +267,18 @@ export const dbService = {
       password
     });
     if (error) throw error;
+    if (data?.user) {
+      _currentUserCache = {
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.user_metadata?.full_name || data.user.email.split('@')[0],
+        avatar_url: data.user.user_metadata?.avatar_url,
+        role: 'user',
+        roleLabel: 'Estudiante',
+        created_at: data.user.created_at
+      };
+      sessionStorage.setItem('ij_sb_user', JSON.stringify(_currentUserCache));
+    }
     return data;
   },
 
@@ -286,7 +311,10 @@ export const dbService = {
   },
 
   async logout() {
+    _currentUserCache = null;
+    _cachedFavIds = null;
     localStorage.removeItem('ij_demo_user');
+    sessionStorage.removeItem('ij_sb_user');
     window.dispatchEvent(new CustomEvent('authStateChanged', { detail: { event: 'SIGNED_OUT', user: null } }));
     try {
       await supabase.auth.signOut();
@@ -296,34 +324,54 @@ export const dbService = {
   },
 
   async getCurrentUser() {
+    if (_currentUserCache) return _currentUserCache;
+
     const stored = localStorage.getItem('ij_demo_user');
     if (stored) {
       try {
-        return JSON.parse(stored);
+        _currentUserCache = JSON.parse(stored);
+        return _currentUserCache;
       } catch (e) {
         localStorage.removeItem('ij_demo_user');
       }
     }
 
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return null;
-    
-    // Fetch user details from public.users table
-    const { data: userRecord } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', session.user.id)
-      .single();
+    const cachedSessionUser = sessionStorage.getItem('ij_sb_user');
+    if (cachedSessionUser) {
+      try {
+        _currentUserCache = JSON.parse(cachedSessionUser);
+        return _currentUserCache;
+      } catch (e) {
+        sessionStorage.removeItem('ij_sb_user');
+      }
+    }
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return null;
       
-    return {
-      id: session.user.id,
-      email: session.user.email,
-      name: userRecord?.full_name || session.user.user_metadata?.full_name || session.user.email.split('@')[0],
-      avatar_url: userRecord?.avatar_url || session.user.user_metadata?.avatar_url,
-      role: userRecord?.role || 'user',
-      roleLabel: userRecord?.role === 'admin' ? 'Administrador' : (userRecord?.role === 'company' ? 'Empresa' : 'Estudiante'),
-      created_at: userRecord?.created_at || session.user.created_at
-    };
+      // Fetch user details from public.users table
+      const { data: userRecord } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', session.user.id)
+        .single();
+        
+      const userObj = {
+        id: session.user.id,
+        email: session.user.email,
+        name: userRecord?.full_name || session.user.user_metadata?.full_name || session.user.email.split('@')[0],
+        avatar_url: userRecord?.avatar_url || session.user.user_metadata?.avatar_url,
+        role: userRecord?.role || 'user',
+        roleLabel: userRecord?.role === 'admin' ? 'Administrador' : (userRecord?.role === 'company' ? 'Empresa' : 'Estudiante'),
+        created_at: userRecord?.created_at || session.user.created_at
+      };
+      _currentUserCache = userObj;
+      sessionStorage.setItem('ij_sb_user', JSON.stringify(userObj));
+      return userObj;
+    } catch (e) {
+      return null;
+    }
   },
 
   onAuthStateChange(callback) {
@@ -365,6 +413,7 @@ export const dbService = {
       if (idx >= 0) {
         favs.splice(idx, 1);
         localStorage.setItem(key, JSON.stringify(favs));
+        _cachedFavIds = null;
         return false;
       } else {
         favs.unshift({
@@ -375,6 +424,7 @@ export const dbService = {
           created_at: new Date().toISOString()
         });
         localStorage.setItem(key, JSON.stringify(favs));
+        _cachedFavIds = null;
         return true;
       }
     }
@@ -391,6 +441,7 @@ export const dbService = {
       .eq('category', category)
       .single();
       
+    _cachedFavIds = null;
     if (existing) {
       // Remove
       await supabase.from('favorites').delete().eq('id', existing.id);
@@ -407,6 +458,7 @@ export const dbService = {
   },
   
   async getFavoriteIds() {
+    if (_cachedFavIds) return _cachedFavIds;
     const user = await this.getCurrentUser();
     if (!user) return [];
 
@@ -414,17 +466,23 @@ export const dbService = {
       const key = `ij_demo_favs_${user.id}`;
       try {
         const favs = JSON.parse(localStorage.getItem(key) || '[]');
-        return favs.map(f => f.opportunity_id);
+        _cachedFavIds = favs.map(f => f.opportunity_id);
+        return _cachedFavIds;
       } catch (e) {
         return [];
       }
     }
 
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return [];
-    
-    const { data } = await supabase.from('favorites').select('opportunity_id').eq('user_id', session.user.id);
-    return data ? data.map(d => d.opportunity_id) : [];
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return [];
+      
+      const { data } = await supabase.from('favorites').select('opportunity_id').eq('user_id', session.user.id);
+      _cachedFavIds = data ? data.map(d => d.opportunity_id) : [];
+      return _cachedFavIds;
+    } catch (e) {
+      return [];
+    }
   },
   
   async getFavoritesCount() {

@@ -452,13 +452,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const loggedUser = res?.user || (await dbService.getCurrentUser());
         updateUserUI(loggedUser);
         modal.classList.add('hidden');
-        if (loggedUser?.role === 'admin') {
-          window.history.pushState(null, null, '/admin');
-        } else if (loggedUser?.role === 'company') {
-          window.history.pushState(null, null, '/portal-empresa');
-        } else {
-          window.history.pushState(null, null, '/perfil');
-        }
+        authForm.reset();
+        const targetRoute = loggedUser?.role === 'admin' ? '/admin' : (loggedUser?.role === 'company' ? '/portal-empresa' : '/perfil');
+        window.history.pushState(null, null, targetRoute);
         router();
       } else if (authMode === 'register') {
         const name = document.getElementById('regName').value;
