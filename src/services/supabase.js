@@ -49,68 +49,7 @@ export const DEMO_ACCOUNTS = {
   }
 };
 
-export const INITIAL_COMPANY_PROPOSALS = [
-  {
-    id: 'prop-bcp-beca-2026',
-    title: 'Beca Talento BCP 2026 - Convocatoria de Pregrado Universitario',
-    category: 'scholarship',
-    organization: 'Banco de Crédito BCP',
-    company_email: 'empresa@impulsajoven.pe',
-    company_phone: '+51 987 654 321',
-    contact_name: 'Lic. Mariana Valdez (Gerencia de Sostenibilidad BCP)',
-    modality: 'Presencial / Semipresencial',
-    location: 'Lima y Principales Regiones (Perú)',
-    deadline: '2026-05-30',
-    description: 'El BCP abre su convocatoria anual Beca Talento BCP para estudiantes destacados de colegios públicos y privados con necesidad económica. Cubre el 100% de la matrícula y todas las pensiones académicas durante la carrera universitaria en instituciones asociadas (PUCP, UP, UDEP, Cayetano Heredia), además de otorgar una laptop nueva de última generación, asignación monetaria mensual para transporte y alimentación, seguro de salud privado y acceso al exclusivo programa de liderazgo y pasantías laborales en el banco.',
-    requirements: [
-      'Haber culminado la secundaria en el tercio o quinto superior.',
-      'Acreditar situación de vulnerabilidad o necesidad económica mediante SISFOH o sustento socioeconómico.',
-      'Haber ingresado a una universidad aliada (PUCP, UP, UDEP o UPCH) o estar en proceso de admisión 2026.',
-      'Tener nacionalidad peruana y hasta 22 años de edad.'
-    ],
-    benefits: [
-      '100% Cobertura de Matrícula y Pensiones Universitarias durante toda la carrera',
-      'Laptop de última generación entregada al inicio de clases',
-      'Asignación mensual de manutención (alimentación, útiles, transporte)',
-      'Programa de Mentoría Ejecutiva con líderes y gerentes del BCP',
-      'Ingreso preferente al programa de Prácticas Pre-Profesionales en el banco'
-    ],
-    skills: 'Rendimiento académico sobresaliente, Liderazgo social, Compromiso de retribución',
-    coverage: '100% Cobertura Integral + Laptop + Manutención Mensual',
-    external_link: 'https://www.viabcp.com/becasbcp',
-    image_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80',
-    status: 'pending', // 'pending' | 'approved' | 'rejected'
-    created_at: '2026-03-12T16:45:00.000Z'
-  },
-  {
-    id: 'prop-ferreyros-inter-2026',
-    title: 'Programa Trainee de Automatización & Mantenimiento Dual',
-    category: 'internship',
-    organization: 'Corporación Ferreycorp / Ferreyros S.A.',
-    company_email: 'talento@ferreycorp.com.pe',
-    company_phone: '+51 912 345 678',
-    contact_name: 'Ing. Carlos Zambrano (Gestión de Talento Humano)',
-    modality: 'Presencial (Talleres Megacentro)',
-    location: 'Lima (Lurín / La Marina)',
-    deadline: '2026-04-25',
-    description: 'Ferreyros convoca a estudiantes de últimos ciclos de carreras técnicas (Tecsup, Senati) e ingeniería mecánica/mecatrónica para su programa élite de entrenamiento y línea de carrera en maquinaria pesada Caterpillar.',
-    requirements: [
-      'Estudiantes de 5to o 6to ciclo técnico o 9no/10mo de ingeniería.',
-      'Disponibilidad para realizar prácticas pre-profesionales en Lima.'
-    ],
-    benefits: [
-      'Subvención económica superior al mercado',
-      'Seguro FOLA y alimentación cubierta',
-      'Certificación oficial Caterpillar al término'
-    ],
-    skills: 'Mecatrónica, Diagnóstico electrónico, Hidráulica, Seguridad industrial',
-    coverage: 'Remuneración S/ 1,800 + Almuerzos + Seguro Médico',
-    external_link: 'https://ferreyros.evaluar.com/',
-    image_url: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80',
-    status: 'pending',
-    created_at: '2026-03-11T10:15:00.000Z'
-  }
-];
+export const INITIAL_COMPANY_PROPOSALS = [];
 
 export const dbService = {
   async getOpportunities(params = {}) {

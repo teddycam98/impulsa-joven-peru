@@ -93,3 +93,40 @@ function getFutureDate(daysAhead = 30) {
   d.setDate(d.getDate() + daysAhead);
   return d.toISOString().split('T')[0];
 }
+
+export function stripHtml(html) {
+  if (!html) return '';
+  return html
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function extractGobPeHref(urlHtml) {
+  if (!urlHtml) return 'https://www.gob.pe';
+  const match = urlHtml.match(/href=[\x27\x22]([^\x27\x22]+)[\x27\x22]/i);
+  if (match && match[1]) {
+    const path = match[1];
+    return path.startsWith('http') ? path : `https://www.gob.pe${path}`;
+  }
+  if (urlHtml.startsWith('http')) return urlHtml;
+  if (urlHtml.startsWith('/')) return `https://www.gob.pe${urlHtml}`;
+  return 'https://www.gob.pe';
+}
+
+export function extractGobPeTitle(nameWithParent, urlHtml, fallback = 'Convocatoria Oficial') {
+  if (nameWithParent && typeof nameWithParent === 'string' && nameWithParent.trim().length > 3) {
+    return stripHtml(nameWithParent);
+  }
+  if (urlHtml) {
+    const textMatch = urlHtml.match(/>([^<]+)<\/a>/i);
+    if (textMatch && textMatch[1]) {
+      return stripHtml(textMatch[1]);
+    }
+  }
+  return fallback;
+}
