@@ -470,11 +470,11 @@ export function renderVocationalTest() {
   userSelections = {};
 
   return `
-    <div class="inner-page" style="padding-top: 110px; padding-bottom: 70px;">
+    <div class="inner-page" style="padding-top: 85px; padding-bottom: 50px;">
       <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
         
         <!-- Header Section -->
-        <div class="v-header-block animate-on-scroll">
+        <div class="v-header-block animate-on-scroll" id="vHeaderBlock">
           <div class="v-badge-pill">
             <i class="ph-fill ph-compass text-yellow"></i>
             <span>ORIENTACIÓN VOCACIONAL GRATUITA</span>
@@ -653,13 +653,15 @@ function calculateAndShowResults() {
 
   const wizardContainer = document.getElementById('vWizardContainer');
   const resultsDashboard = document.getElementById('vResultsDashboard');
+  const headerBlock = document.getElementById('vHeaderBlock');
 
+  if (headerBlock) headerBlock.classList.add('hidden');
   if (wizardContainer) wizardContainer.classList.add('hidden');
   if (resultsDashboard) {
     resultsDashboard.classList.remove('hidden');
     resultsDashboard.innerHTML = `
       <!-- Trophy & Result Header -->
-      <div class="v-result-hero animate-on-scroll">
+      <div class="v-result-hero">
         <div class="v-trophy-circle" style="border-color: ${primary.color}; box-shadow: 0 0 35px ${primary.color}44;">
           <i class="ph-fill ${primary.icon}" style="color: ${primary.color}; font-size: 2.8rem;"></i>
         </div>
@@ -803,6 +805,8 @@ function calculateAndShowResults() {
       retryBtn.addEventListener('click', () => {
         currentStep = 0;
         userSelections = {};
+        const headerBlock = document.getElementById('vHeaderBlock');
+        if (headerBlock) headerBlock.classList.remove('hidden');
         if (resultsDashboard) resultsDashboard.classList.add('hidden');
         if (wizardContainer) wizardContainer.classList.remove('hidden');
         renderCurrentQuestion();

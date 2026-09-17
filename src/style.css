@@ -3538,7 +3538,7 @@ select.admin-input:focus-visible {
    ═══════════════════════════════════════════════════════════════ */
 .v-header-block {
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 22px;
 }
 
 .v-badge-pill {
@@ -3547,28 +3547,28 @@ select.admin-input:focus-visible {
   gap: 8px;
   background: rgba(255, 214, 0, 0.12);
   border: 1px solid rgba(255, 214, 0, 0.3);
-  padding: 7px 18px;
+  padding: 5px 15px;
   border-radius: 30px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: #FFD600;
   letter-spacing: 1px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 .v-main-title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
   font-weight: 900;
   color: #FFFFFF;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   line-height: 1.15;
 }
 
 .v-subtitle {
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   color: rgba(255, 255, 255, 0.82);
-  line-height: 1.6;
-  max-width: 680px;
+  line-height: 1.5;
+  max-width: 660px;
   margin: 0 auto;
 }
 
@@ -3577,24 +3577,24 @@ select.admin-input:focus-visible {
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1.5px solid rgba(255, 255, 255, 0.16);
-  border-radius: 28px;
-  padding: 38px 40px;
+  border-radius: 24px;
+  padding: 26px 28px;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .v-progress-header {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .v-progress-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .v-step-badge {
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 800;
   color: #FFD600;
   text-transform: uppercase;
@@ -3604,16 +3604,16 @@ select.admin-input:focus-visible {
 .v-category-tag {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.82rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 0.78rem;
   color: #FFFFFF;
   font-weight: 600;
 }
 
 .v-progress-bar-track {
   width: 100%;
-  height: 8px;
+  height: 7px;
   background: rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   overflow: hidden;
@@ -3628,39 +3628,39 @@ select.admin-input:focus-visible {
 }
 
 .v-question-header {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .v-q-title {
-  font-size: 1.45rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #FFFFFF;
-  line-height: 1.35;
-  margin-bottom: 8px;
+  line-height: 1.3;
+  margin-bottom: 6px;
 }
 
 .v-q-subtitle {
-  font-size: 0.96rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
-  line-height: 1.5;
+  line-height: 1.45;
   margin: 0;
 }
 
 .v-options-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 30px;
+  gap: 12px;
+  margin-bottom: 22px;
 }
 
 .v-option-card {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.04);
   border: 1.5px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 20px 18px;
+  border-radius: 16px;
+  padding: 14px 15px;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -3679,15 +3679,15 @@ select.admin-input:focus-visible {
 }
 
 .v-opt-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #FFD600;
   flex-shrink: 0;
 }
@@ -3703,11 +3703,11 @@ select.admin-input:focus-visible {
 }
 
 .v-opt-title {
-  font-size: 1.02rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 5px;
-  line-height: 1.3;
+  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
 .v-option-card.selected .v-opt-title {
@@ -3715,14 +3715,14 @@ select.admin-input:focus-visible {
 }
 
 .v-opt-desc {
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.72);
-  line-height: 1.45;
+  line-height: 1.4;
   margin: 0;
 }
 
 .v-opt-radio {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.35);
   flex-shrink: 0;
   margin-top: 2px;
@@ -3736,7 +3736,7 @@ select.admin-input:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   gap: 16px;
 }
@@ -3748,10 +3748,10 @@ select.admin-input:focus-visible {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #FFFFFF;
-  padding: 12px 22px;
+  padding: 10px 20px;
   border-radius: 50px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -3762,7 +3762,7 @@ select.admin-input:focus-visible {
 }
 
 .v-wizard-status-text {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 600;
   text-align: center;
@@ -3775,10 +3775,10 @@ select.admin-input:focus-visible {
   background: #FFD600;
   border: none;
   color: #041B4D;
-  padding: 14px 28px;
+  padding: 12px 26px;
   border-radius: 50px;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.96rem;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(255, 214, 0, 0.35);
   transition: all 0.25s;
@@ -3802,16 +3802,22 @@ select.admin-input:focus-visible {
 .v-results-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 22px;
+  animation: vFadeUp 0.35s ease-out;
+}
+
+@keyframes vFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .v-result-hero {
-  background: linear-gradient(180deg, rgba(12, 34, 90, 0.82) 0%, rgba(5, 20, 62, 0.94) 100%);
+  background: linear-gradient(180deg, rgba(12, 34, 90, 0.88) 0%, rgba(5, 20, 62, 0.96) 100%);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-radius: 28px;
-  padding: 48px 40px;
+  border-radius: 24px;
+  padding: 30px 28px;
   text-align: center;
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   display: flex;
@@ -3820,68 +3826,68 @@ select.admin-input:focus-visible {
 }
 
 .v-trophy-circle {
-  width: 90px;
-  height: 90px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
   border: 2px solid;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .v-result-eyebrow {
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 2px;
   color: rgba(255, 255, 255, 0.65);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .v-result-archetype-title {
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
   font-weight: 900;
   line-height: 1.15;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 .v-result-slogan {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-style: italic;
   color: #FFFFFF;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
   font-weight: 600;
 }
 
 .v-match-capsule {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: rgba(255, 214, 0, 0.15);
   border: 1px solid rgba(255, 214, 0, 0.4);
-  padding: 8px 22px;
+  padding: 6px 18px;
   border-radius: 50px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .v-match-score {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 900;
   color: #FFD600;
 }
 
 .v-match-label {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #FFFFFF;
 }
 
 .v-result-summary {
-  font-size: 1.06rem;
+  font-size: 0.98rem;
   color: rgba(255, 255, 255, 0.88);
-  line-height: 1.7;
-  max-width: 720px;
+  line-height: 1.6;
+  max-width: 700px;
   margin: 0 auto;
 }
 
