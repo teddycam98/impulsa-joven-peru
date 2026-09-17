@@ -36,7 +36,7 @@ export const universityEventsTranslations = {
       category: 'Admisión y Charlas',
       badge: 'Presencial',
       ticker: 'Examen de Admisión 2026 • 66 Carreras Universitarias Licenciadas • Becas Comedor y Residencia • ¡Postula Ahora!',
-      image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/unmsm.jpg',
       link: 'https://unmsm.edu.pe',
       featured: true
     },
@@ -56,7 +56,7 @@ export const universityEventsTranslations = {
       category: 'Taller Tecnológico',
       badge: 'Virtual & Presencial',
       ticker: 'Laboratorios de Alta Tecnología • 95% Empleabilidad de Graduados • Becas de Excelencia Tecsup • Cupos Limitados',
-      image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/tecsup.jpg',
       link: 'https://tecsup.edu.pe',
       featured: true
     },
@@ -76,7 +76,7 @@ export const universityEventsTranslations = {
       category: 'Orientación Vocacional',
       badge: 'Gratuito',
       ticker: 'Convenios Internacionales • Beca 18 Acreditada • Charlas con Directores de Carrera • Inscripción Gratuita Online',
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/pucp.jpg',
       link: 'https://pucp.edu.pe',
       featured: false
     }
@@ -118,7 +118,7 @@ export const universityEventsTranslations = {
       category: 'Admissions & Talks',
       badge: 'Onsite',
       ticker: '2026 Admission Exam • 66 Accredited Degree Programs • Dining & Housing Scholarships • Apply Now!',
-      image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/unmsm.jpg',
       link: 'https://unmsm.edu.pe',
       featured: true
     },
@@ -138,7 +138,7 @@ export const universityEventsTranslations = {
       category: 'Technology Workshop',
       badge: 'Online & Onsite',
       ticker: 'High-Tech Laboratories • 95% Graduate Employability • Tecsup Excellence Scholarships • Limited Spots',
-      image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/tecsup.jpg',
       link: 'https://tecsup.edu.pe',
       featured: true
     },
@@ -158,7 +158,7 @@ export const universityEventsTranslations = {
       category: 'Vocational Guidance',
       badge: '100% Free',
       ticker: 'International Agreements • Beca 18 Accredited • Sessions with Program Directors • Free Online Registration',
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/pucp.jpg',
       link: 'https://pucp.edu.pe',
       featured: false
     }
@@ -200,7 +200,7 @@ export const universityEventsTranslations = {
       category: 'Yaykuna & Rimaykuna',
       badge: 'Chaypipuni',
       ticker: '2026 Yaykuna Exam • 66 Cheqanchasqa Profesionkuna • Mikhuna Wasi & Puñuna Yanapay • ¡Kunan Qillqakuy!',
-      image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/unmsm.jpg',
       link: 'https://unmsm.edu.pe',
       featured: true
     },
@@ -220,7 +220,7 @@ export const universityEventsTranslations = {
       category: 'Tecnología Yachay Taller',
       badge: 'Internetpi & Chaypipuni',
       ticker: "Musuq Laboratoriokuna • 95% Llamk'ana Tariy • Tecsup Allin Yachay Becakuna • Pisi Tiyanallata",
-      image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/tecsup.jpg',
       link: 'https://tecsup.edu.pe',
       featured: true
     },
@@ -240,7 +240,7 @@ export const universityEventsTranslations = {
       category: 'Yachay Yuyaychay',
       badge: 'Mana Qullqiyuq',
       ticker: 'Tukuy Suyukunawan Conveniokuna • Beca 18 Cheqanchasqa • Carrera Kamachiqkunawan Rimay • Mana qullqiyuq yaykuy',
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=750&auto=format&fit=crop&q=75',
+      image: '/images/universities/pucp.jpg',
       link: 'https://pucp.edu.pe',
       featured: false
     }

@@ -58,7 +58,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unmsm.jpg",
     "modalidad": "Presencial",
     "description": "La Universidad Decana de América, líder en investigación académica, inclusión social y oportunidades educativas para todo el Perú con 66 carreras profesionales acreditadas.",
     "carreras": [
@@ -106,7 +106,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/uni.jpg",
     "modalidad": "Presencial",
     "description": "Máxima institución formadora de ingenieros, arquitectos y científicos en el Perú con laboratorios de clase mundial, becas completas de admisión y proyectos de investigación aeroespacial y tecnológica.",
     "carreras": [
@@ -153,7 +153,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/pucp.jpg",
     "modalidad": "Presencial y Virtual",
     "description": "Universidad de excelencia académica internacional rankeada #1 en el Perú, con sistema de escalas de pago diferenciadas, más de 200 convenios con universidades del mundo y fondos de becas de inclusión.",
     "carreras": [
@@ -203,7 +203,7 @@ export const universitiesData = [
       "La Libertad"
     ],
     "logo": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/tecsup.jpg",
     "modalidad": "Presencial y Dual Tecnológico",
     "description": "Instituto líder en educación tecnológica avanzada en Latinoamérica, con tasa de inserción laboral del 95%, laboratorios industriales de última generación y convenios directos con minería y gran industria.",
     "carreras": [
@@ -255,7 +255,7 @@ export const universitiesData = [
       "Puno"
     ],
     "logo": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/senati.jpg",
     "modalidad": "Formación Dual (Teoría + Práctica en Empresa)",
     "description": "La institución de educación técnica más grande del Perú con sedes en todas las regiones, modelo de aprendizaje dual alemán y más de 10,000 empresas asociadas para prácticas remuneradas inmediatas.",
     "carreras": [
@@ -301,7 +301,7 @@ export const universitiesData = [
       "Ayacucho"
     ],
     "logo": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unsch.jpg",
     "modalidad": "Presencial",
     "description": "Segunda universidad más antigua del Perú fundada en 1677, referente indiscutible en la sierra central con formación humanística y científica al servicio del desarrollo andino y nacional.",
     "carreras": [
@@ -349,7 +349,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unalm.jpg",
     "modalidad": "Presencial",
     "description": "Líder en ciencias agrarias, biotecnología, industrias alimentarias, gestión ambiental y recursos forestales en el Perú.",
     "carreras": [
@@ -379,7 +379,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/upch.jpg",
     "modalidad": "Presencial",
     "description": "La institución médica y científica número 1 del Perú en producción de investigación biomédica y formación en salud.",
     "carreras": [
@@ -409,7 +409,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/ulima.jpg",
     "modalidad": "Presencial",
     "description": "Reconocida por su excelencia en comunicación, ingeniería industrial, arquitectura, derecho y negocios corporativos.",
     "carreras": [
@@ -438,7 +438,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/upc.jpg",
     "modalidad": "Presencial y Semipresencial",
     "description": "Pionera en acreditaciones internacionales WASC en el Perú con campus modernos y enfoque en innovación global.",
     "carreras": [
@@ -467,7 +467,7 @@ export const universitiesData = [
       "Lima"
     ],
     "logo": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/utec.jpg",
     "modalidad": "Presencial",
     "description": "Universidad de vanguardia tecnológica inspirada en las mejores escuelas de ingeniería de EE.UU. con convenios con MIT y Harvard.",
     "carreras": [
@@ -496,7 +496,7 @@ export const universitiesData = [
       "Arequipa"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unsa.jpg",
     "modalidad": "Presencial",
     "description": "La principal universidad pública del sur del Perú con más de 190 años de historia, parques científicos y centros de investigación minera.",
     "carreras": [
@@ -525,7 +525,7 @@ export const universitiesData = [
       "Cusco"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unsaac.jpg",
     "modalidad": "Presencial",
     "description": "La tricentenaria casa de estudios del Cusco, cuna de profesionales en arqueología, turismo, ingeniería civil y ciencias agrarias.",
     "carreras": [
@@ -554,7 +554,7 @@ export const universitiesData = [
       "La Libertad"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unt.jpg",
     "modalidad": "Presencial",
     "description": "Fundada por el Libertador Simón Bolívar, es el centro académico más representativo de la costa norte del Perú.",
     "carreras": [
@@ -582,7 +582,7 @@ export const universitiesData = [
       "Arequipa"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/ucsp.jpg",
     "modalidad": "Presencial",
     "description": "Reconocida en el sur por sus carreras de Ciencia de la Computación, Ingeniería Electrónica y formación humanística integral.",
     "carreras": [
@@ -617,7 +617,7 @@ export const universitiesData = [
       "Huancayo"
     ],
     "logo": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/senati.jpg",
     "modalidad": "Dual Presencial y Virtual",
     "description": "La institución de formación técnica profesional con mayor demanda y empleabilidad del país (9 de cada 10 egresados trabajan en su especialidad).",
     "carreras": [
@@ -646,7 +646,7 @@ export const universitiesData = [
       "Huancayo"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/uncp.jpg",
     "modalidad": "Presencial",
     "description": "Centro científico y tecnológico de la sierra central del Perú con facultades de ingeniería metalúrgica, minas, zootecnia y medicina.",
     "carreras": [
@@ -674,7 +674,7 @@ export const universitiesData = [
       "Puno"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unapuno.jpg",
     "modalidad": "Presencial",
     "description": "Institución líder en la meseta del Collao en investigación de camélidos sudamericanos, energías renovables en altura e ingeniería de minas.",
     "carreras": [
@@ -702,7 +702,7 @@ export const universitiesData = [
       "Cusco"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/usil.jpg",
     "modalidad": "Presencial y Virtual",
     "description": "Enfocada en emprendimiento, gastronomía internacional, hotelería y gestión empresarial con doble grado en EE.UU. (San Ignacio University Miami).",
     "carreras": [
@@ -733,7 +733,7 @@ export const universitiesData = [
       "Arequipa"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/usmp.jpg",
     "modalidad": "Presencial y Semipresencial",
     "description": "Destacada por sus facultades de Ciencias de la Comunicación, Turismo y Psicología, y Medicina Humana acreditadas internacionalmente.",
     "carreras": [
@@ -762,7 +762,7 @@ export const universitiesData = [
       "Iquitos"
     ],
     "logo": "https://images.unsplash.com/photo-1562774053-701939374585?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/unap.jpg",
     "modalidad": "Presencial",
     "description": "El referente universitario del oriente peruano en biodiversidad amazónica, ecología tropical, acuicultura y silvicultura.",
     "carreras": [
@@ -792,7 +792,7 @@ export const universitiesData = [
       "Trujillo"
     ],
     "logo": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/cibertec.jpg",
     "modalidad": "Presencial y Virtual",
     "description": "Institución líder en carreras de tecnología, diseño, computación y negocios digitales con convenios de convalidación universitaria.",
     "carreras": [
@@ -820,7 +820,7 @@ export const universitiesData = [
       "Arequipa"
     ],
     "logo": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=150&auto=format&fit=crop&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&auto=format&fit=crop&q=70",
+    "coverImage": "/images/universities/ucsm.jpg",
     "modalidad": "Presencial",
     "description": "La primera universidad privada de provincias del Perú con facultades de medicina, ingeniería biotecnológica, arquitectura y derecho.",
     "carreras": [
