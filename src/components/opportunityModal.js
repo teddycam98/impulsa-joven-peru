@@ -1,8 +1,9 @@
-﻿import { opportunitiesDetailData } from '../data/opportunitiesDetailData.js';
+import { opportunitiesDetailData } from '../data/opportunitiesDetailData.js';
 import { dbService } from '../services/supabase.js';
 import { i18n } from '../utils/i18n.js';
 import { translateOpportunity } from '../utils/opportunityTranslations.js';
 import { getUniqueImage } from '../utils/images.js';
+import { linkify, hasFormLink, extractFormUrl } from '../utils/linkify.js';
 
 const categoryLabels = {
   scholarship: 'Beca',
@@ -103,7 +104,7 @@ export async function openOpportunityModal(id) {
   };
 
   let imgUrl = opp.image_url;
-  if (!imgUrl || imgUrl.startsWith('/images/') || imgUrl.includes('unsplash.com')) {
+  if (!imgUrl || imgUrl.startsWith('/images/')) {
     imgUrl = getUniqueImage(opp);
   }
 
@@ -117,6 +118,11 @@ export async function openOpportunityModal(id) {
   const benefits = (opp.benefits && opp.benefits.length) ? opp.benefits : defaultBenefits;
   const steps = (opp.steps && opp.steps.length) ? opp.steps : defaultSteps;
   const externalLink = opp.external_link || '#';
+
+  // Form detection and direct resolution
+  const formUrl = extractFormUrl(opp);
+  const isForm = !!formUrl || hasFormLink(opp);
+  const destinationUrl = formUrl || externalLink;
 
   content.innerHTML = `
     <!-- Modal Banner Header -->
@@ -185,13 +191,33 @@ export async function openOpportunityModal(id) {
         ` : ''}
       </div>
 
-      <!-- Description -->
+      <!-- Direct Form Action Banner (if available) -->
+      ${isForm ? `
+        <div class="uni-form-banner">
+          <div class="uni-form-banner-text">
+            <i class="ph-fill ph-file-text"></i>
+            <div>
+              <div style="font-weight: 800; font-size: 0.98rem; color: #FFD600;">Formulario Oficial de Inscripción Disponible</div>
+              <div style="font-size: 0.82rem; color: rgba(255,255,255,0.82);">Esta convocatoria cuenta con acceso directo para registrar tu postulación en línea</div>
+            </div>
+          </div>
+          <a href="${destinationUrl}" target="_blank" rel="noopener noreferrer" class="btn-uni-form">
+            <i class="ph-fill ph-file-text"></i>
+            <span>Completar Formulario</span>
+            <i class="ph ph-arrow-square-out"></i>
+          </a>
+        </div>
+      ` : ''}
+
+      <!-- Description with Linkify -->
       <div>
         <h3 class="uni-section-title"><i class="ph-fill ph-info"></i> ${i18n.t('detail.about_title')}</h3>
-        <p class="uni-modal-desc">${opp.description}</p>
+        <div class="uni-modal-desc" style="line-height: 1.7; font-size: 0.96rem; color: rgba(255,255,255,0.88);">
+          ${linkify(opp.description, externalLink)}
+        </div>
       </div>
 
-      <!-- Requirements Checklist -->
+      <!-- Requirements Checklist with Linkify -->
       <div>
         <h3 class="uni-section-title">
           <i class="ph-fill ph-check-circle" style="color: #34d399;"></i> ${i18n.t('detail.requirements_title')} (${requirements.length})
@@ -200,13 +226,13 @@ export async function openOpportunityModal(id) {
           ${requirements.map(req => `
             <div style="display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 16px;">
               <i class="ph-fill ph-check-circle" style="color: #34d399; font-size: 1.25rem; flex-shrink: 0; margin-top: 2px;"></i>
-              <span style="color: rgba(255,255,255,0.9); font-size: 0.92rem; line-height: 1.5;">${req}</span>
+              <span style="color: rgba(255,255,255,0.9); font-size: 0.92rem; line-height: 1.5;">${linkify(req, externalLink)}</span>
             </div>
           `).join('')}
         </div>
       </div>
 
-      <!-- Benefits & What's included -->
+      <!-- Benefits & What's included with Linkify -->
       <div>
         <h3 class="uni-section-title">
           <i class="ph-fill ph-gift" style="color: #FFD600;"></i> ${i18n.t('detail.benefits_title')}
@@ -214,13 +240,13 @@ export async function openOpportunityModal(id) {
         <div class="uni-tags-flex">
           ${benefits.map(b => `
             <span class="uni-beca-tag" style="padding: 8px 16px; font-size: 0.88rem; border-radius: 12px;">
-              <i class="ph-fill ph-star"></i> ${b}
+              <i class="ph-fill ph-star"></i> ${linkify(b, externalLink)}
             </span>
           `).join('')}
         </div>
       </div>
 
-      <!-- Step by Step Guide -->
+      <!-- Step by Step Guide with Linkify -->
       <div>
         <h3 class="uni-section-title">
           <i class="ph-fill ph-list-numbers" style="color: #FFD600;"></i> ${i18n.t('detail.steps_title')}
@@ -229,7 +255,7 @@ export async function openOpportunityModal(id) {
           ${steps.map((step, idx) => `
             <div style="display: flex; align-items: flex-start; gap: 14px; background: rgba(255, 214, 0, 0.05); border: 1px solid rgba(255, 214, 0, 0.16); border-radius: 14px; padding: 12px 16px;">
               <div style="width: 28px; height: 28px; border-radius: 50%; background: #FFD600; color: #041B4D; font-weight: 900; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">${idx + 1}</div>
-              <div style="color: rgba(255,255,255,0.92); font-size: 0.92rem; line-height: 1.5; padding-top: 3px;">${step}</div>
+              <div style="color: rgba(255,255,255,0.92); font-size: 0.92rem; line-height: 1.5; padding-top: 3px;">${linkify(step, externalLink)}</div>
             </div>
           `).join('')}
         </div>
@@ -250,8 +276,8 @@ export async function openOpportunityModal(id) {
       <button class="btn btn-outline" onclick="window.closeOppModal()" style="border-color: rgba(255,255,255,0.3); color: white; padding: 11px 24px; font-size: 0.92rem; border-radius: 12px; cursor: pointer;">
         Cerrar
       </button>
-      <a href="${externalLink}" target="_blank" rel="noopener noreferrer" class="btn-uni-portal">
-        <span>Postular en Portal Oficial</span>
+      <a href="${destinationUrl}" target="_blank" rel="noopener noreferrer" class="btn-uni-portal">
+        <span>${isForm ? 'Llenar Formulario Oficial' : 'Postular en Portal Oficial'}</span>
         <i class="ph ph-arrow-square-out"></i>
       </a>
     </div>

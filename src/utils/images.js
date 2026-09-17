@@ -180,6 +180,11 @@ function getDeterministicHash(str) {
 export function getUniqueImage(opp) {
   if (!opp) return fallbackByCategory.default[0];
 
+  // 0. Preserved unique image already assigned to opportunity
+  if (opp.image_url && opp.image_url.startsWith('http')) {
+    return opp.image_url;
+  }
+
   // 1. DIRECT ID LOOKUP — guaranteed unique per opportunity
   if (opp.id && imageById[opp.id]) {
     return imageById[opp.id];

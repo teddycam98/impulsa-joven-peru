@@ -2,6 +2,7 @@ import { opportunitiesDetailData } from '../data/opportunitiesDetailData.js';
 import { dbService } from '../services/supabase.js';
 import { i18n } from '../utils/i18n.js';
 import { translateOpportunity } from '../utils/opportunityTranslations.js';
+import { linkify, hasFormLink, extractFormUrl } from '../utils/linkify.js';
 
 export async function renderOpportunityDetail(id) {
   // Try finding in rich local data first
@@ -67,6 +68,11 @@ export async function renderOpportunityDetail(id) {
   const benefits = (opp.benefits && opp.benefits.length) ? opp.benefits : defaultBenefits;
   const steps = (opp.steps && opp.steps.length) ? opp.steps : defaultSteps;
 
+  const formUrl = extractFormUrl(opp);
+  const isForm = !!formUrl || hasFormLink(opp);
+  const externalLink = opp.external_link || '#';
+  const destinationUrl = formUrl || externalLink;
+
   return `
     <div class="container inner-page" style="margin-bottom: 5rem; padding-top: 220px;">
       
@@ -113,17 +119,35 @@ export async function renderOpportunityDetail(id) {
 
           </div>
 
-          <!-- Section 1: Descripción Completa -->
+          <!-- Direct Form Action Banner (if available) -->
+          ${isForm ? `
+            <div class="uni-form-banner" style="margin-bottom: 25px;">
+              <div class="uni-form-banner-text">
+                <i class="ph-fill ph-file-text"></i>
+                <div>
+                  <div style="font-weight: 800; font-size: 1.05rem; color: #FFD600;">Formulario Oficial de Inscripción Disponible</div>
+                  <div style="font-size: 0.86rem; color: rgba(255,255,255,0.85);">Esta convocatoria cuenta con acceso directo para registrar tu postulación en línea</div>
+                </div>
+              </div>
+              <a href="${destinationUrl}" target="_blank" rel="noopener noreferrer" class="btn-uni-form">
+                <i class="ph-fill ph-file-text"></i>
+                <span>Completar Formulario</span>
+                <i class="ph ph-arrow-square-out"></i>
+              </a>
+            </div>
+          ` : ''}
+
+          <!-- Section 1: Descripción Completa con Linkify -->
           <div class="glass-panel" style="background: rgba(10, 25, 60, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; margin-bottom: 25px;">
             <h3 style="color: white; font-size: 1.3rem; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;">
               <i class="ph-fill ph-info" style="color: #FFC700;"></i> ${i18n.t('detail.about_title')}
             </h3>
-            <p style="color: rgba(255,255,255,0.85); font-size: 1rem; line-height: 1.7; margin: 0;">
-              ${opp.description}
-            </p>
+            <div style="color: rgba(255,255,255,0.88); font-size: 1rem; line-height: 1.7; margin: 0;">
+              ${linkify(opp.description, externalLink)}
+            </div>
           </div>
 
-          <!-- Section 2: Requisitos de Postulación -->
+          <!-- Section 2: Requisitos de Postulación con Linkify -->
           <div class="glass-panel" style="background: rgba(10, 25, 60, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; margin-bottom: 25px;">
             <h3 style="color: white; font-size: 1.3rem; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
               <i class="ph-fill ph-check-circle" style="color: #34d399;"></i> ${i18n.t('detail.requirements_title')}
@@ -132,28 +156,28 @@ export async function renderOpportunityDetail(id) {
               ${requirements.map(req => `
                 <li style="display: flex; align-items: flex-start; gap: 12px; color: rgba(255,255,255,0.88); font-size: 0.98rem; line-height: 1.5;">
                   <i class="ph-fill ph-check" style="color: #34d399; font-size: 1.2rem; flex-shrink: 0; margin-top: 2px;"></i>
-                  <span>${req}</span>
+                  <span>${linkify(req, externalLink)}</span>
                 </li>
               `).join('')}
             </ul>
           </div>
 
-          <!-- Section 3: Beneficios y Cobertura -->
+          <!-- Section 3: Beneficios y Cobertura con Linkify -->
           <div class="glass-panel" style="background: rgba(10, 25, 60, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; margin-bottom: 25px;">
             <h3 style="color: white; font-size: 1.3rem; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px;">
-              <i class="ph-fill ph-gift" style="color: #FFC700;"></i> ${i18n.t('detail.benefits_title')}
+              <i class="ph-fill ph-gift" style="color: #FFD600;"></i> ${i18n.t('detail.benefits_title')}
             </h3>
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
               ${benefits.map(b => `
                 <li style="display: flex; align-items: flex-start; gap: 12px; color: rgba(255,255,255,0.88); font-size: 0.98rem; line-height: 1.5;">
                   <i class="ph-fill ph-sparkle" style="color: #FFC700; font-size: 1.2rem; flex-shrink: 0; margin-top: 2px;"></i>
-                  <span>${b}</span>
+                  <span>${linkify(b, externalLink)}</span>
                 </li>
               `).join('')}
             </ul>
           </div>
 
-          <!-- Section 4: Paso a Paso: ¿Cómo Postular? -->
+          <!-- Section 4: Paso a Paso: ¿Cómo Postular? con Linkify -->
           <div class="glass-panel" style="background: rgba(10, 25, 60, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; margin-bottom: 30px;">
             <h3 style="color: white; font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
               <i class="ph-fill ph-list-numbers" style="color: #60a5fa;"></i> ${i18n.t('detail.steps_title')}
@@ -165,7 +189,7 @@ export async function renderOpportunityDetail(id) {
                     ${idx + 1}
                   </div>
                   <div style="color: rgba(255,255,255,0.9); font-size: 0.98rem; line-height: 1.5; padding-top: 4px;">
-                    ${step}
+                    ${linkify(step, externalLink)}
                   </div>
                 </div>
               `).join('')}
@@ -174,8 +198,8 @@ export async function renderOpportunityDetail(id) {
 
           <!-- Final Direct Application Call-to-Action Bar -->
           <div style="background: linear-gradient(135deg, rgba(10, 77, 163, 0.4) 0%, rgba(4, 27, 77, 0.6) 100%); border: 2px solid rgba(255, 199, 0, 0.4); border-radius: 24px; padding: 35px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
-            <a href="${opp.external_link || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-yellow" style="padding: 16px 40px; border-radius: 14px; font-weight: 900; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(255, 199, 0, 0.35); text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
-              <span>${i18n.t('detail.apply_official')}</span>
+            <a href="${destinationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-yellow" style="padding: 16px 40px; border-radius: 14px; font-weight: 900; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(255, 199, 0, 0.35); text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+              <span>${isForm ? 'Llenar Formulario Oficial' : i18n.t('detail.apply_official')}</span>
               <i class="ph ph-arrow-square-out" style="font-size: 1.3rem;"></i>
             </a>
           </div>
@@ -242,8 +266,8 @@ export async function renderOpportunityDetail(id) {
 
             <!-- Direct Action Button in Sidebar -->
             <div style="margin-top: 25px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px;">
-              <a href="${opp.external_link || '#'}" target="_blank" rel="noopener noreferrer" class="btn btn-yellow w-100" style="padding: 14px; border-radius: 12px; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
-                <span>${i18n.t('detail.apply_official')}</span> <i class="ph ph-arrow-square-out"></i>
+              <a href="${destinationUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-yellow w-100" style="padding: 14px; border-radius: 12px; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+                <span>${isForm ? 'Llenar Formulario Oficial' : i18n.t('detail.apply_official')}</span> <i class="ph ph-arrow-square-out"></i>
               </a>
             </div>
 

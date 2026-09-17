@@ -347,7 +347,9 @@ export function enrichOpportunity(opp) {
   }
 
   // Ensure logical image and rich complete description
-  clone.image_url = assignLogicalImage(clone);
+  if (!clone.image_url || clone.image_url.startsWith('/images/')) {
+    clone.image_url = assignLogicalImage(clone);
+  }
   clone.description = refineDescription(clone);
 
   return clone;
