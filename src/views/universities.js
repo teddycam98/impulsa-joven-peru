@@ -98,8 +98,8 @@ function renderUniversitiesList(items) {
         </div>
       ` : ''}
       <div class="scroll-card-img-wrapper">
-        <img src="${uni.coverImage}" alt="${uni.name}" class="scroll-card-img" loading="lazy"
-          onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80'" />
+        <img src="${uni.coverImage}" alt="${uni.name}" class="scroll-card-img" loading="lazy" decoding="async" width="400" height="225"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&auto=format&fit=crop&q=70'" />
       </div>
       <div class="scroll-card-content">
         <div class="card-icon-header">

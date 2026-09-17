@@ -86,7 +86,7 @@ export function generateOpportunityCards(opportunities, category, favIds, startI
         </button>
         ${badges ? `<div class="opp-badges-row">${badges}</div>` : ''}
         <div class="scroll-card-img-wrapper">
-          <img src="${imgUrl}" class="scroll-card-img" alt="${opp.title || ''}" loading="lazy" onerror="this.src='/images/estudiar.jpg'" />
+          <img src="${imgUrl}" class="scroll-card-img" alt="${escapeHTML(opp.title || '')}" loading="lazy" decoding="async" width="400" height="225" onerror="this.onerror=null;this.src='/images/estudiar.jpg'" />
         </div>
         <div class="scroll-card-content">
           <div class="card-icon-header">

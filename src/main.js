@@ -322,9 +322,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Initial check
-  const currentUser = await dbService.getCurrentUser();
-  updateUserUI(currentUser);
+  // Initial check (Non-blocking for 0ms instant initial paint)
+  dbService.getCurrentUser()
+    .then(currentUser => updateUserUI(currentUser))
+    .catch(() => updateUserUI(null));
 
   // Auth State Listener
   dbService.onAuthStateChange(async (event, session) => {
