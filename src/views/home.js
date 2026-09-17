@@ -61,6 +61,11 @@ export function renderHome() {
               <span data-i18n="home.hero.btn_explore">${i18n.t('home.hero.btn_explore')}</span>
               <i class="ph ph-arrow-right"></i>
             </a>
+            <a href="/vocacional" data-link class="btn-hero-pill-vocational">
+              <i class="ph-fill ph-compass"></i>
+              <span data-i18n="home.hero.btn_vocational">${i18n.t('home.hero.btn_vocational')}</span>
+              <span class="pill-badge-spark">¡Gratis!</span>
+            </a>
             <a href="/becas" data-link class="btn-hero-pill-outline">
               <span data-i18n="home.hero.btn_new">${i18n.t('home.hero.btn_new')}</span>
               <i class="ph ph-user"></i>
@@ -261,6 +266,46 @@ export function renderHome() {
           <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=750&fit=crop&q=85" alt="Voluntariado" class="card-bg-img">
           <div class="card-gradient"></div>
         </a>
+      </div>
+    </section>
+
+    <!-- Dedicated Vocational Test Callout Banner -->
+    <section class="container-wide animate-on-scroll" style="margin: 60px auto 40px;">
+      <div class="vocational-home-banner">
+        <div class="vocational-banner-content">
+          <div class="vocational-banner-badge">
+            <i class="ph-fill ph-compass text-yellow"></i>
+            <span>ORIENTACIÓN VOCACIONAL GRATUITA</span>
+          </div>
+          <h2 class="vocational-banner-title">
+            ¿Aún no sabes qué carrera elegir?
+          </h2>
+          <p class="vocational-banner-text">
+            Descubre tu verdadera vocación con nuestro test interactivo express de 2 minutos. Evalúa tus intereses y habilidades, conoce las profesiones con mayor empleabilidad en el Perú y conéctate con universidades aliadas y becas oficiales.
+          </p>
+          <div class="vocational-banner-stats">
+            <div class="v-stat-item"><i class="ph-fill ph-check-circle"></i> 100% Gratuito y sin registro previo</div>
+            <div class="v-stat-item"><i class="ph-fill ph-lightning"></i> Resultados instantáneos en 6 dimensiones</div>
+            <div class="v-stat-item"><i class="ph-fill ph-graduation-cap"></i> Vinculado a universidades y Beca 18</div>
+          </div>
+          <div class="vocational-banner-action">
+            <a href="/vocacional" data-link class="btn btn-yellow btn-large" style="display: inline-flex; align-items: center; gap: 10px; font-weight: 800; padding: 16px 36px; border-radius: 50px;">
+              <i class="ph-fill ph-compass"></i> Iniciar Test Vocacional Ahora
+            </a>
+          </div>
+        </div>
+        <div class="vocational-banner-visual">
+          <div class="vocational-visual-card">
+            <div class="v-card-icon"><i class="ph-fill ph-chart-polar"></i></div>
+            <div class="v-card-title">Perfil Psico-Vocacional</div>
+            <div class="v-radar-bars">
+              <div class="v-bar-row"><span>Tecnología & IA</span><div class="v-bar-track"><div class="v-bar-fill" style="width: 95%;"></div></div><span>95%</span></div>
+              <div class="v-bar-row"><span>Ingeniería & Minas</span><div class="v-bar-track"><div class="v-bar-fill" style="width: 82%;"></div></div><span>82%</span></div>
+              <div class="v-bar-row"><span>Negocios & Gestión</span><div class="v-bar-track"><div class="v-bar-fill" style="width: 76%;"></div></div><span>76%</span></div>
+              <div class="v-bar-row"><span>Diseño & Arte</span><div class="v-bar-track"><div class="v-bar-fill" style="width: 68%;"></div></div><span>68%</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   `;

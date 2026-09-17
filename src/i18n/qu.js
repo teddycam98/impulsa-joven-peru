@@ -8,6 +8,7 @@ export const qu = {
   "nav.universities": "Yachay Wasikuna",
   "nav.competitions": "Atipanakuy",
   "nav.volunteer": "Yanapakuy",
+  "nav.vocational": "Yachay Akllana",
   "nav.profile": "Kikin kani",
   "nav.favorites": "Allin qawasqaykuna",
   "nav.login": "Yaykuy",
@@ -22,6 +23,7 @@ export const qu = {
   "home.hero.title_2": "hamuq punchawta",
   "home.hero.subtitle": "Tariy becakunata, mana qullqiyuq kursukunata, llamk'anakunata, yachapakuykunata<br>ñawpaqman rinaykipaq.",
   "home.hero.btn_explore": "Qaway tukuyta",
+  "home.hero.btn_vocational": "Yachay Akllana",
   "home.hero.btn_new": "Musuq kani kaypi",
   "home.hero.phrase": "Hatun musquykuna hatun oportunidadkunawan qallarin",
   

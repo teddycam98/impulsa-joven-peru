@@ -8,6 +8,7 @@ export const es = {
   "nav.universities": "Universidades",
   "nav.competitions": "Concursos",
   "nav.volunteer": "Voluntariado",
+  "nav.vocational": "Test Vocacional",
   "nav.profile": "Mi perfil",
   "nav.favorites": "Mis Favoritos",
   "nav.login": "Iniciar sesión",
@@ -22,6 +23,7 @@ export const es = {
   "home.hero.title_2": "tu futuro",
   "home.hero.subtitle": "Encuentra becas, cursos gratuitos, empleos, prácticas, concursos y voluntariados<br>para crecer sin límites en todo el Perú.",
   "home.hero.btn_explore": "Explorar oportunidades",
+  "home.hero.btn_vocational": "Test Vocacional",
   "home.hero.btn_new": "Soy nuevo aquí",
   "home.hero.phrase": "Grandes sueños comienzan con grandes oportunidades",
   

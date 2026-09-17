@@ -8,6 +8,7 @@ export const en = {
   "nav.universities": "Universities",
   "nav.competitions": "Competitions",
   "nav.volunteer": "Volunteering",
+  "nav.vocational": "Career Quiz",
   "nav.profile": "My Profile",
   "nav.favorites": "My Favorites",
   "nav.login": "Log In",
@@ -22,6 +23,7 @@ export const en = {
   "home.hero.title_2": "your future",
   "home.hero.subtitle": "Find scholarships, courses, jobs, internships and volunteering<br>to grow without limits.",
   "home.hero.btn_explore": "Explore opportunities",
+  "home.hero.btn_vocational": "Career Quiz",
   "home.hero.btn_new": "I'm new here",
   "home.hero.phrase": "Great dreams begin with great opportunities",
   
