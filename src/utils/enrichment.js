@@ -1,5 +1,6 @@
 // Smart Enrichment Engine for Impulsa Joven Perú
 // Assigns typeCategory, ageRange, coverage, modality, requirements, benefits, and steps
+import { assignLogicalImage, refineDescription } from './opportunityRefiner.js';
 
 export const UUID_METADATA = {
   // ─── CURSOS GRATUITOS ───────────────────────────
@@ -344,6 +345,10 @@ export function enrichOpportunity(opp) {
       'Esperar la publicación de resultados y confirmación de ingreso.'
     ];
   }
+
+  // Ensure logical image and rich complete description
+  clone.image_url = assignLogicalImage(clone);
+  clone.description = refineDescription(clone);
 
   return clone;
 }

@@ -3,6 +3,8 @@
  * Standardizes schema across all categories for seamless ingestion.
  */
 
+import { assignLogicalImage, refineDescription } from '../../src/utils/opportunityRefiner.js';
+
 export function slugify(text) {
   return text
     .toString()
@@ -16,11 +18,15 @@ export function slugify(text) {
 export function normalizeOpportunity(raw) {
   const category = raw.category || 'scholarship';
   const id = raw.id || `${category}-${slugify(raw.title || 'convocatoria')}-${Date.now().toString(36).slice(-4)}`;
+  const title = (raw.title || '').trim();
+  const organization = (raw.organization || '').trim();
+  const cleanDesc = refineDescription({ ...raw, category, title, organization });
+  const logicalImg = assignLogicalImage({ ...raw, category, title, organization, description: cleanDesc });
 
   return {
     id,
-    title: (raw.title || '').trim(),
-    organization: (raw.organization || '').trim(),
+    title,
+    organization,
     category,
     type: raw.type || getDefaultType(category),
     typeCategory: raw.typeCategory || getDefaultTypeCategory(category),
@@ -31,8 +37,8 @@ export function normalizeOpportunity(raw) {
     modality: raw.modality || 'onsite',
     location: raw.location || 'Nacional (Todo el Perú)',
     deadline: raw.deadline || getFutureDate(45),
-    description: (raw.description || '').trim(),
-    image_url: raw.image_url || getDefaultImage(category),
+    description: cleanDesc,
+    image_url: logicalImg,
     external_link: raw.external_link || 'https://www.gob.pe',
     featured: Boolean(raw.featured),
     status: raw.status || 'active',
