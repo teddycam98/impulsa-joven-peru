@@ -133,6 +133,22 @@ export async function initDynamicList(containerId, category) {
   const cardsContainer = container.querySelector('#cardsContainer');
   let loadMoreBtn = container.querySelector('#loadMoreBtn');
 
+  // Dynamic Results Counter Bar
+  let resultsCountText = container.querySelector('#resultsCountText');
+  if (!resultsCountText && cardsContainer) {
+    const bar = document.createElement('div');
+    bar.id = 'resultsCountBar';
+    bar.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 12px 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px;';
+    bar.innerHTML = `
+      <span id="resultsCountText" style="color: rgba(255,255,255,0.85); font-size: 0.95rem; font-weight: 600;">
+        <i class="ph ph-spinner ph-spin" style="margin-right: 6px;"></i>
+        Cargando convocatorias...
+      </span>
+    `;
+    cardsContainer.parentNode.insertBefore(bar, cardsContainer);
+    resultsCountText = bar.querySelector('#resultsCountText');
+  }
+
   // Specific dropdown filters
   const ageFilter = container.querySelector('#ageFilter');
   const studyLevelFilter = container.querySelector('#studyLevelFilter');
@@ -151,9 +167,15 @@ export async function initDynamicList(containerId, category) {
     loadMoreBtn.className = 'btn btn-outline';
     loadMoreBtn.style.margin = '40px auto 0';
     loadMoreBtn.style.display = 'none';
-    loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} <i class="ph ph-caret-down"></i>`;
     cardsContainer.parentNode.insertBefore(loadMoreBtn, cardsContainer.nextSibling);
-    loadMoreBtn.addEventListener('click', () => loadData(false));
+  }
+
+  // Ensure click listener is always securely bound to loadMoreBtn
+  if (loadMoreBtn) {
+    loadMoreBtn.onclick = (e) => {
+      e.preventDefault();
+      loadData(false);
+    };
   }
   
   const favIds = await dbService.getFavoriteIds();
@@ -166,59 +188,41 @@ export async function initDynamicList(containerId, category) {
       page = 0;
       hasMore = true;
       cardsContainer.innerHTML = generateSkeletonCards(8);
+      if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+      if (resultsCountText) {
+        resultsCountText.innerHTML = `<i class="ph ph-spinner ph-spin" style="margin-right: 6px;"></i> ${i18n.t('ui.loading') || 'Cargando convocatorias...'}`;
+      }
+    } else {
+      if (loadMoreBtn) {
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.innerHTML = `<i class="ph ph-spinner ph-spin"></i> ${i18n.t('ui.loading') || 'Cargando más convocatorias...'}`;
+      }
     }
+
+    const filterAgeRange = ageFilter ? ageFilter.value : undefined;
+    const filterTypeCategory = studyLevelFilter ? studyLevelFilter.value : 
+                              (practiceTypeFilter ? practiceTypeFilter.value : 
+                              (competitionTypeFilter ? competitionTypeFilter.value : 
+                              (causeFilter ? causeFilter.value : 
+                              (areaFilter ? areaFilter.value : undefined))));
+    const filterCoverage = coverageFilter ? coverageFilter.value : 
+                          (certFilter && certFilter.value === 'cert-free' ? 'full' : undefined);
+    const filterModality = modalityFilter ? modalityFilter.value : undefined;
+    const filterLocation = locationFilter ? locationFilter.value : undefined;
     
-    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
-    
-    let rawData = await dbService.getOpportunities({
+    let data = await dbService.getOpportunities({
       category,
       limit,
       page,
       search: currentSearch,
       featured: currentFeatured,
-      active: true
+      active: true,
+      ageRange: filterAgeRange,
+      typeCategory: filterTypeCategory,
+      coverage: filterCoverage,
+      modality: filterModality,
+      location: filterLocation
     });
-
-    // Client-side filtering for advanced dropdown filters
-    let data = rawData.filter(item => {
-      if (ageFilter && ageFilter.value !== 'all') {
-        if (item.ageRange && item.ageRange !== 'all' && item.ageRange !== ageFilter.value) return false;
-      }
-      if (studyLevelFilter && studyLevelFilter.value !== 'all') {
-        if (item.typeCategory !== studyLevelFilter.value) return false;
-      }
-      if (coverageFilter && coverageFilter.value !== 'all') {
-        if (item.coverage !== coverageFilter.value) return false;
-      }
-      if (modalityFilter && modalityFilter.value !== 'all') {
-        if (item.modality !== modalityFilter.value) return false;
-      }
-      if (practiceTypeFilter && practiceTypeFilter.value !== 'all') {
-        if (item.typeCategory !== practiceTypeFilter.value) return false;
-      }
-      if (areaFilter && areaFilter.value !== 'all') {
-        if (item.typeCategory !== areaFilter.value) return false;
-      }
-      if (certFilter && certFilter.value === 'cert-free') {
-        if (item.coverage !== 'full') return false;
-      }
-      if (locationFilter && locationFilter.value !== 'all') {
-        const itemLoc = (item.location || '').toLowerCase();
-        const filterLoc = locationFilter.value.toLowerCase();
-        if (!itemLoc.includes(filterLoc)) return false;
-      }
-      if (causeFilter && causeFilter.value !== 'all') {
-        if (item.typeCategory !== causeFilter.value) return false;
-      }
-      if (competitionTypeFilter && competitionTypeFilter.value !== 'all') {
-        if (item.typeCategory !== competitionTypeFilter.value) return false;
-      }
-      return true;
-    });
-    
-    if (rawData.length < limit) {
-      hasMore = false;
-    }
     
     if (reset) {
       cardsContainer.innerHTML = '';
@@ -227,8 +231,45 @@ export async function initDynamicList(containerId, category) {
     if (data.length > 0) {
       const html = generateOpportunityCards(data, category, favIds, page * limit);
       cardsContainer.insertAdjacentHTML('beforeend', html);
-      if (hasMore && loadMoreBtn) loadMoreBtn.style.display = 'inline-flex';
-    } else if (reset) {
+    }
+
+    const renderedCount = cardsContainer.querySelectorAll('.scroll-card').length;
+    const totalCount = typeof data.total === 'number' ? data.total : (page * limit + data.length);
+
+    if (resultsCountText) {
+      if (totalCount === 0) {
+        resultsCountText.innerHTML = `<i class="ph ph-warning-circle" style="color: #ffb800; margin-right: 6px;"></i> No se encontraron convocatorias para los filtros seleccionados`;
+      } else {
+        resultsCountText.innerHTML = `<i class="ph-fill ph-check-circle" style="color: #4da3ff; margin-right: 6px;"></i> Mostrando <strong style="color: #FFD600;">${renderedCount}</strong> de <strong style="color: #fff;">${totalCount}</strong> convocatorias vigentes`;
+      }
+    }
+
+    if (renderedCount < totalCount && data.length > 0) {
+      hasMore = true;
+      const remaining = totalCount - renderedCount;
+      if (loadMoreBtn) {
+        loadMoreBtn.style.display = 'inline-flex';
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.className = 'btn btn-outline';
+        loadMoreBtn.style.opacity = '1';
+        loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} (${remaining} más) <i class="ph ph-caret-down"></i>`;
+      }
+    } else {
+      hasMore = false;
+      if (loadMoreBtn) {
+        if (totalCount > 0 && renderedCount >= totalCount) {
+          loadMoreBtn.style.display = 'inline-flex';
+          loadMoreBtn.disabled = true;
+          loadMoreBtn.className = 'btn btn-outline';
+          loadMoreBtn.style.opacity = '0.7';
+          loadMoreBtn.innerHTML = `<i class="ph-fill ph-check-circle" style="color: #4da3ff; margin-right: 6px;"></i> Has visto todas las ${totalCount} convocatorias vigentes`;
+        } else {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+    }
+    
+    if (reset && data.length === 0) {
       cardsContainer.innerHTML = `
         <div class="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.06);">
           <i class="ph ph-magnifying-glass" style="font-size: 3rem; color: var(--secondary-yellow); margin-bottom: 15px;"></i>
@@ -275,7 +316,9 @@ export async function initDynamicList(containerId, category) {
   // Listen to language changes
   const onLangChange = () => {
     if (document.getElementById(containerId)) {
-      if (loadMoreBtn) loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} <i class="ph ph-caret-down"></i>`;
+      if (loadMoreBtn && hasMore) {
+        loadMoreBtn.innerHTML = `${i18n.t('ui.load_more')} <i class="ph ph-caret-down"></i>`;
+      }
       loadData(true);
     } else {
       window.removeEventListener('languageChanged', onLangChange);

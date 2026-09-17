@@ -53,8 +53,20 @@ export const INITIAL_COMPANY_PROPOSALS = [];
 
 export const dbService = {
   async getOpportunities(params = {}) {
-    let { category, limit = 12, page = 0, search = '', featured, active = true } = params;
-    const cacheKey = `${category || 'all'}_${limit}_${page}_${search}_${featured}_${active}`;
+    let { 
+      category, 
+      limit = 12, 
+      page = 0, 
+      search = '', 
+      featured, 
+      active = true,
+      ageRange,
+      typeCategory,
+      coverage,
+      modality,
+      location
+    } = params;
+    const cacheKey = `${category || 'all'}_${limit}_${page}_${search}_${featured}_${active}_${ageRange || ''}_${typeCategory || ''}_${coverage || ''}_${modality || ''}_${location || ''}`;
 
     // 1. Quick in-memory cache check
     if (_oppsMemoryCache.has(cacheKey)) {
@@ -67,16 +79,39 @@ export const dbService = {
       if (featured !== undefined && item.featured !== featured) return false;
       if (search) {
         const q = search.toLowerCase();
-        const match = item.title.toLowerCase().includes(q) || 
-                      item.organization.toLowerCase().includes(q) ||
-                      item.description.toLowerCase().includes(q);
+        const match = (item.title || '').toLowerCase().includes(q) || 
+                      (item.organization || '').toLowerCase().includes(q) ||
+                      (item.description || '').toLowerCase().includes(q);
         if (!match) return false;
+      }
+      if (ageRange && ageRange !== 'all') {
+        if (item.ageRange && item.ageRange !== 'all' && item.ageRange !== ageRange) return false;
+      }
+      if (typeCategory && typeCategory !== 'all') {
+        if (typeCategory === 'beca18') {
+          const isB18 = item.typeCategory === 'beca18' || (item.title + ' ' + (item.description || '')).toLowerCase().includes('beca 18');
+          if (!isB18) return false;
+        } else if (item.typeCategory !== typeCategory) {
+          return false;
+        }
+      }
+      if (coverage && coverage !== 'all') {
+        if (item.coverage !== coverage) return false;
+      }
+      if (modality && modality !== 'all') {
+        if (item.modality !== modality) return false;
+      }
+      if (location && location !== 'all') {
+        const itemLoc = (item.location || '').toLowerCase();
+        if (!itemLoc.includes(location.toLowerCase())) return false;
       }
       return true;
     });
 
+    const total = localItems.length;
     const from = page * limit;
     const paged = localItems.slice(from, from + limit).map(enrichOpportunity);
+    paged.total = total;
     _oppsMemoryCache.set(cacheKey, paged);
 
     // 3. Stale-While-Revalidate: fetch remote Supabase silently in background
